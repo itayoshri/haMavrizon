@@ -31,8 +31,19 @@ export default async function handler(
     data: data,
   }
 
-  const auth = await (await axios(config)).headers['set-cookie'][1]
+  const response = await await axios(config)
+
+  // Auth cookie
+  const auth = response.headers['set-cookie'][1]
   const token = auth.slice(0, 672)
+  const domain = 'domain=web.mashov.info'
+  const path = '/'
+
+  // Student info requests
+  const studentId = response.data.userId
+  const STUDENT_URL = `https://web.mashov.info/api/students/${studentId}`
+
+  console.log(response.data)
 
   res.status(200).json(token)
 }
