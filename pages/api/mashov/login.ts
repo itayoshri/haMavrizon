@@ -14,12 +14,25 @@ export default function handler(
 ) {
   const { semel, username, password } = req.query
 
-  axios.post(MASHOV_LOGIN_URL, {
+  const data = JSON.stringify({
     appName: 'info.mashov.students',
     password: password,
-    semel: semel,
+    semel: Number(semel),
     username: username,
     year: 2023,
+  })
+
+  const config = {
+    method: 'post',
+    url: MASHOV_LOGIN_URL,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: data,
+  }
+
+  axios(config).then((res) => {
+    console.log(res.headers)
   })
 
   res.status(200).json({ name: 'John Doe' })
