@@ -8,7 +8,7 @@ type Data = {
   name: string
 }
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
@@ -31,9 +31,8 @@ export default function handler(
     data: data,
   }
 
-  axios(config).then((res) => {
-    console.log(res.headers)
-  })
+  const auth = await (await axios(config)).headers['set-cookie'][1]
+  const token = auth.slice(0, 672)
 
-  res.status(200).json({ name: 'John Doe' })
+  res.status(200).json(token)
 }
