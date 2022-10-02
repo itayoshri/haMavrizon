@@ -8,7 +8,7 @@ export default async function MashovLogin({
   username,
 }: {
   password: string
-  semel: number
+  semel: string
   username: string
 }) {
   const data = JSON.stringify({
@@ -37,8 +37,7 @@ export default async function MashovLogin({
   const path = '/'
 
   // Student info requests
-  const studentId = response.data.userId
-  const STUDENT_URL = `https://web.mashov.info/api/students/${studentId}`
+  const studentId = response.data.credential.userId
 
   return {
     authCookie: `${token};domain=${domain};path=/;`,
