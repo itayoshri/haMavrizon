@@ -31,16 +31,15 @@ export default async function MashovLogin({
   const response = await await axios(config)
 
   // Auth cookie
-  const auth = response.headers['set-cookie'][1]
+  const auth = response.headers['set-cookie']
   const token = auth.slice(0, 672)
-  const domain = 'domain=web.mashov.info'
-  const path = '/'
 
   // Student info requests
   const studentId = response.data.credential.userId
 
   return {
-    authCookie: `${token};domain=${domain};path=/;`,
+    authCookie: `${token}`, //;domain=${domain};path=/;
     studentId: studentId,
+    xCsrfToken: response.headers['x-csrf-token'],
   }
 }
