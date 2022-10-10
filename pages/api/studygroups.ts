@@ -1,22 +1,19 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
-import MashovLogin from '../../../utils/Mashov/login'
-import { fetchDataSource } from '../../../utils/Mashov/datasource'
-import { StudyGroupsBuilder } from '../../../utils/StudyGroups'
+import MashovLogin from '../../utils/Mashov/login'
+import { fetchDataSource } from '../../utils/Mashov/datasource'
+import { StudyGroupsBuilder } from '../../utils/StudyGroups'
 import {
   IBehaveEvent,
   IMashovStudyGroup,
   IMashovLessonsCounter,
-} from '../../../Interfaces/Mashov'
-
-type Data = {
-  name: string
-}
+} from '../../Interfaces/Mashov'
+import { IStudyGroup } from '../../Interfaces'
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<IStudyGroup[]>
 ) {
   const { semel, username, password } = req.query
 
@@ -25,20 +22,17 @@ export default async function handler(
     username: username as string,
     password: password as string,
   })
-
   const auth = { authCookie, studentId, xCsrfToken }
 
   const studyGroups = await fetchDataSource('groups', auth)
   const behaveEvents = await fetchDataSource('behave', auth)
   const lessonCounter = await fetchDataSource('lessonsCount', auth)
 
-  const StudyGroupsBuilderr = new StudyGroupsBuilder(
+  const StudyGroups = new StudyGroupsBuilder(
     studyGroups as IMashovStudyGroup[],
     behaveEvents as IBehaveEvent[],
     lessonCounter as IMashovLessonsCounter[]
   )
 
-  console.log(StudyGroupsBuilderr.studyGroups)
-
-  res.status(200).json(StudyGroupsBuilderr.studyGroups)
+  res.status(200).json(Array.from(StudyGroups.studyGroups.values()))
 }
