@@ -6,7 +6,7 @@ export interface IFetchInfo {
   xCsrfToken: string
 }
 
-type FetchFor = 'groups' | 'behave' | 'lessonsCount'
+type FetchFor = 'groups' | 'behave' | 'lessonsCount' | 'timetable'
 
 export const BASE_URL = 'web.mashov.info/api/students'
 
