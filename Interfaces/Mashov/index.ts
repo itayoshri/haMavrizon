@@ -3,6 +3,10 @@ export enum eventCodes {
   ABSENCE = 105,
 }
 
+export enum justificationCodes {
+  NO_JUSTIFICATION = -1,
+}
+
 export interface IMashovStudyGroup {
   groupId: number
   groupName: string
@@ -12,6 +16,7 @@ export interface IMashovStudyGroup {
 export interface IBehaveEvent {
   groupId: number
   eventCode: number
+  justificationId: number
 }
 
 export interface IMashovLessonsCounter {
