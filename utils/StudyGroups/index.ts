@@ -1,4 +1,4 @@
-import { IStudyGroup } from '../../Interfaces'
+import { IFrontStudyGroup, IStudyGroup } from '../../Interfaces'
 import {
   IBehaveEvent,
   IMashovLessonsCounter,
@@ -56,6 +56,17 @@ class StudyGroup {
   static calcSemesterHours(weeklyHours: number) {
     return weeklyHours * WEEKS_OF_STUDY
   }
+
+  public static getFrontObj(sg: StudyGroup): IFrontStudyGroup {
+    return {
+      name: sg.name,
+      lessonsCount: sg.lessonsCount,
+      absenceCounter: sg.absenceCounter,
+      semesterHours: sg.semesterHours,
+      freeAbsences: sg.freeAbsences,
+      freeAnnualAbsences: sg.freeAnnualAbsences,
+    }
+  }
 }
 
 export class StudyGroupsBuilder {
@@ -88,5 +99,14 @@ export class StudyGroupsBuilder {
         if (sg != undefined) sg.addAbsence()
       }
     }
+  }
+
+  public getStudyGroups() {
+    const studyGroupsArr = Array.from(this.studyGroups.values())
+    const frontStudyGroupsArr = [] as IFrontStudyGroup[]
+    for (const i in studyGroupsArr) {
+      frontStudyGroupsArr[i] = StudyGroup.getFrontObj(studyGroupsArr[i])
+    }
+    return frontStudyGroupsArr
   }
 }

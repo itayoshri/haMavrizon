@@ -9,11 +9,11 @@ import {
   IMashovStudyGroup,
   IMashovLessonsCounter,
 } from '../../Interfaces/Mashov'
-import { IStudyGroup } from '../../Interfaces'
+import { IFrontStudyGroup } from '../../Interfaces'
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<IStudyGroup[]>
+  res: NextApiResponse<IFrontStudyGroup[]>
 ) {
   const { semel, username, password } = req.query
 
@@ -34,5 +34,5 @@ export default async function handler(
     lessonCounter as IMashovLessonsCounter[]
   )
 
-  res.status(200).json(Array.from(StudyGroups.studyGroups.values()))
+  res.status(200).json(StudyGroups.getStudyGroups())
 }

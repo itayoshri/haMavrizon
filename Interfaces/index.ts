@@ -8,3 +8,12 @@ export interface IStudyGroup {
   weeklyHours: number
   absenceCounter: number
 }
+
+export interface IFrontStudyGroup {
+  name: string
+  freeAbsences: number
+  freeAnnualAbsences: number
+  semesterHours: number
+  lessonsCount: number
+  absenceCounter: number
+}
