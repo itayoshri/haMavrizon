@@ -2,7 +2,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
 import MashovLogin from '../../../utils/Mashov/login'
-import { fetchDataSource } from '../../../utils/Mashov/dataSource'
+import { fetchDataSource } from '../../../utils/Mashov/datasource'
+import { StudyGroupsBuilder } from '../../../utils/StudyGroups'
+import {
+  IBehaveEvent,
+  IMashovStudyGroup,
+  ISGCounter,
+} from '../../../Interfaces/Mashov'
 
 type Data = {
   name: string
@@ -20,9 +26,19 @@ export default async function handler(
     password: password as string,
   })
 
-  res
-    .status(200)
-    .json(
-      await fetchDataSource('groups', { authCookie, studentId, xCsrfToken })
-    )
+  const auth = { authCookie, studentId, xCsrfToken }
+
+  const studyGroups = await fetchDataSource('groups', auth)
+  const behaveEvents = await fetchDataSource('behave', auth)
+  const lessonCounter = await fetchDataSource('lessonsCount', auth)
+
+  const StudyGroupsBuilderr = new StudyGroupsBuilder(
+    studyGroups as IMashovStudyGroup[],
+    behaveEvents as IBehaveEvent[],
+    lessonCounter as ISGCounter[]
+  )
+
+  console.log(StudyGroupsBuilderr.studyGroups)
+
+  res.status(200).json(StudyGroupsBuilderr.studyGroups)
 }
