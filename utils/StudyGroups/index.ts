@@ -4,6 +4,7 @@ import {
   IMashovLessonsCounter,
   IMashovStudyGroup,
   eventCodes,
+  justificationCodes,
 } from '../../Interfaces/Mashov'
 
 const WEEKS_OF_STUDY = 89 / 5 // 89 is the number of the study days between 01/09/22 and 26/01/23, 5 days per study week
@@ -107,9 +108,13 @@ export class StudyGroupsBuilder {
     }
 
     for (const event of behaveEvents) {
-      if (event.eventCode == eventCodes.ABSENCE) {
+      if (
+        event.eventCode == eventCodes.ABSENCE &&
+        event.justificationId == justificationCodes.NO_JUSTIFICATION
+      ) {
         const sg = this.studyGroups.get(event.groupId)
         if (sg != undefined) sg.addAbsence()
+        console.log(event.justificationId)
       }
     }
   }
