@@ -7,7 +7,7 @@ import { StudyGroupsBuilder } from '../../../utils/StudyGroups'
 import {
   IBehaveEvent,
   IMashovStudyGroup,
-  ISGCounter,
+  IMashovLessonsCounter,
 } from '../../../Interfaces/Mashov'
 
 type Data = {
@@ -35,7 +35,7 @@ export default async function handler(
   const StudyGroupsBuilderr = new StudyGroupsBuilder(
     studyGroups as IMashovStudyGroup[],
     behaveEvents as IBehaveEvent[],
-    lessonCounter as ISGCounter[]
+    lessonCounter as IMashovLessonsCounter[]
   )
 
   console.log(StudyGroupsBuilderr.studyGroups)

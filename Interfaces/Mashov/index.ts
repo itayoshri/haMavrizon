@@ -14,7 +14,7 @@ export interface IBehaveEvent {
   eventCode: number
 }
 
-export interface ISGCounter {
+export interface IMashovLessonsCounter {
   groupId: number
   lessonsCount: number
   weeklyHours: number

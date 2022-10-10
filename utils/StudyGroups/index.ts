@@ -1,7 +1,7 @@
 import { IStudyGroup } from '../../Interfaces'
 import {
   IBehaveEvent,
-  ISGCounter,
+  IMashovLessonsCounter,
   IMashovStudyGroup,
   eventCodes,
 } from '../../Interfaces/Mashov'
@@ -26,7 +26,7 @@ export class StudyGroupsBuilder {
   constructor(
     studyGroups: IMashovStudyGroup[],
     behaveEvents: IBehaveEvent[],
-    lessonCounter: ISGCounter[]
+    lessonCounter: IMashovLessonsCounter[]
   ) {
     for (const studyGroup of studyGroups) {
       this.studyGroups.set(
