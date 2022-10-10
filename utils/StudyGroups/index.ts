@@ -29,6 +29,7 @@ class StudyGroup {
 
   public addAbsence() {
     this.absenceCounter++
+
     this.freeAbsences = StudyGroup.AbsCalc(
       this.lessonsCount,
       this.absenceCounter
@@ -43,6 +44,15 @@ class StudyGroup {
     this.lessonsCount = lessonsCount
     this.weeklyHours = weeklyHours
     this.semesterHours = StudyGroup.calcSemesterHours(weeklyHours)
+
+    this.freeAbsences = StudyGroup.AbsCalc(
+      this.lessonsCount,
+      this.absenceCounter
+    )
+    this.freeAnnualAbsences = StudyGroup.AnnualAbsCalc(
+      this.semesterHours,
+      this.absenceCounter
+    )
   }
 
   static AbsCalc(lessonsCount: number, absenceCounter: number) {
