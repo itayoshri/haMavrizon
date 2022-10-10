@@ -46,17 +46,19 @@ class StudyGroup {
 
   static AbsCalc(lessonsCount: number, absenceCounter: number) {
     const dryCalcAbs = lessonsCount * 0.15 - absenceCounter
-    return dryCalcAbs * ABS_CONST > 0 ? dryCalcAbs * ABS_CONST : 0
+    return Math.floor(dryCalcAbs * ABS_CONST > 0 ? dryCalcAbs * ABS_CONST : 0)
   }
 
   static AnnualAbsCalc(semesterHours: number, absenceCounter: number) {
-    return semesterHours * 0.15 - absenceCounter > 0
-      ? semesterHours * 0.15 - absenceCounter
-      : 0
+    return Math.floor(
+      semesterHours * 0.15 - absenceCounter > 0
+        ? semesterHours * 0.15 - absenceCounter
+        : 0
+    )
   }
 
   static calcSemesterHours(weeklyHours: number) {
-    return weeklyHours * WEEKS_OF_STUDY
+    return Math.floor(weeklyHours * WEEKS_OF_STUDY)
   }
 
   public static getFrontObj(sg: StudyGroup): IFrontStudyGroup {
