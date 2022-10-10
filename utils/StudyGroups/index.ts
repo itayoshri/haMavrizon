@@ -13,7 +13,9 @@ class StudyGroup {
   readonly name: string
   readonly groupId: number
 
-  private freeAbsences = 0
+  public freeAbsences = 0
+  public freeAnnualAbsences = 0
+
   private semesterHours = 0
   private lessonsCount = 0
   private weeklyHours = 0
@@ -30,6 +32,10 @@ class StudyGroup {
       this.lessonsCount,
       this.absenceCounter
     )
+    this.freeAnnualAbsences = StudyGroup.AnnualAbsCalc(
+      this.semesterHours,
+      this.absenceCounter
+    )
   }
 
   public updateHours(lessonsCount: number, weeklyHours: number) {
@@ -38,16 +44,16 @@ class StudyGroup {
     this.semesterHours = StudyGroup.calcSemesterHours(weeklyHours)
   }
 
-  public static AbsCalc(lessonsCount: number, absenceCounter: number) {
+  static AbsCalc(lessonsCount: number, absenceCounter: number) {
     const dryCalcAbs = lessonsCount * 0.15 - absenceCounter
     return dryCalcAbs * ABS_CONST
   }
 
-  public static AnnualAbsCalc(semesterHours: number, absenceCounter: number) {
+  static AnnualAbsCalc(semesterHours: number, absenceCounter: number) {
     return semesterHours * 0.15 - absenceCounter
   }
 
-  public static calcSemesterHours(weeklyHours: number) {
+  static calcSemesterHours(weeklyHours: number) {
     return weeklyHours * WEEKS_OF_STUDY
   }
 }
