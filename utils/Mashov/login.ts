@@ -12,25 +12,17 @@ export default async function MashovLogin({
   semel: string
   username: string
 }) {
-  const data = JSON.stringify({
+  const data = {
     appName: 'info.mashov.students',
     password: password,
     semel: Number(semel),
     username: username,
     year: 2023,
-  })
-
-  const config = {
-    url: MASHOV_LOGIN_URL,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: data,
   }
 
   const response = await axios.post<any, IMashovLoginRes>(
     MASHOV_LOGIN_URL,
-    config
+    data
   )
 
   // Auth cookie
