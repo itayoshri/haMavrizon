@@ -7,7 +7,8 @@ import {
 } from '../../Interfaces/Mashov'
 
 const WEEKS_OF_STUDY = 89 / 5 // 89 is the number of the study days between 01/09/22 and 26/01/23, 5 days per study week
-const ABS_CONST = 1.17647 // Evaluation of f(n) = n + f(0.15n)
+const ABS_MULTIPLIER = 1.17647 // Evaluation of f(n) = n + f(0.15n)
+const ALLOWED_ABS = 0.15
 
 class StudyGroup {
   readonly name: string
@@ -45,16 +46,14 @@ class StudyGroup {
   }
 
   static AbsCalc(lessonsCount: number, absenceCounter: number) {
-    const dryCalcAbs = lessonsCount * 0.15 - absenceCounter
-    return Math.floor(dryCalcAbs * ABS_CONST > 0 ? dryCalcAbs * ABS_CONST : 0)
+    const dryCalcAbs = lessonsCount * ALLOWED_ABS - absenceCounter
+    const freeAbs = dryCalcAbs * ABS_MULTIPLIER
+    return Math.floor(freeAbs > 0 ? freeAbs : 0)
   }
 
   static AnnualAbsCalc(semesterHours: number, absenceCounter: number) {
-    return Math.floor(
-      semesterHours * 0.15 - absenceCounter > 0
-        ? semesterHours * 0.15 - absenceCounter
-        : 0
-    )
+    const freeAbs = semesterHours * ALLOWED_ABS - absenceCounter
+    return Math.floor(freeAbs > 0 ? freeAbs : 0)
   }
 
   static calcSemesterHours(weeklyHours: number) {
