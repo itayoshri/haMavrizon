@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { IMashovLoginRes } from '../../Interfaces/Mashov'
 
 const MASHOV_LOGIN_URL = 'https://web.mashov.info/api/login'
 
@@ -20,7 +21,6 @@ export default async function MashovLogin({
   })
 
   const config = {
-    method: 'post',
     url: MASHOV_LOGIN_URL,
     headers: {
       'Content-Type': 'application/json',
@@ -28,18 +28,22 @@ export default async function MashovLogin({
     data: data,
   }
 
-  const response = await await axios(config)
+  const response = await axios.post<any, IMashovLoginRes>(
+    MASHOV_LOGIN_URL,
+    config
+  )
 
   // Auth cookie
-  const auth = response.headers['set-cookie']
-  const token = auth.slice(0, 672)
+  const authCookie = response.headers['set-cookie'].slice(0, 672)
+
+  const xCsrfToken = response.headers['x-csrf-token']
 
   // Student info requests
   const studentId = response.data.credential.userId
 
   return {
-    authCookie: `${token}`, //;domain=${domain};path=/;
-    studentId: studentId,
-    xCsrfToken: response.headers['x-csrf-token'],
+    authCookie,
+    studentId,
+    xCsrfToken,
   }
 }

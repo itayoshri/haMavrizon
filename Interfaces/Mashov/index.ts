@@ -19,3 +19,15 @@ export interface IMashovLessonsCounter {
   lessonsCount: number
   weeklyHours: number
 }
+
+export interface IMashovLoginRes {
+  headers: {
+    'set-cookie': string
+    'x-csrf-token': string
+  }
+  data: {
+    credential: {
+      userId: string
+    }
+  }
+}
