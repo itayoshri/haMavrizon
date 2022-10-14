@@ -1,8 +1,7 @@
 import { useMemo } from 'react'
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
-import PrecentageCalc from '../hooks/PrecentageCalc'
-import { GetPathColor, pathColors } from './Subject'
+import PrecentageCalc, { GetColor, pathColors } from '../hooks/Subject'
 
 export interface ElipseProps {
   outOff: number
@@ -17,7 +16,7 @@ export default function Elipse({ outOff, amount }: ElipseProps) {
       <CircularProgressbar
         value={percentage}
         styles={buildStyles({
-          pathColor: pathColors[GetPathColor(percentage)],
+          pathColor: pathColors[GetColor(percentage)],
         })}
       />
     </div>
