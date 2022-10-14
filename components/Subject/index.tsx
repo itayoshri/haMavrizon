@@ -11,7 +11,7 @@ export default function Subject({
   lessonsCount,
 }: IFrontStudyGroup) {
   return (
-    <div className="flex justify-between items-center w-full py-3 px-4 border-b-[1px] border-zinc-200">
+    <div className="flex justify-between items-center w-full py-3 px-5 border-b-[1px] border-zinc-200">
       <h1 className="font-medium">{name}</h1>
       <div className="flex gap-4">
         {/* currently */}
