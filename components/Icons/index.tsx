@@ -1,6 +1,8 @@
 import { createSVGResource } from './svgFactory'
 
 export const ForwardRTL = createSVGResource(
-  <path d="M0 0h24v24H0z" fill="none" />,
-  <path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z" />
+  <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z" />
+)
+export const Expand = createSVGResource(
+  <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z" />
 )
