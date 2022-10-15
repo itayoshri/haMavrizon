@@ -1,4 +1,4 @@
-import { Wrapper } from './types'
+import { Wrapper } from '../types'
 
 export interface ButtonProps {
   onClick(): unknown
