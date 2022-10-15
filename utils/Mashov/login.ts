@@ -2,6 +2,7 @@ import axios from 'axios'
 import { IMashovLoginRes } from '../../Interfaces/Mashov'
 
 const MASHOV_LOGIN_URL = 'https://web.mashov.info/api/login'
+const MASHOV_OTP_LOGIN_URL = 'https://web.mashov.info/api/user/otp'
 
 export default async function MashovLogin({
   password,
@@ -38,4 +39,22 @@ export default async function MashovLogin({
     studentId,
     xCsrfToken,
   }
+}
+
+export function MashovRequestOTP({
+  cellphone,
+  semel,
+  username,
+}: {
+  cellphone: string
+  semel: string
+  username: string
+}) {
+  const data = {
+    cellphone: cellphone,
+    semel: Number(semel),
+    username: username,
+  }
+
+  axios.post(MASHOV_OTP_LOGIN_URL, data)
 }
