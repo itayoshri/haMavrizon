@@ -28,7 +28,7 @@ export default function Login({ setData }: LoginProps) {
     })
   }, [link, setData])
   return (
-    <div className="flex items-center h-screen justify-center flex-col gap-4">
+    <div className="flex items-center justify-center flex-col gap-4">
       <input
         placeholder="סמל בית ספר וזה"
         className="bg-zinc-200 p-2 px-4 rounded-lg placeholder:text-black text-lg text-right"
