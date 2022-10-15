@@ -1,12 +1,13 @@
 import Dashboard from '../components/Dashboard'
 import Elipse from '../components/Elipse'
+import Logo from '../components/Logo'
 import Subject from '../components/Subject'
 import TableCategories from '../components/TableCategories'
 
 export default function Test() {
   return (
     <div className="flex flex-col h-full w-screen m-0 p-0 justify-center items-center">
-      <TableCategories />
+      <Logo />
       <Dashboard
         subjects={[
           {
