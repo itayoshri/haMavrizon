@@ -10,6 +10,7 @@ import {
 } from 'react'
 import { IFrontStudyGroup } from '../Interfaces'
 import Button from './Forms/Button'
+import Input from './Forms/Input'
 
 export interface LoginProps {
   setData: Dispatch<SetStateAction<IFrontStudyGroup[]>>
@@ -30,22 +31,9 @@ export default function Login({ setData }: LoginProps) {
   }, [link, setData])
   return (
     <div className="flex items-center justify-center flex-col gap-4">
-      <input
-        placeholder="סמל בית ספר וזה"
-        className="bg-zinc-200 p-2 px-4 rounded-lg placeholder:text-black text-lg text-right"
-        onChange={(e) => setSemel(Number(e.target.value))}
-      />
-
-      <input
-        placeholder="שם משתמש"
-        className="bg-zinc-200 p-2 px-4 rounded-lg placeholder:text-black text-lg text-right"
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        placeholder="סיסמה"
-        className="bg-zinc-200 py-2 px-4 rounded-lg placeholder:text-black text-lg text-right"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <Input hint="סמל בית ספר וזה" onChange={setSemel} />
+      <Input hint="שם משתמש" onChange={setUsername} />
+      <Input hint="סיסמה" onChange={setPassword} />
       <Button onClick={getData}>התחבר</Button>
     </div>
   )

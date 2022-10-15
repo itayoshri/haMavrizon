@@ -7,7 +7,7 @@ export interface InputProps {
 export default function Input({ hint, onChange, password }: InputProps) {
   return (
     <input
-      placeholder="סמל בית ספר וזה"
+      placeholder={hint}
       className="bg-zinc-200 p-2 px-4 rounded-lg placeholder:text-black text-lg text-right"
       onChange={(e) => onChange(Number(e.target.value))}
     />
