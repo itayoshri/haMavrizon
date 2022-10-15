@@ -33,7 +33,7 @@ export default function Login({ setData }: LoginProps) {
     <div className="flex items-center justify-center flex-col gap-4">
       <Input hint="סמל בית ספר וזה" onChange={setSemel} />
       <Input hint="שם משתמש" onChange={setUsername} />
-      <Input hint="סיסמה" onChange={setPassword} />
+      <Input hint="סיסמה" onChange={setPassword} password={true} />
       <Button onClick={getData}>התחבר</Button>
     </div>
   )

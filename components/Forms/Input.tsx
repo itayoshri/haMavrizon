@@ -9,7 +9,10 @@ export default function Input({ hint, onChange, password }: InputProps) {
     <input
       placeholder={hint}
       className="bg-zinc-200 p-2 px-4 rounded-lg placeholder:text-black text-lg text-right"
-      onChange={(e) => onChange(Number(e.target.value))}
+      onChange={(e) => {
+        onChange(e.target.value)
+      }}
+      type={password ? 'password' : 'number'}
     />
   )
 }
