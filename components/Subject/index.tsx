@@ -15,12 +15,13 @@ export default function Subject({
 }: IFrontStudyGroup) {
   const [opened, setOpened] = useState(false)
   return (
-    <div className="flex w-full flex-col py-3 px-5 border-b-[1px] gap-4 border-zinc-200">
+    <div
+      className="flex w-full flex-col py-3 px-5 border-b-[1px] gap-4 border-zinc-200"
+      onClick={() => setOpened(!opened)}
+    >
       <div className="flex w-full justify-between items-center">
         <div className="flex gap-1 items-center">
-          <div onClick={() => setOpened(!opened)}>
-            {opened ? <Expand width={24} /> : <ForwardRTL width={24} />}
-          </div>
+          {opened ? <Expand width={24} /> : <ForwardRTL width={24} />}
           <h1 className="font-medium">{name}</h1>
         </div>
         <div className="flex gap-4">
