@@ -9,6 +9,7 @@ import {
   useCallback,
 } from 'react'
 import { IFrontStudyGroup } from '../Interfaces'
+import Button from './Button'
 
 export interface LoginProps {
   setData: Dispatch<SetStateAction<IFrontStudyGroup[]>>
@@ -45,11 +46,7 @@ export default function Login({ setData }: LoginProps) {
         className="bg-zinc-200 py-2 px-4 rounded-lg placeholder:text-black text-lg text-right"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={() => getData()}>
-        <a className="bg-sky-500 text-white font-bold py-3 px-6 rounded-xl">
-          להתחבר וזה עניינות
-        </a>
-      </button>
+      <Button onClick={getData}>התחבר</Button>
     </div>
   )
 }

@@ -2,11 +2,11 @@ import { IFrontStudyGroup } from '../Interfaces'
 import Subject from './Subject'
 import TableCategories from './TableCategories'
 
-export default function Dashboard({
-  subjects,
-}: {
+export interface DashboardProps {
   subjects: IFrontStudyGroup[]
-}) {
+}
+
+export default function Dashboard({ subjects }: DashboardProps) {
   return (
     <div className="flex flex-col w-full">
       <TableCategories />
