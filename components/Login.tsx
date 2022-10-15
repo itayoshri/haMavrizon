@@ -9,7 +9,7 @@ import {
   useCallback,
 } from 'react'
 import { IFrontStudyGroup } from '../Interfaces'
-import Button from './Button'
+import Button from './Forms/Button'
 
 export interface LoginProps {
   setData: Dispatch<SetStateAction<IFrontStudyGroup[]>>
