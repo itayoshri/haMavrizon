@@ -6,7 +6,7 @@ import Dashboard from '../components/Dashboard'
 import Login from '../components/Login'
 import Logo from '../components/Logo'
 import LoginView from '../components/Views/LoginView'
-import DashboardView from '../components/Views/SubjectsView'
+import DashboardView from '../components/Views/DashboardView'
 import { IFrontStudyGroup } from '../Interfaces'
 const Home: NextPage = () => {
   const [data, setData] = useState<IFrontStudyGroup[]>([])
