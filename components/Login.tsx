@@ -11,9 +11,7 @@ import {
 import { IFrontStudyGroup } from '../Interfaces'
 
 export interface LoginProps {
-  setData(
-    data: IFrontStudyGroup[]
-  ): Dispatch<SetStateAction<IFrontStudyGroup[]>>
+  setData: Dispatch<SetStateAction<IFrontStudyGroup[]>>
 }
 
 export default function Login({ setData }: LoginProps) {
@@ -24,9 +22,9 @@ export default function Login({ setData }: LoginProps) {
     return `/api/studygroups?semel=${semel}&username=${username}&password=${password}`
   }, [password, semel, username])
   const getData = useCallback(() => {
-    axios.get<any, IFrontStudyGroup[]>(link).then((res) => {
-      setData(res)
-      console.log(res)
+    axios.get(link).then((res) => {
+      setData(res.data)
+      console.log(res.data)
     })
   }, [link, setData])
   return (
