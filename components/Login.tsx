@@ -1,16 +1,11 @@
 import axios from 'axios'
-import Link from 'next/link'
-import {
-  useState,
-  useMemo,
-  SetStateAction,
-  Dispatch,
-  useEffect,
-  useCallback,
-} from 'react'
+import { useState, useMemo, SetStateAction, Dispatch, useCallback } from 'react'
 import { IFrontStudyGroup } from '../Interfaces'
 import Button from './Forms/Button'
 import Input from './Forms/Input'
+
+const SIGN_IN = 'התחברות'
+const LOGIN_BY_SMS = 'התחברות באמצעות מסרון'
 
 export interface LoginProps {
   setData: Dispatch<SetStateAction<IFrontStudyGroup[]>>
@@ -26,7 +21,6 @@ export default function Login({ setData }: LoginProps) {
   const getData = useCallback(() => {
     axios.get(link).then((res) => {
       setData(res.data)
-      console.log(res.data)
     })
   }, [link, setData])
   return (
@@ -34,7 +28,7 @@ export default function Login({ setData }: LoginProps) {
       <Input hint="סמל בית ספר וזה" onChange={setSemel} />
       <Input hint="שם משתמש" onChange={setUsername} />
       <Input hint="סיסמה" onChange={setPassword} password={true} />
-      <Button onClick={getData}>התחבר</Button>
+      <Button onClick={getData}>{SIGN_IN}</Button>
     </div>
   )
 }
