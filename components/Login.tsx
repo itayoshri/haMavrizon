@@ -4,9 +4,9 @@ import { IFrontStudyGroup } from '../Interfaces'
 import Button from './Forms/Button'
 import Input from './Forms/Input'
 
-const SIGN_IN = 'התחברות'
-const LOGIN_BY_SMS = 'התחברות באמצעות מסרון'
-const LOGIN_BY_PASSWORD = 'התחברות באמצעות סיסמה'
+const SIGN_IN = 'כניסה'
+const LOGIN_BY_SMS = 'כניסה באמצעות מסרון (SMS)'
+const LOGIN_BY_PASSWORD = 'כניסה באמצעות סיסמה'
 
 export interface LoginProps {
   setData: Dispatch<SetStateAction<IFrontStudyGroup[]>>
@@ -54,7 +54,10 @@ export default function Login({ setData }: LoginProps) {
           <Button onClick={requestSMS}>{SIGN_IN}</Button>
         </>
       )}
-      <Button onClick={() => setViaSMS(!viaSMS)}>
+      <Button
+        onClick={() => setViaSMS(!viaSMS)}
+        className="!bg-[#e6f0eb] !text-black"
+      >
         {viaSMS ? LOGIN_BY_PASSWORD : LOGIN_BY_SMS}
       </Button>
     </div>
