@@ -43,20 +43,15 @@ export default function Login({ setData }: LoginProps) {
     <div className="flex items-center justify-center flex-col gap-4">
       <Input hint="סמל בית ספר וזה" onChange={setSemel} />
       <Input hint="שם משתמש" onChange={setUsername} />
-      {viaSMS ? (
+      {req || !viaSMS ? (
         <>
-          {/* TODO: Refactor /*/}
-          {req ? (
-            <Input hint="סיסמה" onChange={setPassword} key={0} />
-          ) : (
-            <Input hint="מספר טלפון" onChange={setCellphone} key={1} />
-          )}
-          <Button onClick={req ? getData : requestSMS}>{SIGN_IN}</Button>
+          <Input hint="סיסמה" onChange={setPassword} password key={0} />
+          <Button onClick={getData}>{SIGN_IN}</Button>
         </>
       ) : (
         <>
-          <Input hint="סיסמה" onChange={setPassword} password={true} />
-          <Button onClick={getData}>{SIGN_IN}</Button>
+          <Input hint="מספר טלפון" onChange={setCellphone} key={1} />
+          <Button onClick={requestSMS}>{SIGN_IN}</Button>
         </>
       )}
       <Button onClick={() => setViaSMS(!viaSMS)}>
