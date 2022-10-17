@@ -8,6 +8,10 @@ const SIGN_IN = 'כניסה'
 const LOGIN_BY_SMS = 'כניסה באמצעות מסרון (SMS)'
 const LOGIN_BY_PASSWORD = 'כניסה באמצעות סיסמה'
 
+const USERNAME_OR_ID = 'שם משתמש/ ת.ז.'
+const PASSWORD = 'סיסמה (משו"ב)'
+const CELLPHONE = 'טלפון נייד'
+
 export interface LoginProps {
   setData: Dispatch<SetStateAction<IFrontStudyGroup[]>>
 }
@@ -42,15 +46,15 @@ export default function Login({ setData }: LoginProps) {
   return (
     <div className="flex items-center justify-center flex-col w-64 gap-4">
       <Input hint="סמל בית ספר וזה" onChange={setSemel} />
-      <Input hint="שם משתמש" onChange={setUsername} />
+      <Input hint={USERNAME_OR_ID} onChange={setUsername} />
       {req || !viaSMS ? (
         <>
-          <Input hint="סיסמה" onChange={setPassword} password key={0} />
+          <Input hint={PASSWORD} onChange={setPassword} password key={0} />
           <Button onClick={getData}>{SIGN_IN}</Button>
         </>
       ) : (
         <>
-          <Input hint="מספר טלפון" onChange={setCellphone} key={1} />
+          <Input hint={CELLPHONE} onChange={setCellphone} key={1} />
           <Button onClick={requestSMS}>{SIGN_IN}</Button>
         </>
       )}
