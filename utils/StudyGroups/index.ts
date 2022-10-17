@@ -114,7 +114,6 @@ export class StudyGroupsBuilder {
       ) {
         const sg = this.studyGroups.get(event.groupId)
         if (sg != undefined) sg.addAbsence()
-        console.log(event.justificationId)
       }
     }
   }

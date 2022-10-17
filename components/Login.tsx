@@ -1,16 +1,16 @@
 import axios from 'axios'
-import Link from 'next/link'
-import {
-  useState,
-  useMemo,
-  SetStateAction,
-  Dispatch,
-  useEffect,
-  useCallback,
-} from 'react'
+import { useState, useMemo, SetStateAction, Dispatch, useCallback } from 'react'
 import { IFrontStudyGroup } from '../Interfaces'
 import Button from './Forms/Button'
 import Input from './Forms/Input'
+
+const SIGN_IN = 'כניסה'
+const LOGIN_BY_SMS = 'כניסה באמצעות מסרון (SMS)'
+const LOGIN_BY_PASSWORD = 'כניסה באמצעות סיסמה'
+
+const USERNAME_OR_ID = 'שם משתמש/ ת.ז.'
+const PASSWORD = 'סיסמה (משו"ב)'
+const CELLPHONE = 'טלפון נייד'
 
 export interface LoginProps {
   setData: Dispatch<SetStateAction<IFrontStudyGroup[]>>
@@ -20,21 +20,50 @@ export default function Login({ setData }: LoginProps) {
   const [semel, setSemel] = useState(0)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [cellphone, setCellphone] = useState(0)
+  const [viaSMS, setViaSMS] = useState(false)
+  const [req, setReq] = useState(false)
+
   const link = useMemo(() => {
     return `/api/studygroups?semel=${semel}&username=${username}&password=${password}`
   }, [password, semel, username])
+
+  const OTPLink = useMemo(() => {
+    return `/api/mashov/otp?semel=${semel}&username=${username}&cellphone=${cellphone}`
+  }, [cellphone, semel, username])
+
   const getData = useCallback(() => {
     axios.get(link).then((res) => {
       setData(res.data)
-      console.log(res.data)
     })
   }, [link, setData])
+
+  const requestSMS = useCallback(() => {
+    axios.post(OTPLink)
+    setReq(true)
+  }, [OTPLink])
+
   return (
-    <div className="flex items-center justify-center flex-col gap-4">
+    <div className="flex items-center justify-center flex-col w-64 gap-4">
       <Input hint="סמל בית ספר וזה" onChange={setSemel} />
-      <Input hint="שם משתמש" onChange={setUsername} />
-      <Input hint="סיסמה" onChange={setPassword} password={true} />
-      <Button onClick={getData}>התחבר</Button>
+      <Input hint={USERNAME_OR_ID} onChange={setUsername} />
+      {req || !viaSMS ? (
+        <>
+          <Input hint={PASSWORD} onChange={setPassword} password key={0} />
+          <Button onClick={getData}>{SIGN_IN}</Button>
+        </>
+      ) : (
+        <>
+          <Input hint={CELLPHONE} onChange={setCellphone} key={1} />
+          <Button onClick={requestSMS}>{SIGN_IN}</Button>
+        </>
+      )}
+      <Button
+        onClick={() => setViaSMS(!viaSMS)}
+        className="!bg-[#e6f0eb] !text-black"
+      >
+        {viaSMS ? LOGIN_BY_PASSWORD : LOGIN_BY_SMS}
+      </Button>
     </div>
   )
 }
