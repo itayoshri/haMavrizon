@@ -47,9 +47,9 @@ export default function Login({ setData }: LoginProps) {
         <>
           {/* TODO: Refactor /*/}
           {req ? (
-            <Input hint="סיסמה" onChange={setPassword} />
+            <Input hint="סיסמה" onChange={setPassword} key={0} />
           ) : (
-            <Input hint="מספר טלפון" onChange={setCellphone} />
+            <Input hint="מספר טלפון" onChange={setCellphone} key={1} />
           )}
           <Button onClick={req ? getData : requestSMS}>{SIGN_IN}</Button>
         </>
