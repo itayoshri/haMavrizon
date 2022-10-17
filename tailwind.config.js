@@ -10,6 +10,7 @@ module.exports = {
     extend: {},
     fontFamily: {
       sans: ['"Rubik"', ...fontFamily.sans], // make assistant the default font
+      mashov: ['"Open Sans"', ...fontFamily.sans],
     },
   },
   plugins: [],

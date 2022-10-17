@@ -8,7 +8,7 @@ export default function Input({ hint, onChange, password }: InputProps) {
   return (
     <input
       placeholder={hint}
-      className="bg-zinc-200 p-2 px-4 rounded-lg placeholder:text-black text-lg text-right"
+      className="bg-white p-1 px-3 border-[1px] w-full border-[#e0e0e0] font-mashov placeholder:text-[#0009] text-right focus:ring-0 outline-none focus:placeholder:text-[#3f51b5] duration-500 transition-all"
       onChange={(e) => {
         onChange(e.target.value)
       }}

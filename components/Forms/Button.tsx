@@ -10,7 +10,7 @@ export default function Button({
 }: ButtonProps & Wrapper) {
   return (
     <button
-      className={`bg-sky-500 text-white font-bold py-3 px-6 rounded-xl`}
+      className={`bg-[#106030] font-mashov text-sm text-white w-full py-3 px-6 rounded-full`}
       onClick={() => onClick()}
     >
       {children}

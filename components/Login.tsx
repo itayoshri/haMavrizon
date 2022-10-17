@@ -40,7 +40,7 @@ export default function Login({ setData }: LoginProps) {
   }, [OTPLink])
 
   return (
-    <div className="flex items-center justify-center flex-col gap-4">
+    <div className="flex items-center justify-center flex-col w-64 gap-4">
       <Input hint="סמל בית ספר וזה" onChange={setSemel} />
       <Input hint="שם משתמש" onChange={setUsername} />
       {req || !viaSMS ? (
