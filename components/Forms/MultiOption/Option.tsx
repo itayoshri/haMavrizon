@@ -20,7 +20,7 @@ export default function Option({
         setSelected(name)
         setOpened(false)
       }}
-      className="bg-white w-full py-[0.9rem] text-right hover:bg-[rgba(0,0,0,.04)] font-mashov pr-4"
+      className="bg-white w-full py-[0.9rem] text-right hover:bg-[rgba(0,0,0,.04)] font-mashov px-4"
     >
       <span>{name}</span>
     </button>
