@@ -33,6 +33,7 @@ export default function Login({ setData }: LoginProps) {
   const [viaSMS, setViaSMS] = useState(false)
   const [req, setReq] = useState(false)
   const [options, setOptions] = useState([])
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     axios.get('/api/mashov/schools').then((res) => {
@@ -49,9 +50,14 @@ export default function Login({ setData }: LoginProps) {
   }, [cellphone, semel, username])
 
   const getData = useCallback(() => {
-    axios.get(link).then((res) => {
-      setData(res.data)
-    })
+    axios
+      .get(link)
+      .then((res) => {
+        setData(res.data)
+      })
+      .catch((e) => {
+        setError(true)
+      })
   }, [link, setData])
 
   const requestSMS = useCallback(() => {
@@ -61,6 +67,7 @@ export default function Login({ setData }: LoginProps) {
 
   return options.length > 0 ? (
     <div className="flex items-center justify-center flex-col w-64 gap-4">
+      {error ? <h1>ישנה שגיאה יאח</h1> : null}
       <Semel setSemel={setSemel} options={options} />
       <Input hint={USERNAME_OR_ID} onChange={setUsername} />
       {req || !viaSMS ? (
