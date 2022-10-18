@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Option from './Option'
 
 export interface option {

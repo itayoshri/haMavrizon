@@ -1,4 +1,4 @@
-import { ChangeEvent, HtmlHTMLAttributes, LegacyRef, useState } from 'react'
+import { ChangeEvent } from 'react'
 
 export interface InputProps {
   hint: string
@@ -21,10 +21,9 @@ export default function Input({ hint, onChange, password }: InputProps) {
 
 export function SearchInput({
   hint,
-  onChange,
   setInput,
   input,
-}: InputProps & { setInput(string: string): unknown; input: string }) {
+}: Partial<InputProps> & { setInput(string: string): unknown; input: string }) {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value)
   }

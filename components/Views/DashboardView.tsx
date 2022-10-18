@@ -1,4 +1,3 @@
-import { IFrontStudyGroup } from '../../Interfaces'
 import Dashboard, { DashboardProps } from '../Dashboard'
 import Logo from '../Logo'
 

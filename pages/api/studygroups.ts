@@ -1,6 +1,4 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import axios from 'axios'
 import MashovLogin from '../../utils/Mashov/login'
 import { fetchDataSource } from '../../utils/Mashov/datasource'
 import { StudyGroupsBuilder } from '../../utils/StudyGroups'

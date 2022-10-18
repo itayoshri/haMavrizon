@@ -1,4 +1,4 @@
-import { IFrontStudyGroup, IStudyGroup } from '../../Interfaces'
+import { IFrontStudyGroup } from '../../Interfaces'
 import {
   IBehaveEvent,
   IMashovLessonsCounter,

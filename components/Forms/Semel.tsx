@@ -1,6 +1,5 @@
-import axios from 'axios'
-import { LegacyRef, useEffect, useMemo, useRef, useState } from 'react'
-import Input, { SearchInput } from './Input'
+import { useEffect, useMemo, useState } from 'react'
+import { SearchInput } from './Input'
 import Options, { option } from './MultiOption/Options'
 
 const SCHOOL = 'ביה"ס'
@@ -30,12 +29,7 @@ export default function Semel({ setSemel, options }: SemelProps) {
 
   return (
     <div className="w-full relative">
-      <SearchInput
-        hint={SCHOOL}
-        onChange={setSearch}
-        setInput={setSearch}
-        input={search}
-      />
+      <SearchInput hint={SCHOOL} setInput={setSearch} input={search} />
       <Options
         onClick={setSemel}
         options={search ? filteredOptions : []}

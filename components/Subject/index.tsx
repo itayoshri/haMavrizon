@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { IFrontStudyGroup } from '../../Interfaces'
-import Elipse from '../Elipse'
 import { Expand, ForwardRTL } from '../Icons'
 import AbsElipse from './AbsElipse'
 import FullInfo from './FullInfo/FullInfo'

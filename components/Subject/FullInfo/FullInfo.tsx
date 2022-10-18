@@ -2,7 +2,6 @@ import { IFrontStudyGroup } from '../../../Interfaces'
 import InfoLine from './InfoLine'
 
 export default function FullInfo({
-  name,
   freeAbsences,
   freeAnnualAbsences,
   semesterHours,
