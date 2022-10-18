@@ -7,22 +7,22 @@ interface OptionProps extends option {
 }
 
 export default function Option({
-  label,
+  name,
   semel,
   onClick,
   setOpened,
   setSelected,
 }: OptionProps) {
   return (
-    <div
+    <button
       onClick={() => {
         onClick(semel)
+        setSelected(name)
         setOpened(false)
-        setSelected(label)
       }}
-      className="bg-white w-full py-[0.9rem] hover:bg-[rgba(0,0,0,.04)] font-mashov pr-4"
+      className="bg-white w-full py-[0.9rem] text-right hover:bg-[rgba(0,0,0,.04)] font-mashov pr-4"
     >
-      <span>{label}</span>
-    </div>
+      <span>{name}</span>
+    </button>
   )
 }

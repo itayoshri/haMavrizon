@@ -22,10 +22,10 @@ export default function Options({
   setOpened,
 }: OptionsProps) {
   return opened ? (
-    <div className="flex absolute bg-white flex-col max-h-64 w-full shadow-mashov_box">
+    <div className="flex absolute bg-white flex-col max-h-64 w-full overflow-hidden shadow-mashov_box">
       {options.map((option, key) => (
         <Option
-          label={option.label}
+          name={`${option.name} (${option.semel})`}
           semel={option.semel}
           onClick={onClick}
           key={key}
