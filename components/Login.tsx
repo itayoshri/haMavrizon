@@ -11,6 +11,7 @@ import { IFrontStudyGroup } from '../Interfaces'
 import Button from './Forms/Button'
 import Input from './Forms/Input'
 import Semel from './Forms/Semel'
+import Message from './Message'
 
 const SIGN_IN = 'כניסה'
 const LOGIN_BY_SMS = 'כניסה באמצעות מסרון (SMS)'
@@ -20,6 +21,8 @@ const USERNAME_OR_ID = 'שם משתמש/ ת.ז.'
 const PASSWORD_MASHOV = 'סיסמה (משו"ב)'
 const PASSWORD = 'סיסמה'
 const CELLPHONE = 'טלפון נייד'
+
+const MESSAGE = 'שם המשתמש או הסיסמה שגויים'
 
 export interface LoginProps {
   setData: Dispatch<SetStateAction<IFrontStudyGroup[]>>
@@ -33,7 +36,7 @@ export default function Login({ setData }: LoginProps) {
   const [viaSMS, setViaSMS] = useState(false)
   const [req, setReq] = useState(false)
   const [options, setOptions] = useState([])
-  const [error, setError] = useState(false)
+  const [showError, setShowError] = useState(true)
 
   useEffect(() => {
     axios.get('/api/mashov/schools').then((res) => {
@@ -55,8 +58,8 @@ export default function Login({ setData }: LoginProps) {
       .then((res) => {
         setData(res.data)
       })
-      .catch((e) => {
-        setError(true)
+      .catch(() => {
+        setShowError(true)
       })
   }, [link, setData])
 
@@ -65,9 +68,13 @@ export default function Login({ setData }: LoginProps) {
     setReq(true)
   }, [OTPLink])
 
+  useEffect(() => {
+    setShowError(false)
+  }, [username, password, cellphone])
+
   return options.length > 0 ? (
     <div className="flex items-center justify-center flex-col w-64 gap-4">
-      {error ? <h1>ישנה שגיאה יאח</h1> : null}
+      {showError ? <Message message={MESSAGE} /> : null}
       <Semel setSemel={setSemel} options={options} />
       <Input hint={USERNAME_OR_ID} onChange={setUsername} />
       {req || !viaSMS ? (
