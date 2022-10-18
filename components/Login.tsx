@@ -17,7 +17,8 @@ const LOGIN_BY_SMS = 'כניסה באמצעות מסרון (SMS)'
 const LOGIN_BY_PASSWORD = 'כניסה באמצעות סיסמה'
 
 const USERNAME_OR_ID = 'שם משתמש/ ת.ז.'
-const PASSWORD = 'סיסמה (משו"ב)'
+const PASSWORD_MASHOV = 'סיסמה (משו"ב)'
+const PASSWORD = 'סיסמה'
 const CELLPHONE = 'טלפון נייד'
 
 export interface LoginProps {
@@ -64,7 +65,12 @@ export default function Login({ setData }: LoginProps) {
       <Input hint={USERNAME_OR_ID} onChange={setUsername} />
       {req || !viaSMS ? (
         <>
-          <Input hint={PASSWORD} onChange={setPassword} password key={0} />
+          <Input
+            hint={viaSMS ? PASSWORD : PASSWORD_MASHOV}
+            onChange={setPassword}
+            password
+            key={0}
+          />
           <Button onClick={getData}>{SIGN_IN}</Button>
         </>
       ) : (
