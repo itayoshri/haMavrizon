@@ -3,6 +3,7 @@ import { useState, useMemo, SetStateAction, Dispatch, useCallback } from 'react'
 import { IFrontStudyGroup } from '../Interfaces'
 import Button from './Forms/Button'
 import Input from './Forms/Input'
+import Semel from './Forms/Semel'
 
 const SIGN_IN = 'כניסה'
 const LOGIN_BY_SMS = 'כניסה באמצעות מסרון (SMS)'
@@ -45,7 +46,7 @@ export default function Login({ setData }: LoginProps) {
 
   return (
     <div className="flex items-center justify-center flex-col w-64 gap-4">
-      <Input hint="סמל בית ספר וזה" onChange={setSemel} />
+      <Semel setSemel={setSemel} />
       <Input hint={USERNAME_OR_ID} onChange={setUsername} />
       {req || !viaSMS ? (
         <>
