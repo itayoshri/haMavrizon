@@ -1,8 +1,16 @@
 import axios from 'axios'
-import { useState, useMemo, SetStateAction, Dispatch, useCallback } from 'react'
+import {
+  useState,
+  useMemo,
+  SetStateAction,
+  Dispatch,
+  useCallback,
+  useEffect,
+} from 'react'
 import { IFrontStudyGroup } from '../Interfaces'
 import Button from './Forms/Button'
 import Input from './Forms/Input'
+import Semel from './Forms/Semel'
 
 const SIGN_IN = 'כניסה'
 const LOGIN_BY_SMS = 'כניסה באמצעות מסרון (SMS)'
@@ -23,6 +31,13 @@ export default function Login({ setData }: LoginProps) {
   const [cellphone, setCellphone] = useState(0)
   const [viaSMS, setViaSMS] = useState(false)
   const [req, setReq] = useState(false)
+  const [options, setOptions] = useState([])
+
+  useEffect(() => {
+    axios.get('/api/mashov/schools').then((res) => {
+      setOptions(res.data[0])
+    })
+  }, [])
 
   const link = useMemo(() => {
     return `/api/studygroups?semel=${semel}&username=${username}&password=${password}`
@@ -43,9 +58,9 @@ export default function Login({ setData }: LoginProps) {
     setReq(true)
   }, [OTPLink])
 
-  return (
+  return options.length > 0 ? (
     <div className="flex items-center justify-center flex-col w-64 gap-4">
-      <Input hint="סמל בית ספר וזה" onChange={setSemel} />
+      <Semel setSemel={setSemel} options={options} />
       <Input hint={USERNAME_OR_ID} onChange={setUsername} />
       {req || !viaSMS ? (
         <>
@@ -65,5 +80,5 @@ export default function Login({ setData }: LoginProps) {
         {viaSMS ? LOGIN_BY_PASSWORD : LOGIN_BY_SMS}
       </Button>
     </div>
-  )
+  ) : null
 }

@@ -11,6 +11,8 @@ module.exports = {
       boxShadow: {
         mashov:
           '0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f',
+        mashov_box:
+          '0 2px 4px -1px #0003, 0 4px 5px #00000024, 0 1px 10px #0000001f',
       },
     },
     fontFamily: {
