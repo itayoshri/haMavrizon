@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   return (
     <div
       className={`flex flex-col ${
-        data.length ? 'h-full' : 'h-screen'
+        data.length ? 'h-full' : 'h-mobile max-h-screen absolute'
       } w-screen m-0 p-0 justify-center items-center`}
     >
       <Head>

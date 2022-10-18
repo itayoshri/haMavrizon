@@ -14,6 +14,9 @@ module.exports = {
         mashov_box:
           '0 2px 4px -1px #0003, 0 4px 5px #00000024, 0 1px 10px #0000001f',
       },
+      height: {
+        mobile: '-webkit-fill-available',
+      },
     },
     fontFamily: {
       sans: ['"Rubik"', ...fontFamily.sans], // make assistant the default font
