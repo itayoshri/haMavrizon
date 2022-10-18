@@ -3,6 +3,8 @@ import { LegacyRef, useEffect, useMemo, useRef, useState } from 'react'
 import Input, { SearchInput } from './Input'
 import Options, { option } from './MultiOption/Options'
 
+const SCHOOL = 'ביה"ס'
+
 export interface SemelProps {
   setSemel(semel: number): unknown
   options: option[]
@@ -29,7 +31,7 @@ export default function Semel({ setSemel, options }: SemelProps) {
   return (
     <div className="w-full relative">
       <SearchInput
-        hint="סמל בית ספר וזה"
+        hint={SCHOOL}
         onChange={setSearch}
         setInput={setSearch}
         input={search}
