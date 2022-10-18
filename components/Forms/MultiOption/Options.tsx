@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Option from './Option'
 
 export interface option {
-  label: string
+  name: string
   semel: number
 }
 
