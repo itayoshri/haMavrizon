@@ -4,8 +4,8 @@ import InfoLine from './InfoLine'
 const LESSONS_COUNT = 'מספר השיעורים שהתקיימו'
 const SEMESTERIAL_LESSONS = 'מספר השיעורים המשוער במחצית'
 const NUM_OF_ABSENCES = 'מספר ההעדרויות'
-const FREE_ABSENCES = 'מספר ההעדרויות ללא הורדה בציון שנותרו כעת'
-const SEMESTERIAL_FREE_ABSENCES = 'מספר ההעדרויות ללא הורדה בציון שנותרו במחצית'
+const FREE_ABSENCES = 'העדרויות ללא הורדה בציון שנותרו כעת'
+const SEMESTERIAL_FREE_ABSENCES = 'העדרויות ללא הורדה בציון שנותרו במחצית'
 
 export default function FullInfo({
   freeAbsences,
