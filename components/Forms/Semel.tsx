@@ -7,9 +7,14 @@ const SCHOOL = 'ביה"ס'
 export interface SemelProps {
   setSemel(semel: number): unknown
   options: option[]
+  loading?: boolean
 }
 
-export default function Semel({ setSemel, options }: SemelProps) {
+export default function Semel({
+  setSemel,
+  options,
+  loading = false,
+}: SemelProps) {
   const [search, setSearch] = useState('')
   const [opened, setOpened] = useState(true)
   const [selected, setSelected] = useState('')
@@ -29,7 +34,12 @@ export default function Semel({ setSemel, options }: SemelProps) {
 
   return (
     <div className="w-full relative">
-      <SearchInput hint={SCHOOL} setInput={setSearch} input={search} />
+      <SearchInput
+        hint={SCHOOL}
+        setInput={setSearch}
+        input={search}
+        loading={loading}
+      />
       <Options
         onClick={setSemel}
         options={search ? filteredOptions : []}

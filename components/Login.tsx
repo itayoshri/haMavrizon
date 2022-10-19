@@ -38,6 +38,7 @@ export default function Login({ setData }: LoginProps) {
   const [req, setReq] = useState(false)
   const [options, setOptions] = useState([])
   const [showError, setShowError] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     axios.get('/api/mashov/schools').then((res) => {
@@ -54,6 +55,7 @@ export default function Login({ setData }: LoginProps) {
   }, [cellphone, semel, username])
 
   const getData = useCallback(() => {
+    setLoading(true)
     axios
       .get(link)
       .then((res) => {
@@ -61,6 +63,7 @@ export default function Login({ setData }: LoginProps) {
       })
       .catch(() => {
         setShowError(true)
+        setLoading(false)
       })
   }, [link, setData])
 
@@ -75,10 +78,9 @@ export default function Login({ setData }: LoginProps) {
 
   return options.length > 0 ? (
     <div className="flex items-center justify-center flex-col w-64 gap-4">
-      <LoadingBar></LoadingBar>
       {showError ? <Message message={MESSAGE} /> : null}
-      <Semel setSemel={setSemel} options={options} />
-      <Input hint={USERNAME_OR_ID} onChange={setUsername} />
+      <Semel setSemel={setSemel} options={options} loading={loading} />
+      <Input hint={USERNAME_OR_ID} onChange={setUsername} loading={loading} />
       {req || !viaSMS ? (
         <>
           <Input
@@ -86,12 +88,20 @@ export default function Login({ setData }: LoginProps) {
             onChange={setPassword}
             password
             key={0}
+            loading={loading}
           />
-          <Button onClick={getData}>{SIGN_IN}</Button>
+          <Button onClick={getData} loading={loading}>
+            {SIGN_IN}
+          </Button>
         </>
       ) : (
         <>
-          <Input hint={CELLPHONE} onChange={setCellphone} key={1} />
+          <Input
+            hint={CELLPHONE}
+            onChange={setCellphone}
+            key={1}
+            loading={loading}
+          />
           <Button onClick={requestSMS}>{SIGN_IN}</Button>
         </>
       )}
