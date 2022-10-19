@@ -11,6 +11,7 @@ import { IFrontStudyGroup } from '../Interfaces'
 import Button from './Forms/Button'
 import Input from './Forms/Input'
 import Semel from './Forms/Semel'
+import LoadingBar from './LoadingBar'
 import Message from './Message'
 
 const SIGN_IN = 'כניסה'
@@ -74,6 +75,7 @@ export default function Login({ setData }: LoginProps) {
 
   return options.length > 0 ? (
     <div className="flex items-center justify-center flex-col w-64 gap-4">
+      <LoadingBar></LoadingBar>
       {showError ? <Message message={MESSAGE} /> : null}
       <Semel setSemel={setSemel} options={options} />
       <Input hint={USERNAME_OR_ID} onChange={setUsername} />
