@@ -5,11 +5,15 @@ import {
   IMashovStudyGroup,
   eventCodes,
   justificationCodes,
+  IMashovTTGroupDetails,
+  IMashovTTTimetable,
+  IMashovTT,
 } from '../../Interfaces/Mashov'
 
 const WEEKS_OF_STUDY = 89 / 5 // 89 is the number of the study days between 01/09/22 and 26/01/23, 5 days per study week
 const ABS_MULTIPLIER = 1.17647 // Evaluation of f(n) = n + f(0.15n)
 const ALLOWED_ABS = 0.15
+const daysOfStudy = [17, 17, 17, 17, 17, 17] // days of study
 
 class StudyGroup {
   readonly name: string
@@ -41,15 +45,18 @@ class StudyGroup {
     )
   }
 
-  public updateHours(lessonsCount: number, weeklyHours: number) {
+  public updateInfo(lessonsCount: number, weeklyHours: number) {
     this.lessonsCount = lessonsCount
     this.weeklyHours = weeklyHours
-    this.semesterHours = StudyGroup.calcSemesterHours(weeklyHours)
+  }
 
+  public updateHours(lesson: IMashovTTTimetable) {
+    this.semesterHours += daysOfStudy[lesson.day - 1]
     this.freeAbsences = StudyGroup.AbsCalc(
       this.lessonsCount,
       this.absenceCounter
     )
+    if (this.groupId == 2206) console.log(this.semesterHours)
     this.freeAnnualAbsences = StudyGroup.AnnualAbsCalc(
       this.semesterHours,
       this.absenceCounter
@@ -88,7 +95,8 @@ export class StudyGroupsBuilder {
   constructor(
     studyGroups: IMashovStudyGroup[],
     behaveEvents: IBehaveEvent[],
-    lessonCounter: IMashovLessonsCounter[]
+    lessonCounter: IMashovLessonsCounter[],
+    timetable: IMashovTT[]
   ) {
     for (const studyGroup of studyGroups) {
       this.studyGroups.set(
@@ -103,7 +111,7 @@ export class StudyGroupsBuilder {
     for (const studyGroup of lessonCounter) {
       const sg = this.studyGroups.get(studyGroup.groupId)
       if (sg != undefined) {
-        sg.updateHours(studyGroup.lessonsCount, studyGroup.weeklyHours)
+        sg.updateInfo(studyGroup.lessonsCount, studyGroup.weeklyHours)
       }
     }
 
@@ -114,6 +122,14 @@ export class StudyGroupsBuilder {
       ) {
         const sg = this.studyGroups.get(event.groupId)
         if (sg != undefined) sg.addAbsence()
+      }
+    }
+
+    for (const obj of timetable) {
+      const lesson = obj.timeTable
+      const sg = this.studyGroups.get(lesson.groupId)
+      if (sg != undefined) {
+        sg.updateHours(lesson)
       }
     }
   }

@@ -6,6 +6,7 @@ import {
   IBehaveEvent,
   IMashovStudyGroup,
   IMashovLessonsCounter,
+  IMashovTT,
 } from '../../Interfaces/Mashov'
 import { IFrontStudyGroup } from '../../Interfaces'
 
@@ -25,11 +26,13 @@ export default async function handler(
   const studyGroups = await fetchDataSource('groups', auth)
   const behaveEvents = await fetchDataSource('behave', auth)
   const lessonCounter = await fetchDataSource('lessonsCount', auth)
+  const timetable = await fetchDataSource('timetable', auth)
 
   const StudyGroups = new StudyGroupsBuilder(
     studyGroups as IMashovStudyGroup[],
     behaveEvents as IBehaveEvent[],
-    lessonCounter as IMashovLessonsCounter[]
+    lessonCounter as IMashovLessonsCounter[],
+    timetable as IMashovTT[]
   )
 
   res.status(200).json(StudyGroups.getStudyGroups())
