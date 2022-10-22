@@ -24,7 +24,6 @@ class StudyGroup {
 
   private semesterHours = 0
   private lessonsCount = 0
-  private weeklyHours = 0
   private absenceCounter = 0
 
   constructor({ name, groupId }: { name: string; groupId: number }) {
@@ -45,9 +44,8 @@ class StudyGroup {
     )
   }
 
-  public updateInfo(lessonsCount: number, weeklyHours: number) {
+  public updateInfo(lessonsCount: number) {
     this.lessonsCount = lessonsCount
-    this.weeklyHours = weeklyHours
   }
 
   public updateHours(lesson: IMashovTTTimetable) {
@@ -111,7 +109,7 @@ export class StudyGroupsBuilder {
     for (const studyGroup of lessonCounter) {
       const sg = this.studyGroups.get(studyGroup.groupId)
       if (sg != undefined) {
-        sg.updateInfo(studyGroup.lessonsCount, studyGroup.weeklyHours)
+        sg.updateInfo(studyGroup.lessonsCount)
       }
     }
 
