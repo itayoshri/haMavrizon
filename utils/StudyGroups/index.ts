@@ -13,7 +13,7 @@ import {
 const WEEKS_OF_STUDY = 89 / 5 // 89 is the number of the study days between 01/09/22 and 26/01/23, 5 days per study week
 const ABS_MULTIPLIER = 1.17647 // Evaluation of f(n) = n + f(0.15n)
 const ALLOWED_ABS = 0.15
-const daysOfStudy = [17, 17, 17, 17, 17, 17] // days of study
+const daysOfStudy = [16, 17, 14, 17, 19, 20] // amount of study days by days of week
 
 class StudyGroup {
   readonly name: string
