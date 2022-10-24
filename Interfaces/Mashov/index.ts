@@ -25,6 +25,25 @@ export interface IMashovLessonsCounter {
   weeklyHours: number
 }
 
+export interface IMashovTTGroupDetails {
+  groupId: number
+  groupName: string
+  subjectName: string
+}
+
+export interface IMashovTTTimetable {
+  groupId: number
+  day: number
+  lesson: number
+  roomNum: string
+  weeks: number
+}
+
+export interface IMashovTT {
+  timeTable: IMashovTTTimetable
+  groupDetails: IMashovTTGroupDetails
+}
+
 export interface IMashovLoginRes {
   headers: {
     'set-cookie': string
