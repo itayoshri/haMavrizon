@@ -20,6 +20,6 @@ export function GetColor(percentage: number): PathColor {
   return 'red' // no grade
   */
   if (percentage >= 85) return 'green' // no affect
-  if (percentage < 85 && percentage <= 70) return 'yellow' // affection
+  if (percentage < 85 && percentage >= 70) return 'yellow' // affection
   return 'red' // no grade
 }
