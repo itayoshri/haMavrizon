@@ -54,7 +54,6 @@ class StudyGroup {
       this.lessonsCount,
       this.absenceCounter
     )
-    if (this.groupId == 2206) console.log(this.semesterHours)
     this.freeAnnualAbsences = StudyGroup.AnnualAbsCalc(
       this.semesterHours,
       this.absenceCounter
