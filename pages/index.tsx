@@ -4,6 +4,7 @@ import { useState } from 'react'
 import LoginView from '../components/Views/LoginView'
 import DashboardView from '../components/Views/DashboardView'
 import { IFrontStudyGroup } from '../Interfaces'
+import Footer from '../components/Footer'
 
 const TITLE = 'המבריזון 2000'
 
@@ -22,7 +23,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       {data.length ? (
-        <DashboardView subjects={data} />
+        <>
+          <DashboardView subjects={data} />
+          <Footer />
+        </>
       ) : (
         <LoginView setData={(data) => setData(data)} />
       )}
