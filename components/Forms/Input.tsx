@@ -5,6 +5,7 @@ export type InputType = 'password' | 'number' | 'text'
 export interface InputProps {
   hint: string
   onChange(newInput: any): unknown
+  onEnter?(): unknown
   input?: string | number
   password?: boolean
   loading?: boolean
@@ -13,6 +14,7 @@ export interface InputProps {
 
 export default function Input({
   hint,
+  onEnter = () => {},
   onChange,
   input = '',
   loading = false,
@@ -30,7 +32,7 @@ export default function Input({
       type={inputType}
       value={input}
       onKeyPress={(e) => {
-        if (e.key === 'Enter') console.log(1)
+        if (e.key === 'Enter') onEnter()
       }}
     />
   )

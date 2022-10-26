@@ -16,7 +16,7 @@ export default function Subject({
   return (
     <div className="flex w-full flex-col py-3 px-5 border-b-[1px] gap-4 border-zinc-200">
       <div
-        className="flex w-full justify-between items-center"
+        className="flex w-full justify-between items-center cursor-pointer"
         onClick={() => setOpened(!opened)}
       >
         <div className="flex gap-1 items-center">

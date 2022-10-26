@@ -72,6 +72,8 @@ export default function Login({ setData }: LoginProps) {
     setReq(true)
   }, [OTPLink])
 
+  const onEnter = req || !viaSMS ? getData : requestSMS
+
   useEffect(() => {
     setShowError(false)
   }, [username, password, cellphone])
@@ -86,6 +88,7 @@ export default function Login({ setData }: LoginProps) {
         loading={loading}
         inputType="number"
         input={username}
+        onEnter={onEnter}
       />
       {req || !viaSMS ? (
         <>
@@ -97,6 +100,7 @@ export default function Login({ setData }: LoginProps) {
             loading={loading}
             inputType="password"
             input={password}
+            onEnter={onEnter}
           />
           <Button onClick={getData} loading={loading}>
             {SIGN_IN}
@@ -111,6 +115,7 @@ export default function Login({ setData }: LoginProps) {
             loading={loading}
             inputType="number"
             input={cellphone}
+            onEnter={onEnter}
           />
           <Button onClick={requestSMS}>{SIGN_IN}</Button>
         </>
