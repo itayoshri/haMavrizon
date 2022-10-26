@@ -1,17 +1,22 @@
 import { ChangeEvent } from 'react'
 
+export type InputType = 'password' | 'number' | 'text'
+
 export interface InputProps {
   hint: string
   onChange(newInput: any): unknown
+  input?: string | number
   password?: boolean
   loading?: boolean
+  inputType: InputType
 }
 
 export default function Input({
   hint,
   onChange,
-  password,
+  input = '',
   loading = false,
+  inputType,
 }: InputProps) {
   return (
     <input
@@ -22,30 +27,11 @@ export default function Input({
       onChange={(e) => {
         onChange(e.target.value)
       }}
-      type={password ? 'password' : 'number'}
-    />
-  )
-}
-
-export function SearchInput({
-  hint,
-  setInput,
-  input,
-  loading = false,
-}: Partial<InputProps> & { setInput(string: string): unknown; input: string }) {
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value)
-  }
-
-  return (
-    <input
-      placeholder={hint}
-      className={`${
-        loading ? 'bg-[#0000001f]' : 'bg-white'
-      } p-1 px-3 border-[1px] w-full border-[#e0e0e0] font-mashov placeholder:text-[#0009] text-right focus:ring-0 outline-none focus:placeholder:text-[#3f51b5] placeholder:duration-500 placeholder:transition-all truncate`}
-      onChange={handleChange}
-      type={'text'}
+      type={inputType}
       value={input}
+      onKeyPress={(e) => {
+        if (e.key === 'Enter') console.log(1)
+      }}
     />
   )
 }

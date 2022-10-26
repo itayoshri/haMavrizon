@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { SearchInput } from './Input'
+import Input from './Input'
 import Options, { option } from './MultiOption/Options'
 
 const SCHOOL = 'ביה"ס'
@@ -34,11 +34,12 @@ export default function Semel({
 
   return (
     <div className="w-full relative">
-      <SearchInput
+      <Input
         hint={SCHOOL}
-        setInput={setSearch}
+        onChange={setSearch}
         input={search}
         loading={loading}
+        inputType="text"
       />
       <Options
         onClick={setSemel}

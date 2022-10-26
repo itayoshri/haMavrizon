@@ -80,7 +80,13 @@ export default function Login({ setData }: LoginProps) {
     <div className="flex items-center justify-center flex-col w-64 gap-4">
       {showError ? <Message message={MESSAGE} /> : null}
       <Semel setSemel={setSemel} options={options} loading={loading} />
-      <Input hint={USERNAME_OR_ID} onChange={setUsername} loading={loading} />
+      <Input
+        hint={USERNAME_OR_ID}
+        onChange={setUsername}
+        loading={loading}
+        inputType="number"
+        input={username}
+      />
       {req || !viaSMS ? (
         <>
           <Input
@@ -89,6 +95,8 @@ export default function Login({ setData }: LoginProps) {
             password
             key={0}
             loading={loading}
+            inputType="password"
+            input={password}
           />
           <Button onClick={getData} loading={loading}>
             {SIGN_IN}
@@ -101,6 +109,8 @@ export default function Login({ setData }: LoginProps) {
             onChange={setCellphone}
             key={1}
             loading={loading}
+            inputType="number"
+            input={cellphone}
           />
           <Button onClick={requestSMS}>{SIGN_IN}</Button>
         </>
