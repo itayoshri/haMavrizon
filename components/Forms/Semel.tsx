@@ -5,7 +5,7 @@ import Options, { option } from './MultiOption/Options'
 const SCHOOL = 'ביה"ס'
 
 export interface SemelProps {
-  setSemel(semel: number): unknown
+  setSemel(semel: any): unknown
   options: option[]
   loading?: boolean
 }

@@ -30,10 +30,10 @@ export interface LoginProps {
 }
 
 export default function Login({ setData }: LoginProps) {
-  const [semel, setSemel] = useState(0)
+  const [semel, setSemel] = useState()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [cellphone, setCellphone] = useState(0)
+  const [cellphone, setCellphone] = useState()
   const [viaSMS, setViaSMS] = useState(false)
   const [req, setReq] = useState(false)
   const [options, setOptions] = useState([])
