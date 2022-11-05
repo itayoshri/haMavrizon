@@ -61,13 +61,14 @@ class StudyGroup {
   }
 
   static AbsCalc(lessonsCount: number, absenceCounter: number) {
-    const dryCalcAbs = lessonsCount * ALLOWED_ABS - absenceCounter
-    const freeAbs = dryCalcAbs * ABS_MULTIPLIER
+    const freeAbs =
+      (lessonsCount * ALLOWED_ABS - absenceCounter) * ABS_MULTIPLIER
     return Math.floor(freeAbs > 0 ? freeAbs : 0)
   }
 
   static AnnualAbsCalc(semesterHours: number, absenceCounter: number) {
-    const freeAbs = semesterHours * ALLOWED_ABS - absenceCounter
+    const freeAbs =
+      (semesterHours * ALLOWED_ABS - absenceCounter) * ABS_MULTIPLIER
     return Math.floor(freeAbs > 0 ? freeAbs : 0)
   }
 
