@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { IMashovLoginRes } from '../../Interfaces/Mashov'
 
-const MASHOV_LOGIN_URL = 'https://web.mashov.info/api/login'
-const MASHOV_OTP_LOGIN_URL = 'https://web.mashov.info/api/user/otp'
+const MASHOV_LOGIN_URL = process.env.LOGIN_URL as string //'https://ha-mavrizon-server.vercel.app/api'
+const MASHOV_OTP_LOGIN_URL = process.env.OTP_LOGIN_URL as string //'https://web.mashov.info/api/user/otp'
 
 export default async function MashovLogin({
   password,
