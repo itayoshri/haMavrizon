@@ -55,3 +55,15 @@ export interface IMashovLoginRes {
     }
   }
 }
+
+export interface IMashovGrade {
+  year: number
+  studentGuid: number
+  gradingEventId: number
+  grade: number
+  teacherName: string
+  groupId: number
+  groupName: string
+  subjectName: string
+  gradeType: string //TODO: Type gradeType
+}
