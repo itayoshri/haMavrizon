@@ -6,7 +6,7 @@ const GITHUB_LINK = 'https://github.com/itayoshri/haMavrizon'
 
 export default function Footer() {
   return (
-    <div className="flex justify-between w-full p-4 py-6">
+    <div className="flex justify-between w-full p-4 py-6 text-black dark:text-white">
       <Link href={GITHUB_LINK}>
         <a>
           <GitHub height={24} />
