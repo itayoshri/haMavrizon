@@ -1,6 +1,6 @@
 // the context responsible for handling storage
 
-import { createContext } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { Wrapper } from '../components/types'
 import { IProviderContext } from './types'
 import { createUseContextHook } from './utils'
@@ -12,7 +12,19 @@ export const ProviderContext = createContext<IProviderContext>(
 export const useProvider = createUseContextHook(ProviderContext)
 
 export default function DataProvider({ children }: Wrapper) {
+  const [darkMode, setDarkMode] = useState(true)
+  useEffect(() => {
+    if (darkMode) document.documentElement.classList.add('dark')
+    else document.documentElement.classList.remove('dark')
+  }, [darkMode])
   return (
-    <ProviderContext.Provider value={{}}>{children}</ProviderContext.Provider>
+    <ProviderContext.Provider
+      value={{
+        darkMode,
+        setDarkMode,
+      }}
+    >
+      {children}
+    </ProviderContext.Provider>
   )
 }
