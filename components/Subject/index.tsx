@@ -14,7 +14,7 @@ export default function Subject({
 }: IFrontStudyGroup) {
   const [opened, setOpened] = useState(false)
   return (
-    <div className="flex w-full flex-col py-3 px-5 border-b-[1px] gap-4 border-zinc-200">
+    <div className="flex w-full flex-col py-3 px-5 border-b-[1px] gap-4 dark:text-white border-zinc-200 dark:border-zinc-800">
       <div
         className="flex w-full justify-between items-center cursor-pointer"
         onClick={() => setOpened(!opened)}

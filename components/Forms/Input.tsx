@@ -25,7 +25,7 @@ export default function Input({
       placeholder={hint}
       className={`${
         loading ? 'bg-[#0000001f]' : 'bg-white'
-      } p-1 px-3 border-[1px] w-full border-[#e0e0e0] font-mashov placeholder:text-[#0009] text-right focus:ring-0 outline-none focus:placeholder:text-[#3f51b5] placeholder:duration-500 placeholder:transition-all`}
+      } p-1 px-3 border-[1px] w-full dark:!bg-transparent border-[#e0e0e0] font-mashov placeholder:text-[#0009] dark:placeholder:text-[#ffffffb3] dark:text-white text-right focus:ring-0 outline-none focus:placeholder:text-[#3f51b5] dark:focus:placeholder:text-[#9fa8da] placeholder:duration-500 placeholder:transition-all`}
       onChange={(e) => {
         onChange(e.target.value)
       }}
