@@ -21,12 +21,12 @@ const Home: NextPage = () => {
           : 'h-mobile max-h-screen absolute dark:bg-[#424242]'
       } w-screen sm:w-full m-0 p-0 justify-center items-center`}
     >
-      <DarkModeSwitch />
       <Head>
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
         <link rel="icon" href="/favicon.png" />
       </Head>
+      <DarkModeSwitch />
       {data.length ? (
         <>
           <DashboardView subjects={data} />
