@@ -7,6 +7,8 @@ export enum justificationCodes {
   NO_JUSTIFICATION = -1,
 }
 
+export type EventLabels = 'היעדרות'
+
 export interface IMashovStudyGroup {
   groupId: number
   groupName: string
@@ -17,6 +19,7 @@ export interface IBehaveEvent {
   groupId: number
   eventCode: number
   justificationId: number
+  achvaName: EventLabels
 }
 
 export interface IMashovLessonsCounter {
