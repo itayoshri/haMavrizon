@@ -13,6 +13,12 @@ export interface IMashovStudyGroup {
   groupId: number
   groupName: string
   subjectName: string
+  groupTeachers: IMashovTeacher
+}
+
+export interface IMashovTeacher {
+  teacherGuid: string
+  teacherName: string
 }
 
 export interface IBehaveEvent {
@@ -32,6 +38,7 @@ export interface IMashovTTGroupDetails {
   groupId: number
   groupName: string
   subjectName: string
+  groupTeachers: IMashovTeacher[]
 }
 
 export interface IMashovTTTimetable {
