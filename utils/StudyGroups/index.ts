@@ -88,6 +88,14 @@ class StudyGroup {
   }
 }
 
+const absenceEventNames = ['היעדרות', 'העדרות']
+
+const isAbsence = (event: IBehaveEvent) => {
+  const { achvaName: eventName } = event
+  for (const name of absenceEventNames) if (eventName === name) return true
+  return false
+}
+
 export class StudyGroupsBuilder {
   public studyGroups = new Map<number, StudyGroup>()
   constructor(
@@ -115,7 +123,7 @@ export class StudyGroupsBuilder {
 
     for (const event of behaveEvents) {
       if (
-        event.achvaName == 'היעדרות' &&
+        isAbsence(event) &&
         event.justificationId == justificationCodes.NO_JUSTIFICATION
       ) {
         const sg = this.studyGroups.get(event.groupId)
