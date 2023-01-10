@@ -57,7 +57,11 @@ export default function AbsElipse({
         onClick={() => (!opened ? setOpened(true) : null)}
         ref={ref}
       >
-        <Elipse amount={absenceCounter} outOff={lessonsCount} />
+        <Elipse
+          amount={absenceCounter}
+          outOff={lessonsCount}
+          animate={!clickable}
+        />
         {
           <span
             className={`absolute
