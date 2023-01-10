@@ -1,10 +1,10 @@
 import { holidaysCalendar } from './data'
 
 const START_OF_SEMESTER: DateDisplay = [1, 9, 2022]
-const END_OF_SEMESTER: DateDisplay = [21, 6, 2023]
+export const END_OF_SEMESTER: DateDisplay = [30, 1, 2023]
 
 type Month = IDay[]
-type DateDisplay = [number, number, number] //[day, month, year]
+export type DateDisplay = [number, number, number] //[day, month, year]
 type Direction = 'from' | 'to'
 
 interface IDay {
@@ -115,6 +115,7 @@ export class RelevantWeekDaysCounter {
         1,
         y,
       ])
+
       for (let m = start[1] - 1; m < end[1]; m++) {
         const endMonth =
           end[1] - 1 > m
