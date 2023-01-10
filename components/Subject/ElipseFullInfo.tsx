@@ -34,7 +34,7 @@ export default function ElipseFullInfo({
         free={free}
         lessonsCount={lessonsCount}
         absenceCounter={absenceCounter}
-      ></AbsElipse>
+      />
       <div className="flex gap-1">
         <a className={`flex font-bold ${textColors[color]}`}>{label.color} -</a>
         <a>{label.label}</a>

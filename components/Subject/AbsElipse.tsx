@@ -58,11 +58,17 @@ export default function AbsElipse({
         ref={ref}
       >
         <Elipse amount={absenceCounter} outOff={lessonsCount} />
-        <a
-          className={`absolute font-medium ${textColors[GetColor(percentage)]}`}
-        >
-          {free}
-        </a>
+        {
+          <span
+            className={`absolute
+        } ${textColors[GetColor(percentage)]}`}
+          >
+            <a className=" font-medium">
+              {clickable ? free : `${100 - Math.floor(percentage)}`}
+            </a>
+            {!clickable ? <a className="text-xs">%</a> : null}
+          </span>
+        }
       </div>
       {clickable && opened ? (
         <ElipseFullInfo
