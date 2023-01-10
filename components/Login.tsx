@@ -8,7 +8,7 @@ import {
   useEffect,
 } from 'react'
 import { IFrontStudyGroup } from '../Interfaces'
-import Button from './Forms/Button'
+import MashovButton from './Forms/MashovButton'
 import Input from './Forms/Input'
 import Semel from './Forms/Semel'
 import LoadingBar from './LoadingBar'
@@ -102,9 +102,9 @@ export default function Login({ setData }: LoginProps) {
             input={password}
             onEnter={onEnter}
           />
-          <Button onClick={getData} loading={loading}>
+          <MashovButton onClick={getData} loading={loading}>
             {SIGN_IN}
-          </Button>
+          </MashovButton>
         </>
       ) : (
         <>
@@ -117,15 +117,15 @@ export default function Login({ setData }: LoginProps) {
             input={cellphone}
             onEnter={onEnter}
           />
-          <Button onClick={requestSMS}>{SIGN_IN}</Button>
+          <MashovButton onClick={requestSMS}>{SIGN_IN}</MashovButton>
         </>
       )}
-      <Button
+      <MashovButton
         onClick={() => setViaSMS(!viaSMS)}
         className="!bg-[#e6f0eb] !text-black"
       >
         {viaSMS ? LOGIN_BY_PASSWORD : LOGIN_BY_SMS}
-      </Button>
+      </MashovButton>
     </div>
   ) : null
 }

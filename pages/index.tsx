@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import LoginView from '../components/Views/LoginView'
 import DashboardView from '../components/Views/DashboardView'
 import { IFrontStudyGroup } from '../Interfaces'
@@ -12,6 +12,16 @@ const DESCRIPTION = 'המבריזון 2000, נוצר על ידי איתי אוש
 
 const Home: NextPage = () => {
   const [data, setData] = useState<IFrontStudyGroup[]>([])
+  const [showed, _setShowed] = useState('true')
+  useEffect(() => {
+    const value = localStorage.getItem('showed')
+    if (!value) localStorage.setItem('showed', 'false')
+    _setShowed(localStorage.getItem('showed'))
+  }, [])
+
+  const setShowed = useCallback((value: string) => {
+    localStorage.setItem('showed', value)
+  }, [])
 
   return (
     <div
@@ -29,7 +39,11 @@ const Home: NextPage = () => {
       <DarkModeSwitch />
       {data.length ? (
         <>
-          <DashboardView subjects={data} />
+          <DashboardView
+            subjects={data}
+            showed={showed == 'true'}
+            setShowed={setShowed}
+          />
           <Footer />
         </>
       ) : (
