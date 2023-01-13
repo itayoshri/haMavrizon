@@ -89,18 +89,19 @@ export default function Login({ setData }: LoginProps) {
         inputType="number"
         input={username}
         onEnter={onEnter}
+        autoComplete="username"
       />
       {req || !viaSMS ? (
         <>
           <Input
             hint={viaSMS ? PASSWORD : PASSWORD_MASHOV}
             onChange={setPassword}
-            password
-            key={0}
+            key={viaSMS ? 0 : 2}
             loading={loading}
             inputType="password"
             input={password}
             onEnter={onEnter}
+            autoComplete={viaSMS ? 'one-time-code' : 'password'}
           />
           <MashovButton onClick={getData} loading={loading}>
             {SIGN_IN}
@@ -116,6 +117,7 @@ export default function Login({ setData }: LoginProps) {
             inputType="number"
             input={cellphone}
             onEnter={onEnter}
+            autoComplete="tel-national"
           />
           <MashovButton onClick={requestSMS}>{SIGN_IN}</MashovButton>
         </>

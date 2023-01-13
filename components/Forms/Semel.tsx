@@ -40,6 +40,7 @@ export default function Semel({
         input={search}
         loading={loading}
         inputType="text"
+        autoComplete="on"
       />
       <Options
         onClick={setSemel}

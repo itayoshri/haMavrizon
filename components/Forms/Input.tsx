@@ -1,15 +1,21 @@
 import { ChangeEvent } from 'react'
 
-export type InputType = 'password' | 'number' | 'text'
+export type InputType = 'password' | 'number' | 'text' | 'otp'
+export type AutoComplete =
+  | 'password'
+  | 'one-time-code'
+  | 'username'
+  | 'on'
+  | 'tel-national'
 
 export interface InputProps {
   hint: string
   onChange(newInput: any): unknown
   onEnter?(): unknown
   input?: string | number
-  password?: boolean
   loading?: boolean
   inputType: InputType
+  autoComplete: AutoComplete
 }
 
 export default function Input({
@@ -19,6 +25,7 @@ export default function Input({
   input = '',
   loading = false,
   inputType,
+  autoComplete,
 }: InputProps) {
   return (
     <input
@@ -34,6 +41,7 @@ export default function Input({
       onKeyPress={(e) => {
         if (e.key === 'Enter') onEnter()
       }}
+      autoComplete={autoComplete}
     />
   )
 }
