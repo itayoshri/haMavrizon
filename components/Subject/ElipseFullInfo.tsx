@@ -26,7 +26,7 @@ export default function ElipseFullInfo({
   const label = LABELS[color]
 
   return (
-    <div className="w-max h-max  z-50 bg-white flex   absolute shadow-lg p-4 left-0 top-0 rounded-lg items-center gap-3">
+    <div className="w-max h-max  z-50 bg-white flex dark:bg-neutral-900 absolute shadow-lg  p-4 left-0 top-0 rounded-lg items-center gap-3">
       <div onClick={() => setOpened(false)} className="absolute top-2 left-2">
         <Close width={16} />
       </div>
