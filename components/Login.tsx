@@ -123,7 +123,10 @@ export default function Login({ setData }: LoginProps) {
         </>
       )}
       <MashovButton
-        onClick={() => setViaSMS(!viaSMS)}
+        onClick={() => {
+          setViaSMS(!viaSMS)
+          setPassword('')
+        }}
         className="!bg-[#e6f0eb] !text-black"
       >
         {viaSMS ? LOGIN_BY_PASSWORD : LOGIN_BY_SMS}
