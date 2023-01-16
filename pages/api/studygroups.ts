@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import MashovLogin from '../../utils/Mashov/login'
 import { fetchDataSource } from '../../utils/Mashov/datasource'
-import { StudyGroupsBuilder } from '../../utils/StudyGroups'
+import { StudyGroupsAbsencesBuilder } from '../../utils/StudyGroups/absences'
 import {
   IBehaveEvent,
   IMashovStudyGroup,
@@ -28,7 +28,7 @@ export default async function handler(
   const lessonCounter = await fetchDataSource('lessonsCount', auth)
   const timetable = await fetchDataSource('timetable', auth)
 
-  const StudyGroups = new StudyGroupsBuilder(
+  const StudyGroups = new StudyGroupsAbsencesBuilder(
     studyGroups as IMashovStudyGroup[],
     behaveEvents as IBehaveEvent[],
     lessonCounter as IMashovLessonsCounter[],
