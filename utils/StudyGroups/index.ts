@@ -8,6 +8,8 @@ export abstract class StudyGroup {
     this.name = name
     this.groupId = groupId
   }
+
+  abstract getFrontObj()
 }
 
 export abstract class StudyGroupsBuilder {
@@ -22,5 +24,14 @@ export abstract class StudyGroupsBuilder {
         })
       )
     }
+  }
+
+  public getStudyGroups<T>() {
+    const studyGroupsArr = Array.from(this.studyGroups.values())
+    const frontStudyGroupsArr = [] as T
+    for (const i in studyGroupsArr) {
+      frontStudyGroupsArr[i] = studyGroupsArr[i].getFrontObj()
+    }
+    return frontStudyGroupsArr
   }
 }

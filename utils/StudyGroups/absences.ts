@@ -145,13 +145,4 @@ export class StudyGroupsAbsencesBuilder extends StudyGroupsBuilder {
       }
     }
   }
-
-  public getStudyGroups() {
-    const studyGroupsArr = Array.from(this.studyGroups.values())
-    const frontStudyGroupsArr = [] as IFrontStudyGroup[]
-    for (const i in studyGroupsArr) {
-      frontStudyGroupsArr[i] = studyGroupsArr[i].getFrontObj()
-    }
-    return frontStudyGroupsArr
-  }
 }
