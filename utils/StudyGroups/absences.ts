@@ -81,14 +81,14 @@ class StudyGroupAbsences extends StudyGroup {
     return Math.floor(weeklyHours * WEEKS_OF_STUDY)
   }
 
-  public static getFrontObj(sg: StudyGroupAbsences): IFrontStudyGroup {
+  public getFrontObj(): IFrontStudyGroup {
     return {
-      name: sg.name,
-      lessonsCount: sg.lessonsCount,
-      absenceCounter: sg.absenceCounter,
-      semesterHours: sg.semesterHours,
-      freeAbsences: sg.freeAbsences,
-      freeAnnualAbsences: sg.freeAnnualAbsences,
+      name: this.name,
+      lessonsCount: this.lessonsCount,
+      absenceCounter: this.absenceCounter,
+      semesterHours: this.semesterHours,
+      freeAbsences: this.freeAbsences,
+      freeAnnualAbsences: this.freeAnnualAbsences,
     }
   }
 }
@@ -150,7 +150,7 @@ export class StudyGroupsAbsencesBuilder extends StudyGroupsBuilder {
     const studyGroupsArr = Array.from(this.studyGroups.values())
     const frontStudyGroupsArr = [] as IFrontStudyGroup[]
     for (const i in studyGroupsArr) {
-      frontStudyGroupsArr[i] = StudyGroupAbsences.getFrontObj(studyGroupsArr[i])
+      frontStudyGroupsArr[i] = studyGroupsArr[i].getFrontObj()
     }
     return frontStudyGroupsArr
   }
