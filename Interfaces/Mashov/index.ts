@@ -78,6 +78,7 @@ export interface IMashovGrade {
   studentGuid: number
   gradingEventId: number
   grade: number
+  gradingEvent: string
   teacherName: string
   groupId: number
   groupName: string

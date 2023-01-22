@@ -1,14 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import MashovLogin from '../../utils/Mashov/login'
-import { fetchDataSource } from '../../utils/Mashov/datasource'
-import { StudyGroupsAbsencesBuilder } from '../../utils/StudyGroups/absences'
+import MashovLogin from '../../../utils/Mashov/login'
+import { fetchDataSource } from '../../../utils/Mashov/datasource'
+import { StudyGroupsAbsencesBuilder } from '../../../utils/StudyGroups/absences'
 import {
   IBehaveEvent,
   IMashovStudyGroup,
   IMashovLessonsCounter,
   IMashovTT,
-} from '../../Interfaces/Mashov'
-import { IFrontStudyGroup } from '../../Interfaces'
+} from '../../../Interfaces/Mashov'
+import { IFrontStudyGroup } from '../../../Interfaces'
 
 export default async function handler(
   req: NextApiRequest,

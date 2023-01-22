@@ -2,6 +2,7 @@ import { StudyGroup, StudyGroupsBuilder } from '.'
 import { Grade, IMashovGrade, IMashovStudyGroup } from '../../Interfaces/Mashov'
 
 interface IGrade {
+  title: string
   grade: number
   eventDate: string
   //timestamp: string
@@ -13,10 +14,11 @@ export class StudyGroupGrades extends StudyGroup {
   readonly name: string
 
   private average: number
-  private grades: IGrade[]
+  private grades: IGrade[] = []
 
   public addGrade(grade: IMashovGrade) {
     const newGrade = {
+      title: grade.gradingEvent,
       grade: grade.grade,
       eventDate: grade.eventDate,
       gradeType: grade.gradeType,
