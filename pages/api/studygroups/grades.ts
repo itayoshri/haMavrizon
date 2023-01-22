@@ -1,15 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import MashovLogin from '../../../utils/Mashov/login'
 import { fetchDataSource } from '../../../utils/Mashov/datasource'
-import {
-  IMashovStudyGroup,
-  IBehaveEvent,
-  IMashovLessonsCounter,
-  IMashovTT,
-  IMashovGrade,
-} from '../../../Interfaces/Mashov'
-import { StudyGroupsAbsencesBuilder } from '../../../utils/StudyGroups/absences'
-import timetable from '../mashov/timetable'
+import { IMashovStudyGroup, IMashovGrade } from '../../../Interfaces/Mashov'
 import { StudyGroupGradesBuilder } from '../../../utils/StudyGroups/grades'
 
 export default async function handler(
