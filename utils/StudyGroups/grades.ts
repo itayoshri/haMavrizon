@@ -1,26 +1,41 @@
-import { StudyGroup } from '.'
+import { StudyGroup, StudyGroupsBuilder } from '.'
 import { Grade, IMashovGrade } from '../../Interfaces/Mashov'
 
 interface IGrade {
   grade: number
   eventDate: string
-  timestamp: string
+  //timestamp: string
   gradeType: Grade
 }
 
-export class StudyGroupGrades implements StudyGroup {
+export class StudyGroupGrades extends StudyGroup {
   readonly groupId: number
   readonly name: string
 
+  private average: number
   private grades: IGrade[]
 
-  constructor({ name, groupId }: { name: string; groupId: number }) {
-    this.name = name
-    this.groupId = groupId
+  public addGrade(grade: IMashovGrade) {
+    const newGrade = {
+      grade: grade.grade,
+      eventDate: grade.eventDate,
+      gradeType: grade.gradeType,
+    }
+    this.Average(grade.grade)
+
+    this.grades.push(newGrade)
   }
 
-  public addGrade(grade: IMashovGrade) {
-    const newGrade = {} as IGrade
-    this.grades
+  private Average(grade: number) {
+    if (this.grades.length > 0) this.average = (this.average + grade) / 2
+    else this.average = grade
+  }
+
+  public getFrontObj() {
+    return {
+      name: this.name,
+      grades: this.grades,
+      average: this.average,
+    }
   }
 }
