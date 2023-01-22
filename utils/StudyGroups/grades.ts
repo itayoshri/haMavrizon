@@ -1,5 +1,5 @@
 import { StudyGroup, StudyGroupsBuilder } from '.'
-import { Grade, IMashovGrade } from '../../Interfaces/Mashov'
+import { Grade, IMashovGrade, IMashovStudyGroup } from '../../Interfaces/Mashov'
 
 interface IGrade {
   grade: number
@@ -36,6 +36,21 @@ export class StudyGroupGrades extends StudyGroup {
       name: this.name,
       grades: this.grades,
       average: this.average,
+    }
+  }
+}
+
+export class StudyGroupGradesBuilder extends StudyGroupsBuilder {
+  public studyGroups: Map<number, StudyGroupGrades>
+  constructor(studyGroups: IMashovStudyGroup[], grades: IMashovGrade[]) {
+    super()
+    this.initStudyGroups(studyGroups, StudyGroupGrades)
+
+    for (const grade of grades) {
+      const sg = this.studyGroups.get(grade.groupId)
+      if (sg != undefined) {
+        sg.addGrade(grade)
+      }
     }
   }
 }
