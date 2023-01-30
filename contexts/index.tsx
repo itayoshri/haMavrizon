@@ -2,7 +2,6 @@
 
 import { createContext, useEffect, useState } from 'react'
 import { Wrapper } from '../components/types'
-import { IStoredGradesStudyGroup } from '../Interfaces'
 import { IGradesProviderContext, IThemeProviderContext } from './types'
 import { createUseContextHook } from './utils'
 

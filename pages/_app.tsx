@@ -1,13 +1,15 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Analytics } from '@vercel/analytics/react'
-import ThemeProvider from '../contexts'
+import ThemeProvider, { GradesProvider } from '../contexts'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
-      <Component {...pageProps} />
-      <Analytics />
+      <GradesProvider>
+        <Component {...pageProps} />
+        <Analytics />
+      </GradesProvider>
     </ThemeProvider>
   )
 }

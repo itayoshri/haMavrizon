@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { IStoredGradesStudyGroup } from '../Interfaces'
+import { IFrontGradesStudyGroup } from '../Interfaces'
 
 export interface IThemeProviderContext {
   darkMode: boolean
@@ -7,6 +7,6 @@ export interface IThemeProviderContext {
 }
 
 export interface IGradesProviderContext {
-  studyGroups: IStoredGradesStudyGroup[]
-  setStudyGroups: Dispatch<SetStateAction<IStoredGradesStudyGroup[]>>
+  studyGroups: IFrontGradesStudyGroup[]
+  setStudyGroups: Dispatch<SetStateAction<IFrontGradesStudyGroup[]>>
 }

@@ -25,7 +25,3 @@ export interface IFrontGradesStudyGroup {
   grades: IGrade[]
   average: number
 }
-
-export interface IStoredGradesStudyGroup extends IFrontGradesStudyGroup {
-  selected: boolean[]
-}

@@ -9,6 +9,7 @@ export interface AbsElipseProps {
   absenceCounter: number
   clickable?: boolean
   type?: For
+  blue?: boolean
 }
 
 export const textColors = {
@@ -23,6 +24,7 @@ export default function AbsElipse({
   absenceCounter,
   clickable = false,
   type = 'absences',
+  blue = false,
 }: AbsElipseProps) {
   const percentage =
     type === 'absences' ? PrecentageCalc(absenceCounter, lessonsCount) : label
@@ -65,12 +67,13 @@ export default function AbsElipse({
           outOff={lessonsCount}
           animate={!clickable}
           type={type}
+          blue={blue}
         />
         {
           /* label */
           <span
             className={`absolute
-        } ${textColors[GetColor(percentage, type)]}`}
+        } ${blue ? 'text-blue-500' : textColors[GetColor(percentage, type)]}`}
           >
             {/* free absences, percentage or grade */}
             <a className=" font-medium">
