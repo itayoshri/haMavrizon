@@ -12,6 +12,7 @@ export const pathColors = {
   green: '#34C759',
   yellow: '#FF9500',
   red: '#FF3B30',
+  blue: '#3b82f6',
 }
 
 export function GetColor(percentage: number, type: For): PathColor {

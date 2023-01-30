@@ -11,6 +11,7 @@ export interface ElipseProps {
   amount: number
   animate?: boolean
   type?: For
+  blue?: boolean
 }
 
 export default function Elipse({
@@ -18,6 +19,7 @@ export default function Elipse({
   amount,
   animate = false,
   type = 'absences',
+  blue = false,
 }: ElipseProps) {
   const percentage =
     type === 'absences' ? PrecentageCalc(amount, outOff) : amount
@@ -32,7 +34,9 @@ export default function Elipse({
       <CircularProgressbar
         value={type === 'grade' ? amount : animate ? value : percentage}
         styles={buildStyles({
-          pathColor: pathColors[GetColor(percentage, type)],
+          pathColor: blue
+            ? pathColors['blue']
+            : pathColors[GetColor(percentage, type)],
           trailColor: darkMode ? '#525252' : '',
         })}
       />
