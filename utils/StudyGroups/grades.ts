@@ -8,6 +8,7 @@ export interface IGrade {
   eventDate: string
   //timestamp: string
   gradeType: Grade
+  selected: boolean
 }
 
 export class StudyGroupGrades extends StudyGroup {
@@ -23,8 +24,9 @@ export class StudyGroupGrades extends StudyGroup {
       grade: grade.grade,
       eventDate: grade.eventDate,
       gradeType: grade.gradeType,
+      selected: StudyGroupGrades.calcOnAverage(grade.gradeType),
     }
-    if (grade.gradeType === 'מבחן בכתב' && grade.grade)
+    if (StudyGroupGrades.calcOnAverage(grade.gradeType) && grade.grade)
       this.Average(grade.grade)
 
     this.grades.push(newGrade)
@@ -42,6 +44,10 @@ export class StudyGroupGrades extends StudyGroup {
       grades: this.grades,
       average: this.average,
     }
+  }
+
+  static calcOnAverage(gradeType: Grade) {
+    return gradeType === 'מבחן בכתב'
   }
 }
 
