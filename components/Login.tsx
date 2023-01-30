@@ -7,7 +7,7 @@ import {
   useCallback,
   useEffect,
 } from 'react'
-import { IFrontStudyGroup } from '../Interfaces'
+import { IFrontAbsencesStudyGroup } from '../Interfaces'
 import MashovButton from './Forms/MashovButton'
 import Input from './Forms/Input'
 import Semel from './Forms/Semel'
@@ -26,7 +26,7 @@ const CELLPHONE = 'טלפון נייד'
 const MESSAGE = 'שם המשתמש או הסיסמה שגויים'
 
 export interface LoginProps {
-  setData: Dispatch<SetStateAction<IFrontStudyGroup[]>>
+  setData: Dispatch<SetStateAction<IFrontAbsencesStudyGroup[]>>
 }
 
 export default function Login({ setData }: LoginProps) {

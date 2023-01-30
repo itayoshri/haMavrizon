@@ -1,4 +1,4 @@
-import Dashboard, { DashboardProps } from '../Dashboard'
+import AbsencesDashboard, { DashboardProps } from '../Dashboard'
 import Popup from '../Forms/Popup'
 import Logo from '../Logo'
 import elipsesfullinfo_sample from '../../public/elipsesfullinfo_sample.png'
@@ -25,7 +25,7 @@ export default function DashboardView({
   return (
     <div className="flex flex-col h-full w-screen sm:w-full m-0 p-0 justify-center items-center">
       <Logo />
-      <Dashboard subjects={subjects} />
+      <AbsencesDashboard subjects={subjects} />
       {opened ? (
         <Popup
           title={POPUP.title}

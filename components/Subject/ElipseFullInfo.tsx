@@ -31,7 +31,7 @@ export default function ElipseFullInfo({
         <Close width={16} />
       </div>
       <AbsElipse
-        free={free}
+        label={free}
         lessonsCount={lessonsCount}
         absenceCounter={absenceCounter}
       />

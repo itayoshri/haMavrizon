@@ -8,11 +8,11 @@ import {
   IMashovLessonsCounter,
   IMashovTT,
 } from '../../../Interfaces/Mashov'
-import { IFrontStudyGroup } from '../../../Interfaces'
+import { IFrontAbsencesStudyGroup } from '../../../Interfaces'
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<IFrontStudyGroup[]>
+  res: NextApiResponse<IFrontAbsencesStudyGroup[]>
 ) {
   const { semel, username, password } = req.query
 

@@ -1,5 +1,5 @@
 import { StudyGroup, StudyGroupsBuilder } from '.'
-import { IFrontStudyGroup } from '../../Interfaces'
+import { IFrontAbsencesStudyGroup } from '../../Interfaces'
 import {
   IBehaveEvent,
   IMashovLessonsCounter,
@@ -81,7 +81,7 @@ class StudyGroupAbsences extends StudyGroup {
     return Math.floor(weeklyHours * WEEKS_OF_STUDY)
   }
 
-  public getFrontObj(): IFrontStudyGroup {
+  public getFrontObj(): IFrontAbsencesStudyGroup {
     return {
       name: this.name,
       lessonsCount: this.lessonsCount,

@@ -1,18 +1,30 @@
-import { IFrontStudyGroup } from '../Interfaces'
-import Subject from './Subject'
+import { IFrontAbsencesStudyGroup } from '../Interfaces'
+import SubjectAbsences from './Subject/absences'
 import TableCategories from './TableCategories'
 
 export interface DashboardProps {
-  subjects: IFrontStudyGroup[]
+  subjects: IFrontAbsencesStudyGroup[]
 }
 
-export default function Dashboard({ subjects }: DashboardProps) {
+export default function AbsencesDashboard({ subjects }: DashboardProps) {
   return (
     <div className="flex flex-col w-full">
       <TableCategories />
       {subjects.map((subject, key) => (
-        <Subject {...subject} key={key} />
+        <SubjectAbsences {...subject} key={key} />
       ))}
     </div>
   )
 }
+
+/*
+export function GradesDashboard({ subjects }: DashboardProps) {
+  return (
+    <div className="flex flex-col w-full">
+      {subjects.map((subject, key) => (
+        <SubjectGrades {...subject} key={key} />
+      ))}
+    </div>
+  )
+}
+*/

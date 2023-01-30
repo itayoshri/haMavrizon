@@ -1,3 +1,5 @@
+import { IGrade } from '../utils/StudyGroups/grades'
+
 export interface IStudyGroup {
   name: string
   groupId: number
@@ -9,11 +11,17 @@ export interface IStudyGroup {
   absenceCounter: number
 }
 
-export interface IFrontStudyGroup {
+export interface IFrontAbsencesStudyGroup {
   name: string
   freeAbsences: number
   freeAnnualAbsences: number
   semesterHours: number
   lessonsCount: number
   absenceCounter: number
+}
+
+export interface IFrontGradesStudyGroup {
+  name: string
+  grades: IGrade[]
+  average: number
 }

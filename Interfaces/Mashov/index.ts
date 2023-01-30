@@ -15,6 +15,7 @@ export type Grade =
   | 'תלמידאות'
   | 'דו"ח מעבדה'
   | 'שיעורי בית'
+//| string
 
 export interface IMashovStudyGroup {
   groupId: number

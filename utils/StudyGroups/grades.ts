@@ -1,7 +1,8 @@
 import { StudyGroup, StudyGroupsBuilder } from '.'
+import { IFrontGradesStudyGroup } from '../../Interfaces'
 import { Grade, IMashovGrade, IMashovStudyGroup } from '../../Interfaces/Mashov'
 
-interface IGrade {
+export interface IGrade {
   title: string
   grade: number
   eventDate: string
@@ -23,17 +24,19 @@ export class StudyGroupGrades extends StudyGroup {
       eventDate: grade.eventDate,
       gradeType: grade.gradeType,
     }
-    this.Average(grade.grade)
+    if (grade.gradeType === 'מבחן בכתב' && grade.grade)
+      this.Average(grade.grade)
 
     this.grades.push(newGrade)
   }
 
   private Average(grade: number) {
-    if (this.grades.length > 0) this.average = (this.average + grade) / 2
+    if (this.grades.length > 0 && this.average)
+      this.average = (this.average + grade) / 2
     else this.average = grade
   }
 
-  public getFrontObj() {
+  public getFrontObj(): IFrontGradesStudyGroup {
     return {
       name: this.name,
       grades: this.grades,
