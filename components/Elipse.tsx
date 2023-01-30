@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
-import { useProvider } from '../contexts'
+import { useThemeProvider } from '../contexts'
 import PrecentageCalc, { GetColor, pathColors } from '../hooks/Subject'
 
 export type For = 'grade' | 'absences'
@@ -21,7 +21,7 @@ export default function Elipse({
 }: ElipseProps) {
   const percentage =
     type === 'absences' ? PrecentageCalc(amount, outOff) : amount
-  const { darkMode } = useProvider()
+  const { darkMode } = useThemeProvider()
   const [value, setValue] = useState(0)
   useEffect(() => {
     setValue(percentage)

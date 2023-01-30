@@ -2,14 +2,14 @@
 
 import { createContext, useEffect, useState } from 'react'
 import { Wrapper } from '../components/types'
-import { IProviderContext } from './types'
+import { IThemeProviderContext } from './types'
 import { createUseContextHook } from './utils'
 
-export const ProviderContext = createContext<IProviderContext>(
-  {} as IProviderContext
+export const ThemeProviderContext = createContext<IThemeProviderContext>(
+  {} as IThemeProviderContext
 )
 
-export const useProvider = createUseContextHook(ProviderContext)
+export const useThemeProvider = createUseContextHook(ThemeProviderContext)
 
 export default function DataProvider({ children }: Wrapper) {
   const [darkMode, setDarkMode] = useState(false)
@@ -18,13 +18,13 @@ export default function DataProvider({ children }: Wrapper) {
     else document.documentElement.classList.remove('dark')
   }, [darkMode])
   return (
-    <ProviderContext.Provider
+    <ThemeProviderContext.Provider
       value={{
         darkMode,
         setDarkMode,
       }}
     >
       {children}
-    </ProviderContext.Provider>
+    </ThemeProviderContext.Provider>
   )
 }

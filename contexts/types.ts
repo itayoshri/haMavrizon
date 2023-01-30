@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react'
 
-export interface IProviderContext {
+export interface IThemeProviderContext {
   darkMode: boolean
   setDarkMode: Dispatch<SetStateAction<boolean>>
 }
