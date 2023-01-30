@@ -44,3 +44,17 @@ export const Close = createSVGResource(
   <path d="M0 0h24v24H0V0z" fill="none" />,
   <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
 )
+
+export const Calculator = createSVGResource(
+  <path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M19,19H5V5h14V19z" />,
+  <rect height="1.5" width="5" x="6.25" y="7.72" />,
+  <rect height="1.5" width="5" x="13" y="15.75" />,
+  <rect height="1.5" width="5" x="13" y="13.25" />,
+  <polygon points="8,18 9.5,18 9.5,16 11.5,16 11.5,14.5 9.5,14.5 9.5,12.5 8,12.5 8,14.5 6,14.5 6,16 8,16" />,
+  <polygon points="14.09,10.95 15.5,9.54 16.91,10.95 17.97,9.89 16.56,8.47 17.97,7.06 16.91,6 15.5,7.41 14.09,6 13.03,7.06 14.44,8.47 13.03,9.89" />
+)
+
+export const Check = createSVGResource(
+  <path d="M0 0h24v24H0V0z" fill="none" />,
+  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+)
