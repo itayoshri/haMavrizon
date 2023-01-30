@@ -2,16 +2,22 @@
 
 import { createContext, useEffect, useState } from 'react'
 import { Wrapper } from '../components/types'
-import { IThemeProviderContext } from './types'
+import { IStoredGradesStudyGroup } from '../Interfaces'
+import { IGradesProviderContext, IThemeProviderContext } from './types'
 import { createUseContextHook } from './utils'
 
 export const ThemeProviderContext = createContext<IThemeProviderContext>(
   {} as IThemeProviderContext
 )
 
-export const useThemeProvider = createUseContextHook(ThemeProviderContext)
+export const GradesProviderContext = createContext<IGradesProviderContext>(
+  {} as IGradesProviderContext
+)
 
-export default function DataProvider({ children }: Wrapper) {
+export const useThemeProvider = createUseContextHook(ThemeProviderContext)
+export const useGradesProvider = createUseContextHook(GradesProviderContext)
+
+export default function ThemeProvider({ children }: Wrapper) {
   const [darkMode, setDarkMode] = useState(false)
   useEffect(() => {
     if (darkMode) document.documentElement.classList.add('dark')
@@ -26,5 +32,14 @@ export default function DataProvider({ children }: Wrapper) {
     >
       {children}
     </ThemeProviderContext.Provider>
+  )
+}
+
+export function GradesProvider({ children }: Wrapper) {
+  const [studyGroups, setStudyGroups] = useState([])
+  return (
+    <GradesProviderContext.Provider value={{ studyGroups, setStudyGroups }}>
+      {children}
+    </GradesProviderContext.Provider>
   )
 }

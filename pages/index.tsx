@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useCallback, useEffect, useState } from 'react'
 import LoginView from '../components/Views/LoginView'
 import DashboardView from '../components/Views/DashboardView'
-import { IFrontStudyGroup } from '../Interfaces'
+import { IFrontAbsencesStudyGroup } from '../Interfaces'
 import Footer from '../components/Footer'
 import DarkModeSwitch from '../components/DarkModeSwitch'
 
@@ -11,7 +11,7 @@ const TITLE = 'המבריזון 2000'
 const DESCRIPTION = 'המבריזון 2000, נוצר על ידי איתי אושרי'
 
 const Home: NextPage = () => {
-  const [data, setData] = useState<IFrontStudyGroup[]>([])
+  const [data, setData] = useState<IFrontAbsencesStudyGroup[]>([])
   const [showed, _setShowed] = useState('true')
   useEffect(() => {
     const value = localStorage.getItem('showed')
