@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import Button from '../../components/Forms/Button'
 import Grade from '../../components/Subject/grade'
 import AverageView from '../../components/Views/AverageView'
 import { useGradesProvider } from '../../contexts'
@@ -11,36 +12,36 @@ const GRADES = 'ציונים'
 
 export default function SubjectPage() {
   useEffect(() => {
-    setStudyGroups(dataSample)
+    setGradesStudyGroups(dataSample)
   }, [])
 
   const router = useRouter()
   const subjectIndex = Number(router.query.subjectIndex)
 
-  const { studyGroupsData: studyGroups, setStudyGroupsData: setStudyGroups } =
-    useGradesProvider()
+  const { gradesStudyGroups, setGradesStudyGroups } = useGradesProvider()
 
-  const average = studyGroups[subjectIndex]
-    ? CalcSubjectAverage(studyGroups[subjectIndex].grades)
+  const average = gradesStudyGroups[subjectIndex]
+    ? CalcSubjectAverage(gradesStudyGroups[subjectIndex].grades)
     : 0
 
-  return studyGroups[subjectIndex] ? (
+  return gradesStudyGroups[subjectIndex] ? (
     <div>
+      <button onClick={() => router.back()}>234234</button>
       <div className="flex flex-col">
         <h1 className="text-xl font-semibold px-4 pt-4">
-          {studyGroups[subjectIndex].name}
+          {gradesStudyGroups[subjectIndex].name}
         </h1>
         <AverageView average={average} label={AVERAGE} />
       </div>
       <div>
         <h1 className="font-bold px-4">{GRADES}</h1>
-        {studyGroups[subjectIndex].grades.map((grade, index) => {
+        {gradesStudyGroups[subjectIndex].grades.map((grade, index) => {
           return (
             <Grade
               setSelected={() => {
-                studyGroups[subjectIndex].grades[index].selected =
-                  !studyGroups[subjectIndex].grades[index].selected
-                setStudyGroups((prev) => {
+                gradesStudyGroups[subjectIndex].grades[index].selected =
+                  !gradesStudyGroups[subjectIndex].grades[index].selected
+                setGradesStudyGroups((prev) => {
                   return [...prev]
                 })
               }}

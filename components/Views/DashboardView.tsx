@@ -9,6 +9,11 @@ import elipsesfullinfo_sample from '../../public/elipsesfullinfo_sample.png'
 import { useState } from 'react'
 import { Mode } from 'fs'
 import { Modes } from '../../pages'
+import Table from '../tables'
+import {
+  IFrontAbsencesStudyGroup,
+  IFrontGradesStudyGroup,
+} from '../../Interfaces'
 
 const POPUP = {
   title: 'חדש!',
@@ -17,26 +22,35 @@ const POPUP = {
   image: elipsesfullinfo_sample,
 }
 interface DashboardViewProps {
+  absencesStudyGroups: IFrontAbsencesStudyGroup[]
+  gradesStudyGroups: IFrontGradesStudyGroup[]
   showed: boolean
   setShowed(val: any): unknown
   mode: Modes
+  setSelected(index: number): unknown
 }
 
 export default function DashboardView({
-  subjects,
+  absencesStudyGroups,
+  gradesStudyGroups,
   showed,
   setShowed,
   mode,
-}: AbsencesDashboardProps & DashboardViewProps) {
+  setSelected,
+}: DashboardViewProps) {
   const [opened, setOpened] = useState(!showed)
 
   return (
     <div className="flex flex-col h-full w-screen sm:w-full m-0 p-0 justify-center items-center">
       <Logo />
+      <Table mode="absences" />
       {mode === 'absences' ? (
-        <AbsencesDashboard subjects={subjects} />
+        <AbsencesDashboard studyGroups={absencesStudyGroups} />
       ) : (
-        <GradesDashboard />
+        <GradesDashboard
+          studyGroups={gradesStudyGroups}
+          setSelected={(index) => setSelected(index)}
+        />
       )}
       {opened ? (
         <Popup

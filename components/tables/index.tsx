@@ -1,8 +1,14 @@
+import { Modes } from '../../pages'
+
 const SUBJECT = 'מקצוע'
 const SEMESTERIAL = 'מחצית'
 const CURRENTLY = 'כעת'
 
-export default function TableCategories() {
+export interface TableProps {
+  mode: Modes
+}
+
+export default function Table({ mode }: TableProps) {
   return (
     <div className="flex justify-between w-full dark:text-white pr-4 py-4 font-bold">
       <h1>{SUBJECT}</h1>

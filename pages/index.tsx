@@ -6,22 +6,25 @@ import DashboardView from '../components/Views/DashboardView'
 import { IFrontAbsencesStudyGroup } from '../Interfaces'
 import Footer from '../components/Footer'
 import DarkModeSwitch from '../components/DarkModeSwitch'
-import { GradesDashboard } from '../components/Dashboard'
-import { useGradesProvider } from '../contexts'
 import { dataSample } from './test'
+import { useGradesProvider } from '../contexts'
 
 const TITLE = 'המבריזון 2000'
 const DESCRIPTION = 'המבריזון 2000, נוצר על ידי איתי אושרי'
 export type Modes = 'absences' | 'grades'
 
 const Home: NextPage = () => {
-  const { studyGroupsData, setStudyGroupsData } = useGradesProvider()
+  const {
+    gradesStudyGroups,
+    setGradesStudyGroups,
+    absencesStudyGroups,
+    setAbsencesStudyGroups,
+  } = useGradesProvider()
 
   useEffect(() => {
-    setStudyGroupsData(dataSample)
+    setGradesStudyGroups(dataSample)
   }, [])
 
-  const [data, setData] = useState<IFrontAbsencesStudyGroup[]>([])
   const [mode, setMode] = useState<Modes>('grades')
   const [showed, _setShowed] = useState('true')
   useEffect(() => {
@@ -34,10 +37,20 @@ const Home: NextPage = () => {
     localStorage.setItem('showed', value)
   }, [])
 
+  const setSelected = useCallback(
+    (index: number) => {
+      gradesStudyGroups[index].selected = !gradesStudyGroups[index].selected
+      setGradesStudyGroups((prev) => {
+        return [...prev]
+      })
+    },
+    [gradesStudyGroups, setGradesStudyGroups]
+  )
+
   return (
     <div
       className={`flex flex-col ${
-        data.length
+        absencesStudyGroups.length
           ? 'h-full'
           : 'h-mobile max-h-screen absolute dark:bg-[#424242]'
       } w-screen sm:w-full m-0 p-0 justify-center items-center`}
@@ -48,10 +61,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <DarkModeSwitch />
-      {data.length ? (
+      {absencesStudyGroups.length ? (
         <>
           <DashboardView
-            subjects={data}
+            setSelected={setSelected}
+            absencesStudyGroups={absencesStudyGroups}
+            gradesStudyGroups={gradesStudyGroups}
             showed={showed == 'true'}
             setShowed={setShowed}
             mode={mode}
@@ -60,8 +75,8 @@ const Home: NextPage = () => {
         </>
       ) : (
         <LoginView
-          setAbsencesData={(data) => setData(data)}
-          setGradesData={(data) => setStudyGroupsData(data)}
+          setAbsencesData={(data) => setAbsencesStudyGroups(data)}
+          setGradesData={(data) => setGradesStudyGroups(data)}
         />
       )}
     </div>

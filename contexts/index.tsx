@@ -2,19 +2,20 @@
 
 import { createContext, useEffect, useState } from 'react'
 import { Wrapper } from '../components/types'
-import { IGradesProviderContext, IThemeProviderContext } from './types'
+import { IStudyGroupsProviderContext, IThemeProviderContext } from './types'
 import { createUseContextHook } from './utils'
 
 export const ThemeProviderContext = createContext<IThemeProviderContext>(
   {} as IThemeProviderContext
 )
 
-export const GradesProviderContext = createContext<IGradesProviderContext>(
-  {} as IGradesProviderContext
-)
+export const StudyGroupsProviderContext =
+  createContext<IStudyGroupsProviderContext>({} as IStudyGroupsProviderContext)
 
 export const useThemeProvider = createUseContextHook(ThemeProviderContext)
-export const useGradesProvider = createUseContextHook(GradesProviderContext)
+export const useGradesProvider = createUseContextHook(
+  StudyGroupsProviderContext
+)
 
 export default function ThemeProvider({ children }: Wrapper) {
   const [darkMode, setDarkMode] = useState(false)
@@ -34,16 +35,20 @@ export default function ThemeProvider({ children }: Wrapper) {
   )
 }
 
-export function GradesProvider({ children }: Wrapper) {
-  const [studyGroupsData, setStudyGroupsData] = useState([])
+export function StudyGroupsProvider({ children }: Wrapper) {
+  const [gradesStudyGroups, setGradesStudyGroups] = useState([])
+  const [absencesStudyGroups, setAbsencesStudyGroups] = useState([])
+
   return (
-    <GradesProviderContext.Provider
+    <StudyGroupsProviderContext.Provider
       value={{
-        studyGroupsData,
-        setStudyGroupsData,
+        gradesStudyGroups,
+        setGradesStudyGroups,
+        absencesStudyGroups,
+        setAbsencesStudyGroups,
       }}
     >
       {children}
-    </GradesProviderContext.Provider>
+    </StudyGroupsProviderContext.Provider>
   )
 }
