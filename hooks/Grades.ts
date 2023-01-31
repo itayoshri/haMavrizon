@@ -1,21 +1,27 @@
 import { IFrontGradesStudyGroup } from '../Interfaces'
-import { IGrade, StudyGroupGrades } from '../utils/StudyGroups/grades'
+import { IGrade } from '../utils/StudyGroups/grades'
 
 export default function CalcSubjectAverage(grades: IGrade[]) {
-  let average = 0
+  let sum = 0
+  let counter = 0
   for (const grade of grades) {
-    if (grade.selected)
-      if (average > 0) average = (average + grade.grade) / 2
-      else average = grade.grade
+    if (grade.selected) {
+      counter++
+      sum += grade.grade
+    }
   }
-  return Math.floor(average)
+  return counter > 0 ? Math.floor(sum / counter) : 0
 }
-
 export function CalcSubjectsAverage(subjects: IFrontGradesStudyGroup[]) {
-  let average = 0
+  let sum = 0
+  let counter = 0
   for (const subject of subjects) {
-    if (subject.selected)
-      average = (CalcSubjectAverage(subject.grades) + average) / 2
+    if (subject.selected) {
+      const subjectAverage = CalcSubjectAverage(subject.grades)
+      console.log(subject.name, subjectAverage)
+      counter++
+      sum += subjectAverage
+    }
   }
-  return average
+  return counter > 0 ? Math.floor(sum / counter) : 0
 }
