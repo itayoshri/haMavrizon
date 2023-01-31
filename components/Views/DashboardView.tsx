@@ -6,7 +6,7 @@ import AbsencesDashboard, {
 import Popup from '../Forms/Popup'
 import Logo from '../Logo'
 import elipsesfullinfo_sample from '../../public/elipsesfullinfo_sample.png'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Mode } from 'fs'
 import { Modes } from '../../pages'
 import Table from '../tables'
@@ -14,7 +14,8 @@ import {
   IFrontAbsencesStudyGroup,
   IFrontGradesStudyGroup,
 } from '../../Interfaces'
-import { useModesProvider } from '../../contexts'
+import { useGradesProvider, useModesProvider } from '../../contexts'
+import ModesSwitcher from '../Modes'
 
 const POPUP = {
   title: 'חדש!',
@@ -23,22 +24,28 @@ const POPUP = {
   image: elipsesfullinfo_sample,
 }
 interface DashboardViewProps {
-  absencesStudyGroups: IFrontAbsencesStudyGroup[]
-  gradesStudyGroups: IFrontGradesStudyGroup[]
   showed: boolean
   setShowed(val: any): unknown
-  setSelected(index: number): unknown
 }
 
 export default function DashboardView({
-  absencesStudyGroups,
-  gradesStudyGroups,
   showed,
   setShowed,
-  setSelected,
 }: DashboardViewProps) {
   const [opened, setOpened] = useState(!showed)
-  const { selectedMode, setMode } = useModesProvider()
+  const { selectedMode } = useModesProvider()
+  const { gradesStudyGroups, setGradesStudyGroups, absencesStudyGroups } =
+    useGradesProvider()
+
+  const setSelected = useCallback(
+    (index: number) => {
+      gradesStudyGroups[index].selected = !gradesStudyGroups[index].selected
+      setGradesStudyGroups((prev) => {
+        return [...prev]
+      })
+    },
+    [gradesStudyGroups, setGradesStudyGroups]
+  )
 
   return (
     <div className="flex flex-col h-full w-screen sm:w-full m-0 p-0 justify-center items-center">
@@ -64,6 +71,7 @@ export default function DashboardView({
           image={POPUP.image}
         />
       ) : null}
+      <ModesSwitcher />
     </div>
   )
 }

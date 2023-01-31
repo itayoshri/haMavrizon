@@ -3,7 +3,6 @@ import Head from 'next/head'
 import { useCallback, useEffect, useState } from 'react'
 import LoginView from '../components/Views/LoginView'
 import DashboardView from '../components/Views/DashboardView'
-import { IFrontAbsencesStudyGroup } from '../Interfaces'
 import Footer from '../components/Footer'
 import DarkModeSwitch from '../components/DarkModeSwitch'
 import { dataSample } from './test'
@@ -14,19 +13,10 @@ const DESCRIPTION = 'המבריזון 2000, נוצר על ידי איתי אוש
 export type Modes = 'absences' | 'grades'
 
 const Home: NextPage = () => {
-  const {
-    gradesStudyGroups,
-    setGradesStudyGroups,
-    absencesStudyGroups,
-    setAbsencesStudyGroups,
-  } = useGradesProvider()
+  const { absencesStudyGroups, setAbsencesStudyGroups, setGradesStudyGroups } =
+    useGradesProvider()
 
-  useEffect(() => {
-    setGradesStudyGroups(dataSample)
-  }, [])
-
-  const { selectedMode, setMode } = useModesProvider()
-
+  // Shitity method to show new updates
   const [showed, _setShowed] = useState('true')
   useEffect(() => {
     const value = localStorage.getItem('showed')
@@ -37,16 +27,7 @@ const Home: NextPage = () => {
   const setShowed = useCallback((value: string) => {
     localStorage.setItem('showed', value)
   }, [])
-
-  const setSelected = useCallback(
-    (index: number) => {
-      gradesStudyGroups[index].selected = !gradesStudyGroups[index].selected
-      setGradesStudyGroups((prev) => {
-        return [...prev]
-      })
-    },
-    [gradesStudyGroups, setGradesStudyGroups]
-  )
+  //
 
   return (
     <div
@@ -64,13 +45,7 @@ const Home: NextPage = () => {
       <DarkModeSwitch />
       {absencesStudyGroups.length ? (
         <>
-          <DashboardView
-            setSelected={setSelected}
-            absencesStudyGroups={absencesStudyGroups}
-            gradesStudyGroups={gradesStudyGroups}
-            showed={showed == 'true'}
-            setShowed={setShowed}
-          />
+          <DashboardView showed={showed == 'true'} setShowed={setShowed} />
           <Footer />
         </>
       ) : (
