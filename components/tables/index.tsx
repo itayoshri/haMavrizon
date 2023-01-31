@@ -1,25 +1,29 @@
-import { Modes } from '../../pages'
+import { useModesProvider } from '../../contexts'
 
 const SUBJECT = 'מקצוע'
 const SEMESTERIAL = 'מחצית'
 const CURRENTLY = 'כעת'
+const AVERAGE = 'ממוצע'
 
-export interface TableProps {
-  mode: Modes
-}
-
-export default function Table({ mode }: TableProps) {
+export default function Table() {
+  const { selectedMode } = useModesProvider()
   return (
     <div className="flex justify-between w-full dark:text-white pr-4 py-4 font-bold">
       <h1>{SUBJECT}</h1>
-      <div className="flex w-[124px] pl-2">
-        <div className="w-1/2 text-center">
-          <a>{CURRENTLY}</a>
+      {selectedMode === 'absences' ? (
+        <div className="flex w-[124px] pl-2">
+          <div className="w-1/2 text-center">
+            <a>{CURRENTLY}</a>
+          </div>
+          <div className="w-1/2 text-center">
+            <a>{SEMESTERIAL}</a>
+          </div>
         </div>
-        <div className="w-1/2 text-center">
-          <a>{SEMESTERIAL}</a>
+      ) : (
+        <div className="flex w-[92px] justify-center pl-[52px]">
+          <a>{AVERAGE}</a>
         </div>
-      </div>
+      )}
     </div>
   )
 }

@@ -14,7 +14,7 @@ export interface ModeProps {
 export default function SingleMode({ mode, setMode, selected }: ModeProps) {
   return (
     <button
-      className={`flex flex-col items-center justify-center w-full h-16 gap-1 font-medium ${
+      className={`flex flex-col items-center justify-center w-full h-16 font-medium ${
         selected ? 'text-blue-500' : 'text-gray-500'
       }`}
       onClick={() => setMode(mode)}
