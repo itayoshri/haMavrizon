@@ -46,7 +46,7 @@ export default function DashboardView({
       ) : (
         <GradesDashboard
           studyGroups={gradesStudyGroups}
-          setSelected={(index) => setSelected(index)}
+          setSelected={setSelected}
         />
       )}
       {opened ? (
