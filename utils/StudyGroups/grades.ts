@@ -17,6 +17,7 @@ export class StudyGroupGrades extends StudyGroup {
 
   private average: number
   private grades: IGrade[] = []
+  private selected = false
 
   public addGrade(grade: IMashovGrade) {
     const newGrade = {
@@ -33,9 +34,10 @@ export class StudyGroupGrades extends StudyGroup {
   }
 
   private Average(grade: number) {
-    if (this.grades.length > 0 && this.average)
+    if (this.grades.length > 0 && this.average) {
       this.average = (this.average + grade) / 2
-    else this.average = grade
+      this.selected = true
+    } else this.average = grade
   }
 
   public getFrontObj(): IFrontGradesStudyGroup {
@@ -43,6 +45,7 @@ export class StudyGroupGrades extends StudyGroup {
       name: this.name,
       grades: this.grades,
       average: this.average,
+      selected: this.selected,
     }
   }
 

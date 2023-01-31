@@ -35,9 +35,14 @@ export default function ThemeProvider({ children }: Wrapper) {
 }
 
 export function GradesProvider({ children }: Wrapper) {
-  const [studyGroups, setStudyGroups] = useState([])
+  const [studyGroupsData, setStudyGroupsData] = useState([])
   return (
-    <GradesProviderContext.Provider value={{ studyGroups, setStudyGroups }}>
+    <GradesProviderContext.Provider
+      value={{
+        studyGroupsData,
+        setStudyGroupsData,
+      }}
+    >
       {children}
     </GradesProviderContext.Provider>
   )

@@ -7,7 +7,7 @@ import {
   useCallback,
   useEffect,
 } from 'react'
-import { IFrontAbsencesStudyGroup } from '../Interfaces'
+import { IFrontAbsencesStudyGroup, IFrontGradesStudyGroup } from '../Interfaces'
 import MashovButton from './Forms/MashovButton'
 import Input from './Forms/Input'
 import Semel from './Forms/Semel'
@@ -26,10 +26,11 @@ const CELLPHONE = 'טלפון נייד'
 const MESSAGE = 'שם המשתמש או הסיסמה שגויים'
 
 export interface LoginProps {
-  setData: Dispatch<SetStateAction<IFrontAbsencesStudyGroup[]>>
+  setAbsencesData: Dispatch<SetStateAction<IFrontAbsencesStudyGroup[]>>
+  setGradesData: Dispatch<SetStateAction<IFrontGradesStudyGroup[]>>
 }
 
-export default function Login({ setData }: LoginProps) {
+export default function Login({ setAbsencesData, setGradesData }: LoginProps) {
   const [semel, setSemel] = useState()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -59,13 +60,14 @@ export default function Login({ setData }: LoginProps) {
     axios
       .get(link)
       .then((res) => {
-        setData(res.data)
+        setAbsencesData(res.data.absences)
+        setGradesData(res.data.grades)
       })
       .catch(() => {
         setShowError(true)
         setLoading(false)
       })
-  }, [link, setData])
+  }, [link, setAbsencesData])
 
   const requestSMS = useCallback(() => {
     axios.post(OTPLink)

@@ -6,12 +6,23 @@ import DashboardView from '../components/Views/DashboardView'
 import { IFrontAbsencesStudyGroup } from '../Interfaces'
 import Footer from '../components/Footer'
 import DarkModeSwitch from '../components/DarkModeSwitch'
+import { GradesDashboard } from '../components/Dashboard'
+import { useGradesProvider } from '../contexts'
+import { dataSample } from './test'
 
 const TITLE = 'המבריזון 2000'
 const DESCRIPTION = 'המבריזון 2000, נוצר על ידי איתי אושרי'
+export type Modes = 'absences' | 'grades'
 
 const Home: NextPage = () => {
+  const { studyGroupsData, setStudyGroupsData } = useGradesProvider()
+
+  useEffect(() => {
+    setStudyGroupsData(dataSample)
+  }, [])
+
   const [data, setData] = useState<IFrontAbsencesStudyGroup[]>([])
+  const [mode, setMode] = useState<Modes>('grades')
   const [showed, _setShowed] = useState('true')
   useEffect(() => {
     const value = localStorage.getItem('showed')
@@ -41,13 +52,18 @@ const Home: NextPage = () => {
         <>
           <DashboardView
             subjects={data}
+            subjects={studyGroupsData}
             showed={showed == 'true'}
             setShowed={setShowed}
+            mode={mode}
           />
           <Footer />
         </>
       ) : (
-        <LoginView setData={(data) => setData(data)} />
+        <LoginView
+          setAbsencesData={(data) => setData(data)}
+          setGradesData={(data) => setStudyGroupsData(data)}
+        />
       )}
     </div>
   )

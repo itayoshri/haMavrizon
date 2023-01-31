@@ -24,4 +24,5 @@ export interface IFrontGradesStudyGroup {
   name: string
   grades: IGrade[]
   average: number
+  selected: boolean
 }

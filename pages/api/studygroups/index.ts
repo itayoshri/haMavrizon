@@ -7,12 +7,14 @@ import {
   IMashovStudyGroup,
   IMashovLessonsCounter,
   IMashovTT,
+  IMashovGrade,
 } from '../../../Interfaces/Mashov'
 import { IFrontAbsencesStudyGroup } from '../../../Interfaces'
+import { StudyGroupGradesBuilder } from '../../../utils/StudyGroups/grades'
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<IFrontAbsencesStudyGroup[]>
+  res: NextApiResponse
 ) {
   const { semel, username, password } = req.query
 
@@ -28,12 +30,22 @@ export default async function handler(
   const lessonCounter = await fetchDataSource('lessonsCount', auth)
   const timetable = await fetchDataSource('timetable', auth)
 
-  const StudyGroups = new StudyGroupsAbsencesBuilder(
+  const absencesStudyGroups = new StudyGroupsAbsencesBuilder(
     studyGroups as IMashovStudyGroup[],
     behaveEvents as IBehaveEvent[],
     lessonCounter as IMashovLessonsCounter[],
     timetable as IMashovTT[]
   )
+  const grades = await fetchDataSource('grades', auth)
+  const gradesStudyGroups = new StudyGroupGradesBuilder(
+    studyGroups as IMashovStudyGroup[],
+    grades as IMashovGrade[]
+  )
 
-  res.status(200).json(StudyGroups.getStudyGroups())
+  res
+    .status(200)
+    .json({
+      absences: absencesStudyGroups.getStudyGroups(),
+      grades: gradesStudyGroups.getStudyGroups(),
+    })
 }

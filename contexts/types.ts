@@ -7,6 +7,6 @@ export interface IThemeProviderContext {
 }
 
 export interface IGradesProviderContext {
-  studyGroups: IFrontGradesStudyGroup[]
-  setStudyGroups: Dispatch<SetStateAction<IFrontGradesStudyGroup[]>>
+  studyGroupsData: IFrontGradesStudyGroup[]
+  setStudyGroupsData: Dispatch<SetStateAction<IFrontGradesStudyGroup[]>>
 }
