@@ -52,7 +52,6 @@ const Home: NextPage = () => {
         <>
           <DashboardView
             subjects={data}
-            subjects={studyGroupsData}
             showed={showed == 'true'}
             setShowed={setShowed}
             mode={mode}

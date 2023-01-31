@@ -1,3 +1,4 @@
+import { useGradesProvider } from '../contexts'
 import { CalcSubjectsAverage } from '../hooks/Grades'
 import { IFrontAbsencesStudyGroup, IFrontGradesStudyGroup } from '../Interfaces'
 import SubjectAbsences from './Subject/absences'
@@ -27,14 +28,25 @@ export default function AbsencesDashboard({
   )
 }
 
-export function GradesDashboard({ subjects }: GradesDashboardProps) {
-  const average = CalcSubjectsAverage(subjects)
+export function GradesDashboard() {
+  const { studyGroupsData, setStudyGroupsData } = useGradesProvider()
+  const average = CalcSubjectsAverage(studyGroupsData)
 
   return (
     <div className="flex flex-col w-full">
       <AverageView average={average} label={AVERAGE} />
-      {subjects.map((subject, key) => (
-        <SubjectGrades {...subject} key={key} index={key} />
+      {studyGroupsData.map((subject, key) => (
+        <SubjectGrades
+          {...subject}
+          key={key}
+          index={key}
+          setSelected={() => {
+            studyGroupsData[key].selected = !studyGroupsData[key].selected
+            setStudyGroupsData((prev) => {
+              return [...prev]
+            })
+          }}
+        />
       ))}
     </div>
   )

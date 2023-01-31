@@ -22,7 +22,7 @@ export default function ElipseFullInfo({
   setOpened,
 }: ElipseFullInfoProps) {
   const percentage = PrecentageCalc(absenceCounter, lessonsCount)
-  const color = GetColor(percentage)
+  const color = GetColor(percentage, 'absences')
   const label = LABELS[color]
 
   return (

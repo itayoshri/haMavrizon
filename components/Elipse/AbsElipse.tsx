@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
-import PrecentageCalc, { GetColor } from '../../../hooks/Subject'
-import Elipse, { For } from '../../Elipse'
-import ElipseFullInfo from '../ElipseFullInfo'
+import { useState, useRef, useEffect } from 'react'
+import PrecentageCalc, { GetColor } from '../../hooks/Subject'
+import Elipse, { For } from '.'
+import ElipseFullInfo from './ElipseFullInfo'
 
 export interface AbsElipseProps {
   label: number

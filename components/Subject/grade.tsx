@@ -1,6 +1,6 @@
 import { IGrade } from '../../utils/StudyGroups/grades'
+import AbsElipse from '../Elipse/AbsElipse'
 import Selected from '../Forms/Selected'
-import AbsElipse from './AbsElipse'
 
 export interface GradeProps {
   setSelected(): unknown

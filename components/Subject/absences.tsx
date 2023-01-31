@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { IFrontAbsencesStudyGroup } from '../../Interfaces'
 import { Expand, ForwardRTL } from '../Icons'
-import AbsElipse from './AbsElipse'
+import AbsElipse from '../Elipse'
 import FullInfo from './FullInfo/FullInfo'
 
 export default function SubjectAbsences({

@@ -24,11 +24,10 @@ interface DashboardViewProps {
 
 export default function DashboardView({
   subjects,
-  subjects: gradesSubjects,
   showed,
   setShowed,
   mode,
-}: AbsencesDashboardProps & DashboardViewProps & GradesDashboardProps) {
+}: AbsencesDashboardProps & DashboardViewProps) {
   const [opened, setOpened] = useState(!showed)
 
   return (
@@ -37,7 +36,7 @@ export default function DashboardView({
       {mode === 'absences' ? (
         <AbsencesDashboard subjects={subjects} />
       ) : (
-        <GradesDashboard subjects={gradesSubjects} />
+        <GradesDashboard />
       )}
       {opened ? (
         <Popup

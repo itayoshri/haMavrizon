@@ -1,5 +1,5 @@
+import AbsElipse from '../Elipse/AbsElipse'
 import { Calculator } from '../Icons'
-import AbsElipse from '../Subject/AbsElipse'
 
 export interface AverageViewProps {
   average: number
