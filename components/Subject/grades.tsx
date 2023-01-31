@@ -33,13 +33,14 @@ export default function SubjectGrades({
           </Link>
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           <AbsElipse
             label={average}
             lessonsCount={100}
             absenceCounter={average}
             type="grade"
           />
+          <ForwardRTL width={24} />
         </div>
       </div>
     </div>

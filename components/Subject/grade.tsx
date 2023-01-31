@@ -15,7 +15,7 @@ export default function Grade({
   selected,
 }: GradeProps & IGrade) {
   return (
-    <div className="flex w-full justify-between py-3 px-5 border-b-[1px] gap-2 dark:text-white border-zinc-200 dark:border-zinc-800">
+    <div className="flex w-full justify-between py-3 px-5 border-b-[1px] gap-2 items-center dark:text-white border-zinc-200 dark:border-zinc-800">
       <div className="flex truncate items-center gap-3">
         <Selected selected={selected} setSelected={setSelected} />
         <div className="flex flex-col truncate">

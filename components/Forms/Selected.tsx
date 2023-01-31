@@ -8,7 +8,7 @@ export interface SelectedProps {
 export default function Selected({ selected, setSelected }: SelectedProps) {
   return (
     <button
-      className={`rounded-md p-1 w-7 h-7 ${
+      className={`rounded-md shrink-0 p-1 w-7 h-7 ${
         selected ? 'bg-blue-500' : 'bg-white border-[2px] border-gray-400'
       }`}
       onClick={() => setSelected()}
