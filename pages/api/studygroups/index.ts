@@ -9,7 +9,10 @@ import {
   IMashovTT,
   IMashovGrade,
 } from '../../../Interfaces/Mashov'
-import { IFrontAbsencesStudyGroup } from '../../../Interfaces'
+import {
+  IFrontAbsencesStudyGroup,
+  IFrontGradesStudyGroup,
+} from '../../../Interfaces'
 import { StudyGroupGradesBuilder } from '../../../utils/StudyGroups/grades'
 
 export default async function handler(
@@ -42,10 +45,10 @@ export default async function handler(
     grades as IMashovGrade[]
   )
 
-  res
-    .status(200)
-    .json({
-      absences: absencesStudyGroups.getStudyGroups(),
-      grades: gradesStudyGroups.getStudyGroups(),
-    })
+  res.status(200).json({
+    absences: absencesStudyGroups.getStudyGroups(),
+    grades: gradesStudyGroups
+      .getStudyGroups<IFrontGradesStudyGroup[]>()
+      .sort((sgA, sgB) => (sgA.selected < sgB.selected ? 1 : -1)),
+  })
 }

@@ -37,7 +37,10 @@ export class StudyGroupGrades extends StudyGroup {
     if (this.grades.length > 0 && this.average) {
       this.average = (this.average + grade) / 2
       this.selected = true
-    } else this.average = grade
+    } else {
+      this.average = grade
+      this.selected = true
+    }
   }
 
   public getFrontObj(): IFrontGradesStudyGroup {
