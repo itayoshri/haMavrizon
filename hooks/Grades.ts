@@ -17,10 +17,8 @@ export function CalcSubjectsAverage(subjects: IFrontGradesStudyGroup[]) {
   let counter = 0
   for (const subject of subjects) {
     if (subject.selected) {
-      const subjectAverage = CalcSubjectAverage(subject.grades)
-      console.log(subject.name, subjectAverage)
       counter++
-      sum += subjectAverage
+      sum += CalcSubjectAverage(subject.grades)
     }
   }
   return counter > 0 ? Math.floor(sum / counter) : 0
