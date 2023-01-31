@@ -19,7 +19,7 @@ export default function SubjectPage() {
     : 0
 
   return gradesStudyGroups[subjectIndex] ? (
-    <div className="flex flex-col gap-2 text-black dark:text-white">
+    <div className="flex flex-col gap-2 text-black dark:text-white py-2">
       <h1 className="flex items-center gap-2 text-xl font-semibold px-4 pt-4">
         <button onClick={() => router.back()}>
           <BackRTL width={20} />

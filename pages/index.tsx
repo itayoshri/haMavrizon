@@ -41,7 +41,6 @@ const Home: NextPage = () => {
         <meta name="description" content={DESCRIPTION} />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <DarkModeSwitch />
       {absencesStudyGroups.length ? (
         <>
           <DashboardView showed={showed == 'true'} setShowed={setShowed} />
