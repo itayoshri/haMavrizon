@@ -1,19 +1,9 @@
-import AbsencesDashboard, {
-  AbsencesDashboardProps,
-  GradesDashboard,
-  GradesDashboardProps,
-} from '../Dashboard'
+import AbsencesDashboard, { GradesDashboard } from '../Dashboard'
 import Popup from '../Forms/Popup'
 import Logo from '../Logo'
 import elipsesfullinfo_sample from '../../public/elipsesfullinfo_sample.png'
 import { useCallback, useState } from 'react'
-import { Mode } from 'fs'
-import { Modes } from '../../pages'
 import Table from '../tables'
-import {
-  IFrontAbsencesStudyGroup,
-  IFrontGradesStudyGroup,
-} from '../../Interfaces'
 import { useGradesProvider, useModesProvider } from '../../contexts'
 import ModesSwitcher from '../Modes'
 

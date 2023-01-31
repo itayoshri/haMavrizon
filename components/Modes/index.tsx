@@ -1,6 +1,4 @@
-import { useState } from 'react'
 import { useModesProvider } from '../../contexts'
-import { Modes } from '../../pages'
 import SingleMode from './Mode'
 
 export default function ModesSwitcher() {
