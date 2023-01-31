@@ -14,6 +14,7 @@ import {
   IFrontAbsencesStudyGroup,
   IFrontGradesStudyGroup,
 } from '../../Interfaces'
+import { useModesProvider } from '../../contexts'
 
 const POPUP = {
   title: 'חדש!',
@@ -26,7 +27,6 @@ interface DashboardViewProps {
   gradesStudyGroups: IFrontGradesStudyGroup[]
   showed: boolean
   setShowed(val: any): unknown
-  mode: Modes
   setSelected(index: number): unknown
 }
 
@@ -35,16 +35,16 @@ export default function DashboardView({
   gradesStudyGroups,
   showed,
   setShowed,
-  mode,
   setSelected,
 }: DashboardViewProps) {
   const [opened, setOpened] = useState(!showed)
+  const { selectedMode, setMode } = useModesProvider()
 
   return (
     <div className="flex flex-col h-full w-screen sm:w-full m-0 p-0 justify-center items-center">
       <Logo />
       <Table mode="absences" />
-      {mode === 'absences' ? (
+      {selectedMode === 'absences' ? (
         <AbsencesDashboard studyGroups={absencesStudyGroups} />
       ) : (
         <GradesDashboard

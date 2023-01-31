@@ -7,7 +7,7 @@ import { IFrontAbsencesStudyGroup } from '../Interfaces'
 import Footer from '../components/Footer'
 import DarkModeSwitch from '../components/DarkModeSwitch'
 import { dataSample } from './test'
-import { useGradesProvider } from '../contexts'
+import { useGradesProvider, useModesProvider } from '../contexts'
 
 const TITLE = 'המבריזון 2000'
 const DESCRIPTION = 'המבריזון 2000, נוצר על ידי איתי אושרי'
@@ -25,7 +25,8 @@ const Home: NextPage = () => {
     setGradesStudyGroups(dataSample)
   }, [])
 
-  const [mode, setMode] = useState<Modes>('grades')
+  const { selectedMode, setMode } = useModesProvider()
+
   const [showed, _setShowed] = useState('true')
   useEffect(() => {
     const value = localStorage.getItem('showed')
@@ -69,7 +70,6 @@ const Home: NextPage = () => {
             gradesStudyGroups={gradesStudyGroups}
             showed={showed == 'true'}
             setShowed={setShowed}
-            mode={mode}
           />
           <Footer />
         </>

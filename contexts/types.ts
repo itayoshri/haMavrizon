@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react'
 import { IFrontAbsencesStudyGroup, IFrontGradesStudyGroup } from '../Interfaces'
+import { Modes } from '../pages'
 
 export interface IThemeProviderContext {
   darkMode: boolean
@@ -11,4 +12,9 @@ export interface IStudyGroupsProviderContext {
   setGradesStudyGroups: Dispatch<SetStateAction<IFrontGradesStudyGroup[]>>
   absencesStudyGroups: IFrontAbsencesStudyGroup[]
   setAbsencesStudyGroups: Dispatch<SetStateAction<IFrontAbsencesStudyGroup[]>>
+}
+
+export interface IModesProviderContext {
+  selectedMode: Modes
+  setMode: Dispatch<SetStateAction<Modes>>
 }

@@ -2,7 +2,12 @@
 
 import { createContext, useEffect, useState } from 'react'
 import { Wrapper } from '../components/types'
-import { IStudyGroupsProviderContext, IThemeProviderContext } from './types'
+import { Modes } from '../pages'
+import {
+  IModesProviderContext,
+  IStudyGroupsProviderContext,
+  IThemeProviderContext,
+} from './types'
 import { createUseContextHook } from './utils'
 
 export const ThemeProviderContext = createContext<IThemeProviderContext>(
@@ -12,10 +17,15 @@ export const ThemeProviderContext = createContext<IThemeProviderContext>(
 export const StudyGroupsProviderContext =
   createContext<IStudyGroupsProviderContext>({} as IStudyGroupsProviderContext)
 
+export const ModesProviderContext = createContext<IModesProviderContext>(
+  {} as IModesProviderContext
+)
+
 export const useThemeProvider = createUseContextHook(ThemeProviderContext)
 export const useGradesProvider = createUseContextHook(
   StudyGroupsProviderContext
 )
+export const useModesProvider = createUseContextHook(ModesProviderContext)
 
 export default function ThemeProvider({ children }: Wrapper) {
   const [darkMode, setDarkMode] = useState(false)
@@ -50,5 +60,20 @@ export function StudyGroupsProvider({ children }: Wrapper) {
     >
       {children}
     </StudyGroupsProviderContext.Provider>
+  )
+}
+
+export function ModesProvider({ children }: Wrapper) {
+  const [selectedMode, setMode] = useState<Modes>('absences')
+
+  return (
+    <ModesProviderContext.Provider
+      value={{
+        selectedMode,
+        setMode,
+      }}
+    >
+      {children}
+    </ModesProviderContext.Provider>
   )
 }
