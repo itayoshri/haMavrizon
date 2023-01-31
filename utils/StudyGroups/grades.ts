@@ -65,7 +65,7 @@ export class StudyGroupGradesBuilder extends StudyGroupsBuilder {
 
     for (const grade of grades) {
       const sg = this.studyGroups.get(grade.groupId)
-      if (sg != undefined) {
+      if (sg != undefined && grade.grade) {
         sg.addGrade(grade)
       }
     }
