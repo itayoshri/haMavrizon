@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { BackRTL } from '../../components/Icons'
 import Grade from '../../components/Subject/grade'
 import AverageView from '../../components/Views/AverageView'
 import { useGradesProvider } from '../../contexts'
@@ -18,14 +19,15 @@ export default function SubjectPage() {
     : 0
 
   return gradesStudyGroups[subjectIndex] ? (
-    <div>
-      <button onClick={() => router.back()}>234234</button>
-      <div className="flex flex-col">
-        <h1 className="text-xl font-semibold px-4 pt-4">
-          {gradesStudyGroups[subjectIndex].name}
-        </h1>
-        <AverageView average={average} label={AVERAGE} />
-      </div>
+    <div className="flex flex-col gap-2">
+      <h1 className="flex items-center gap-2 text-xl font-semibold px-4 pt-4">
+        <button onClick={() => router.back()}>
+          <BackRTL width={20} />
+        </button>
+
+        {gradesStudyGroups[subjectIndex].name}
+      </h1>
+      <AverageView average={average} label={AVERAGE} />
       <div>
         <h1 className="font-bold px-4">{GRADES}</h1>
         {gradesStudyGroups[subjectIndex].grades.map((grade, index) => {

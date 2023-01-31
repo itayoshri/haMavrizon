@@ -3,6 +3,16 @@ import { createSVGResource } from './svgFactory'
 export const ForwardRTL = createSVGResource(
   <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z" />
 )
+
+export const BackRTL = createSVGResource(
+  <g>
+    <path d="M0,0h24v24H0V0z" fill="none" />
+  </g>,
+  <g>
+    <polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12" />
+  </g>
+)
+
 export const Expand = createSVGResource(
   <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z" />
 )
