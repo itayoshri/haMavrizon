@@ -45,7 +45,6 @@ const Home: NextPage = () => {
       {absencesStudyGroups.length ? (
         <>
           <DashboardView showed={showed == 'true'} setShowed={setShowed} />
-          <Footer />
         </>
       ) : (
         <LoginView

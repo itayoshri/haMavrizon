@@ -5,7 +5,7 @@ export default function ModesSwitcher() {
   const { selectedMode, setMode } = useModesProvider()
 
   return (
-    <div className="flex w-full border-t-[1px] border-gray-300 dark:border-zinc-800 fixed bg-white dark:bg-black bottom-0">
+    <div className="flex w-full border-t-[1px] border-gray-300 dark:border-zinc-800 sticky bg-white dark:bg-black bottom-0">
       <SingleMode
         mode="absences"
         setMode={setMode}

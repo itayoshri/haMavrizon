@@ -6,6 +6,7 @@ import { useCallback, useState } from 'react'
 import Table from '../tables'
 import { useGradesProvider, useModesProvider } from '../../contexts'
 import ModesSwitcher from '../Modes'
+import Footer from '../Footer'
 
 const POPUP = {
   title: 'חדש!',
@@ -40,7 +41,6 @@ export default function DashboardView({
   return (
     <div className="flex flex-col h-full w-screen sm:w-full m-0 p-0 justify-center items-center">
       <Logo />
-      <Table mode="absences" />
       {selectedMode === 'absences' ? (
         <AbsencesDashboard studyGroups={absencesStudyGroups} />
       ) : (
@@ -61,6 +61,7 @@ export default function DashboardView({
           image={POPUP.image}
         />
       ) : null}
+      <Footer />
       <ModesSwitcher />
     </div>
   )
