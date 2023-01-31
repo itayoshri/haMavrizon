@@ -22,10 +22,10 @@ export default function SubjectGrades({
   const average = CalcSubjectAverage(grades)
 
   return (
-    <div className="flex w-full py-3 px-5 border-b-[1px] items-center gap-3">
+    <div className="flex w-full py-3 px-5 border-b-[1px] border-zinc-200 dark:border-zinc-800 items-center gap-3">
       <Selected selected={selected} setSelected={setSelected} />
       <Link href={`/grades/${index}`}>
-        <a className="flex w-full justify-between cursor-pointer gap-4 dark:text-white border-zinc-200 dark:border-zinc-800">
+        <a className="flex w-full justify-between cursor-pointer gap-4 dark:text-white">
           <div className="flex gap-1 items-center grow">
             <h1 className="font-medium">{name}</h1>
           </div>
