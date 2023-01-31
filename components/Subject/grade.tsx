@@ -23,7 +23,9 @@ export default function Grade({
             <a className="font-medium">{title}</a>
             <a className="text-xs text-gray-400 mr-1">({gradeType})</a>
           </span>
-          <a className="text-sm">07/01/2023</a>
+          <a className="text-sm">
+            {new Date(eventDate).toLocaleDateString().replaceAll('.', '/')}
+          </a>
         </div>
       </div>
       <div className="">
