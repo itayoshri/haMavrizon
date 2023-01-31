@@ -39,6 +39,7 @@ export default function SubjectGrades({
             lessonsCount={100}
             absenceCounter={average}
             type="grade"
+            blue
           />
           <ForwardRTL width={24} />
         </div>
