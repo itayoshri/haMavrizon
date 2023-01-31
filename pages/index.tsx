@@ -5,7 +5,6 @@ import LoginView from '../components/Views/LoginView'
 import DashboardView from '../components/Views/DashboardView'
 import Footer from '../components/Footer'
 import DarkModeSwitch from '../components/DarkModeSwitch'
-import { dataSample } from './test'
 import { useGradesProvider, useModesProvider } from '../contexts'
 
 const TITLE = 'המבריזון 2000'

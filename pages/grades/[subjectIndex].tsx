@@ -1,20 +1,13 @@
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import Button from '../../components/Forms/Button'
 import Grade from '../../components/Subject/grade'
 import AverageView from '../../components/Views/AverageView'
 import { useGradesProvider } from '../../contexts'
 import CalcSubjectAverage from '../../hooks/Grades'
-import { dataSample } from '../test'
 
 const AVERAGE = 'ממוצע לפי ציונים מסומנים'
 const GRADES = 'ציונים'
 
 export default function SubjectPage() {
-  useEffect(() => {
-    setGradesStudyGroups(dataSample)
-  }, [])
-
   const router = useRouter()
   const subjectIndex = Number(router.query.subjectIndex)
 
