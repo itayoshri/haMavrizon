@@ -8,7 +8,7 @@ const AVERAGE = 'ממוצע'
 export default function Table() {
   const { selectedMode } = useModesProvider()
   return (
-    <div className="flex justify-between w-full dark:text-white pr-4 py-4 font-bold">
+    <div className="flex justify-between w-full dark:text-white pr-4 py-2 font-bold">
       <h1>{SUBJECT}</h1>
       {selectedMode === 'absences' ? (
         <div className="flex w-[124px] pl-2">
