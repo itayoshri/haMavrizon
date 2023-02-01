@@ -1,6 +1,6 @@
 import { IGrade } from '../../utils/StudyGroups/grades'
 import AbsElipse from '../Elipse/AbsElipse'
-import Selected from '../Forms/Selected'
+import Checkbox from '../Forms/Checkbox'
 
 export interface GradeProps {
   setSelected(): unknown
@@ -17,7 +17,7 @@ export default function Grade({
   return (
     <div className="flex w-full justify-between py-3 px-5 border-b-[1px] gap-2 items-center dark:text-white border-zinc-200 dark:border-zinc-800">
       <div className="flex truncate items-center gap-3">
-        <Selected selected={selected} setSelected={setSelected} />
+        <Checkbox selected={selected} setSelected={setSelected} />
         <div className="flex flex-col truncate">
           <span className="truncate text-ellipsis">
             <a className="font-medium">{title}</a>

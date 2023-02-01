@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import CalcSubjectAverage from '../../hooks/Grades'
 import { IFrontGradesStudyGroup } from '../../Interfaces'
 import AbsElipse from '../Elipse/AbsElipse'
-import Selected from '../Forms/Selected'
+import Checkbox from '../Forms/Checkbox'
 import { Expand, ForwardRTL } from '../Icons'
 import FullInfo from './FullInfo/FullInfo'
 
@@ -23,7 +23,7 @@ export default function SubjectGrades({
 
   return (
     <div className="flex w-full py-3 px-5 border-b-[1px] border-zinc-200 dark:border-zinc-800 items-center gap-3">
-      <Selected selected={selected} setSelected={setSelected} />
+      <Checkbox selected={selected} setSelected={setSelected} />
       <Link href={`/grades/${index}`}>
         <a className="flex w-full justify-between items-center truncate overflow-ellipsis cursor-pointer gap-4 dark:text-white">
           <h1 className="font-medium truncate text-ellipsis">{name}</h1>

@@ -5,7 +5,7 @@ export interface SelectedProps {
   setSelected(): unknown
 }
 
-export default function Selected({ selected, setSelected }: SelectedProps) {
+export default function Checkbox({ selected, setSelected }: SelectedProps) {
   return (
     <button
       className={`rounded-md shrink-0 p-1 w-[26px] h-[26px] ${
