@@ -5,7 +5,7 @@ import elipsesfullinfo_sample from '../../public/elipsesfullinfo_sample.png'
 import { useCallback, useState } from 'react'
 import Table from '../tables'
 import { useGradesProvider, useModesProvider } from '../../contexts'
-import ModesSwitcher from '../Modes'
+import Navbar from '../Navbar'
 import Footer from '../Footer'
 
 const POPUP = {
@@ -62,7 +62,7 @@ export default function DashboardView({
         />
       ) : null}
       <Footer />
-      <ModesSwitcher />
+      <Navbar />
     </div>
   )
 }

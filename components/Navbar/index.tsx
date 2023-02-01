@@ -1,7 +1,7 @@
 import { useModesProvider } from '../../contexts'
 import SingleMode from './Mode'
 
-export default function ModesSwitcher() {
+export default function Navbar() {
   const { selectedMode, setMode } = useModesProvider()
 
   return (
