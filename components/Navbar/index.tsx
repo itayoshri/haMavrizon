@@ -1,4 +1,5 @@
 import { useModesProvider } from '../../contexts'
+import { Grade, FilledFreeAbsence, FilledGrade, FreeAbsence } from '../Icons'
 import SingleMode from './Mode'
 
 export default function Navbar() {
@@ -9,11 +10,15 @@ export default function Navbar() {
       <SingleMode
         mode="absences"
         setMode={setMode}
+        icon={<FreeAbsence width={24} />}
+        filledIcon={<FilledFreeAbsence width={24} />}
         selected={selectedMode === 'absences'}
       />
       <SingleMode
         mode="grades"
         setMode={setMode}
+        icon={<Grade width={24} />}
+        filledIcon={<FilledGrade width={24} />}
         selected={selectedMode === 'grades'}
       />
     </div>

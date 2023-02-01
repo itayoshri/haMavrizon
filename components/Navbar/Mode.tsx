@@ -1,5 +1,7 @@
+import { ReactElement, ReactNode } from 'react'
 import { Modes } from '../../pages'
 import { Calculator } from '../Icons'
+import { Icon } from '../Icons/svgFactory'
 
 const ModeLabels = {
   absences: 'העדרויות',
@@ -9,9 +11,17 @@ export interface ModeProps {
   mode: Modes
   setMode(mode: Modes): unknown
   selected: boolean
+  icon: ReactElement
+  filledIcon: ReactElement
 }
 
-export default function SingleMode({ mode, setMode, selected }: ModeProps) {
+export default function SingleMode({
+  mode,
+  setMode,
+  selected,
+  icon,
+  filledIcon,
+}: ModeProps) {
   return (
     <button
       className={`flex flex-col items-center justify-center w-full h-16 font-medium ${
@@ -19,7 +29,7 @@ export default function SingleMode({ mode, setMode, selected }: ModeProps) {
       }`}
       onClick={() => setMode(mode)}
     >
-      <Calculator width={24} />
+      {selected ? filledIcon : icon}
       <h1>{ModeLabels[mode]}</h1>
     </button>
   )
