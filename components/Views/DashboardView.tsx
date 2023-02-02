@@ -1,8 +1,12 @@
-import Dashboard, { DashboardProps } from '../Dashboard'
+import AbsencesDashboard, { GradesDashboard } from '../Dashboard'
 import Popup from '../Forms/Popup'
 import Logo from '../Logo'
 import elipsesfullinfo_sample from '../../public/elipsesfullinfo_sample.png'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
+import Table from '../tables'
+import { useGradesProvider, useModesProvider } from '../../contexts'
+import Navbar from '../Navbar'
+import Footer from '../Footer'
 
 const POPUP = {
   title: 'חדש!',
@@ -16,16 +20,35 @@ interface DashboardViewProps {
 }
 
 export default function DashboardView({
-  subjects,
   showed,
   setShowed,
-}: DashboardProps & DashboardViewProps) {
+}: DashboardViewProps) {
   const [opened, setOpened] = useState(!showed)
+  const { selectedMode } = useModesProvider()
+  const { gradesStudyGroups, setGradesStudyGroups, absencesStudyGroups } =
+    useGradesProvider()
+
+  const setSelected = useCallback(
+    (index: number) => {
+      gradesStudyGroups[index].selected = !gradesStudyGroups[index].selected
+      setGradesStudyGroups((prev) => {
+        return [...prev]
+      })
+    },
+    [gradesStudyGroups, setGradesStudyGroups]
+  )
 
   return (
     <div className="flex flex-col h-full w-screen sm:w-full m-0 p-0 justify-center items-center">
       <Logo />
-      <Dashboard subjects={subjects} />
+      {selectedMode === 'absences' ? (
+        <AbsencesDashboard studyGroups={absencesStudyGroups} />
+      ) : (
+        <GradesDashboard
+          studyGroups={gradesStudyGroups}
+          setSelected={setSelected}
+        />
+      )}
       {opened ? (
         <Popup
           title={POPUP.title}
@@ -38,6 +61,8 @@ export default function DashboardView({
           image={POPUP.image}
         />
       ) : null}
+      <Footer />
+      <Navbar />
     </div>
   )
 }

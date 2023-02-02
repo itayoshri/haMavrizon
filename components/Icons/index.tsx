@@ -3,6 +3,16 @@ import { createSVGResource } from './svgFactory'
 export const ForwardRTL = createSVGResource(
   <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z" />
 )
+
+export const BackRTL = createSVGResource(
+  <g>
+    <path d="M0,0h24v24H0V0z" fill="none" />
+  </g>,
+  <g>
+    <polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12" />
+  </g>
+)
+
 export const Expand = createSVGResource(
   <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z" />
 )
@@ -37,10 +47,38 @@ export const Prediction = createSVGResource(
 )
 
 export const FreeAbsence = createSVGResource(
+  <path d="M11.21,20H5V10h14v4.38l2-2V6c0-1.1-0.9-2-2-2h-1V2h-2v2H8V2H6v2H5C3.89,4,3.01,4.9,3.01,6L3,20c0,1.1,0.89,2,2,2h8.21 L11.21,20z M5,6h14v2H5V6z M16.54,22.5L13,18.96l1.41-1.41l2.12,2.12l4.24-4.24l1.41,1.41L16.54,22.5z M10.41,14L12,15.59L10.59,17 L9,15.41L7.41,17L6,15.59L7.59,14L6,12.41L7.41,11L9,12.59L10.59,11L12,12.41L10.41,14z" />
+)
+
+export const FilledFreeAbsence = createSVGResource(
   <path d="M11.21,20H5V10h14v4.38l2-2V6c0-1.1-0.9-2-2-2h-1V2h-2v2H8V2H6v2H5C3.89,4,3.01,4.9,3.01,6L3,20c0,1.1,0.89,2,2,2h8.21 L11.21,20z M16.54,22.5L13,18.96l1.41-1.41l2.12,2.12l4.24-4.24l1.41,1.41L16.54,22.5z M10.41,14L12,15.59L10.59,17L9,15.41L7.41,17 L6,15.59L7.59,14L6,12.41L7.41,11L9,12.59L10.59,11L12,12.41L10.41,14z" />
 )
 
 export const Close = createSVGResource(
   <path d="M0 0h24v24H0V0z" fill="none" />,
   <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+)
+
+export const Calculator = createSVGResource(
+  <path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M19,19H5V5h14V19z" />,
+  <rect height="1.5" width="5" x="6.25" y="7.72" />,
+  <rect height="1.5" width="5" x="13" y="15.75" />,
+  <rect height="1.5" width="5" x="13" y="13.25" />,
+  <polygon points="8,18 9.5,18 9.5,16 11.5,16 11.5,14.5 9.5,14.5 9.5,12.5 8,12.5 8,14.5 6,14.5 6,16 8,16" />,
+  <polygon points="14.09,10.95 15.5,9.54 16.91,10.95 17.97,9.89 16.56,8.47 17.97,7.06 16.91,6 15.5,7.41 14.09,6 13.03,7.06 14.44,8.47 13.03,9.89" />
+)
+
+export const Check = createSVGResource(
+  <path d="M0 0h24v24H0V0z" fill="none" />,
+  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+)
+
+export const Grade = createSVGResource(
+  <path d="M0 0h24v24H0V0z" fill="none" />,
+  <path d="M12 3 1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z" />
+)
+
+export const FilledGrade = createSVGResource(
+  <path d="M0 0h24v24H0z" fill="none" />,
+  <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z" />
 )

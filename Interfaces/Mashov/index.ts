@@ -9,6 +9,14 @@ export enum justificationCodes {
 
 export type EventLabels = 'היעדרות'
 
+export type Grade =
+  | 'בוחן'
+  | 'מבחן בכתב'
+  | 'תלמידאות'
+  | 'דו"ח מעבדה'
+  | 'שיעורי בית'
+//| string
+
 export interface IMashovStudyGroup {
   groupId: number
   groupName: string
@@ -71,9 +79,12 @@ export interface IMashovGrade {
   studentGuid: number
   gradingEventId: number
   grade: number
+  gradingEvent: string
   teacherName: string
   groupId: number
   groupName: string
   subjectName: string
-  gradeType: string //TODO: Type gradeType
+  gradeType: Grade //TODO: Type gradeType
+  eventDate: string
+  timestamp: string
 }

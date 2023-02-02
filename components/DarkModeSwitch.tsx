@@ -1,8 +1,8 @@
-import { useProvider } from '../contexts'
+import { useThemeProvider } from '../contexts'
 import { DarkMode, LightMode } from './Icons'
 
 export default function DarkModeSwitch() {
-  const { darkMode, setDarkMode } = useProvider()
+  const { darkMode, setDarkMode } = useThemeProvider()
   return (
     <button
       onClick={() => setDarkMode(!darkMode)}

@@ -1,4 +1,4 @@
-import { IFrontStudyGroup } from '../../../Interfaces'
+import { IFrontAbsencesStudyGroup } from '../../../Interfaces'
 import { FreeAbsence, Later, Now, Out } from '../../Icons'
 import InfoLine from './InfoLine'
 
@@ -14,7 +14,7 @@ export default function FullInfo({
   semesterHours,
   absenceCounter,
   lessonsCount,
-}: IFrontStudyGroup) {
+}: IFrontAbsencesStudyGroup) {
   return (
     <div className="flex flex-col">
       <InfoLine

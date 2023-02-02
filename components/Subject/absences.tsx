@@ -1,17 +1,17 @@
 import { useState } from 'react'
-import { IFrontStudyGroup } from '../../Interfaces'
+import { IFrontAbsencesStudyGroup } from '../../Interfaces'
+import AbsElipse from '../Elipse/AbsElipse'
 import { Expand, ForwardRTL } from '../Icons'
-import AbsElipse from './AbsElipse'
 import FullInfo from './FullInfo/FullInfo'
 
-export default function Subject({
+export default function SubjectAbsences({
   name,
   freeAbsences,
   freeAnnualAbsences,
   semesterHours,
   absenceCounter,
   lessonsCount,
-}: IFrontStudyGroup) {
+}: IFrontAbsencesStudyGroup) {
   const [opened, setOpened] = useState(false)
   return (
     <div className="flex w-full flex-col py-3 px-5 border-b-[1px] gap-4 dark:text-white border-zinc-200 dark:border-zinc-800">
@@ -26,14 +26,14 @@ export default function Subject({
         <div className="flex gap-4">
           {/* currently */}
           <AbsElipse
-            free={freeAbsences}
+            label={freeAbsences}
             lessonsCount={lessonsCount}
             absenceCounter={absenceCounter}
             clickable
           />
           {/* semesterial */}
           <AbsElipse
-            free={freeAnnualAbsences}
+            label={freeAnnualAbsences}
             lessonsCount={semesterHours}
             absenceCounter={absenceCounter}
             clickable

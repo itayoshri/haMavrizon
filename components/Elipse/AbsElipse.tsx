@@ -1,13 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import PrecentageCalc, { GetColor } from '../../hooks/Subject'
-import Elipse from '../Elipse'
+import Elipse, { For } from '.'
 import ElipseFullInfo from './ElipseFullInfo'
 
 export interface AbsElipseProps {
-  free: number
+  label: number
   lessonsCount: number
   absenceCounter: number
   clickable?: boolean
+  type?: For
+  blue?: boolean
 }
 
 export const textColors = {
@@ -17,12 +19,15 @@ export const textColors = {
 }
 
 export default function AbsElipse({
-  free,
+  label,
   lessonsCount,
   absenceCounter,
   clickable = false,
+  type = 'absences',
+  blue = false,
 }: AbsElipseProps) {
-  const percentage = PrecentageCalc(absenceCounter, lessonsCount)
+  const percentage =
+    type === 'absences' ? PrecentageCalc(absenceCounter, lessonsCount) : label
   const [opened, setOpened] = useState(false)
 
   const ref = useRef(null)
@@ -49,7 +54,7 @@ export default function AbsElipse({
   }, [opened])
 
   return (
-    <div className=" relative">
+    <div className="relative">
       <div
         className={`w-fit h-fit flex justify-center items-center ${
           !opened ? 'cursor-pointer' : ''
@@ -61,22 +66,33 @@ export default function AbsElipse({
           amount={absenceCounter}
           outOff={lessonsCount}
           animate={!clickable}
+          type={type}
+          blue={blue}
         />
         {
+          /* label */
           <span
             className={`absolute
-        } ${textColors[GetColor(percentage)]}`}
+        } ${blue ? 'text-blue-500' : textColors[GetColor(percentage, type)]}`}
           >
+            {/* free absences, percentage or grade */}
             <a className=" font-medium">
-              {clickable ? free : `${100 - Math.floor(percentage)}`}
+              {Math.floor(
+                clickable || type === 'grade' ? label : 100 - percentage
+              )}
             </a>
-            {!clickable ? <a className="text-xs">%</a> : null}
+            {
+              /* percentage symbol */
+              !clickable && !(type === 'grade') ? (
+                <a className="text-xs">%</a>
+              ) : null
+            }
           </span>
         }
       </div>
       {clickable && opened ? (
         <ElipseFullInfo
-          free={free}
+          free={label}
           lessonsCount={lessonsCount}
           absenceCounter={absenceCounter}
           setOpened={setOpened}
