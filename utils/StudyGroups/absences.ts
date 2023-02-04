@@ -51,8 +51,9 @@ class StudyGroupAbsences extends StudyGroup {
     )
   }
 
-  public updateLessonsCount() {
-    this.lessonsCount = this.lessonsCount++
+  public addLessonsCount() {
+    this.lessonsCount += 1
+    this.semesterHours += 1
   }
 
   public updateHours(lesson: IMashovTTTimetable) {
@@ -105,12 +106,12 @@ const isAbsence = (event: IBehaveEvent) => {
 export class StudyGroupsAbsencesBuilder extends StudyGroupsBuilder {
   public studyGroups = new Map<number, StudyGroupAbsences>()
   private auth: IFetchInfo
-  private beginningOfSemester: DateDisplay
+  private beginningOfSemesterDate: Date
   constructor({
     studyGroups,
     behaveEvents,
     timetable,
-    beginningOfSemester = [0, 0, 0],
+    beginningOfSemester = [30, 1, 2023],
     auth,
   }: {
     studyGroups: IMashovStudyGroup[]
@@ -122,7 +123,11 @@ export class StudyGroupsAbsencesBuilder extends StudyGroupsBuilder {
     super()
     this.initStudyGroups(studyGroups, StudyGroupAbsences)
     this.auth = auth
-    this.beginningOfSemester = beginningOfSemester
+    this.beginningOfSemesterDate = new Date(
+      beginningOfSemester[2],
+      beginningOfSemester[1] - 1,
+      beginningOfSemester[0]
+    )
 
     const now = new Date()
     const nowDate = [
@@ -131,23 +136,37 @@ export class StudyGroupsAbsencesBuilder extends StudyGroupsBuilder {
       now.getFullYear(),
     ] as DateDisplay
     daysOfStudy = calander.GetDaysOfWeekCounter(nowDate, END_OF_SEMESTER)
+  }
 
-    this.initBehaveEvents(behaveEvents)
-    this.initSemesterHours(timetable)
+  public async initLessonsCount() {
+    for (const studyGroup of this.studyGroups) {
+      const groupId = studyGroup[0]
+      const lessonHistory = await fetchDataSource<IMashovLessonHistory[]>(
+        'lessonHistory',
+        {
+          ...this.auth,
+          groupId,
+        }
+      )
+
+      for (const lesson of lessonHistory) {
+        if (
+          lesson.tookPlace &&
+          new Date(lesson.lessonDate) >= this.beginningOfSemesterDate
+        ) {
+          const sg = this.studyGroups.get(groupId)
+          if (sg != undefined) sg.addLessonsCount()
+        }
+      }
+    }
   }
 
   public initBehaveEvents(behaveEvents: IBehaveEvent[]) {
-    const beginningOfSemesterDate = new Date(
-      this.beginningOfSemester[2],
-      this.beginningOfSemester[1] - 1,
-      this.beginningOfSemester[0]
-    )
-
     for (const event of behaveEvents) {
       if (
         isAbsence(event) &&
         event.justificationId == justificationCodes.NO_JUSTIFICATION &&
-        new Date(event.lessonDate) >= beginningOfSemesterDate
+        new Date(event.lessonDate) >= this.beginningOfSemesterDate
       ) {
         const sg = this.studyGroups.get(event.groupId)
         if (sg != undefined) sg.addAbsence()

@@ -28,16 +28,21 @@ export default async function handler(
   })
   const auth = { authCookie, studentId, xCsrfToken }
 
-  const studyGroups = await fetchDataSource('groups', auth)
-  const behaveEvents = await fetchDataSource('behave', auth)
-  const timetable = await fetchDataSource('timetable', auth)
+  const studyGroups = await fetchDataSource<IMashovStudyGroup[]>('groups', auth)
+  const behaveEvents = await fetchDataSource<IBehaveEvent[]>('behave', auth)
+  const timetable = await fetchDataSource<IMashovTT[]>('timetable', auth)
 
   const absencesStudyGroups = new StudyGroupsAbsencesBuilder({
-    studyGroups: studyGroups as IMashovStudyGroup[],
-    behaveEvents: behaveEvents as IBehaveEvent[],
-    timetable: timetable as IMashovTT[],
+    studyGroups,
+    behaveEvents,
+    timetable,
     auth,
   })
+
+  await absencesStudyGroups.initLessonsCount()
+  absencesStudyGroups.initBehaveEvents(behaveEvents)
+  absencesStudyGroups.initSemesterHours(timetable)
+
   const grades = await fetchDataSource('grades', auth)
   const gradesStudyGroups = new StudyGroupGradesBuilder(
     studyGroups as IMashovStudyGroup[],

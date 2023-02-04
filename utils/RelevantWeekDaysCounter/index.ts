@@ -1,7 +1,7 @@
 import { holidaysCalendar } from './data'
 
 const START_OF_SEMESTER: DateDisplay = [1, 9, 2022]
-export const END_OF_SEMESTER: DateDisplay = [30, 1, 2023]
+export const END_OF_SEMESTER: DateDisplay = [20, 6, 2023]
 
 type Month = IDay[]
 export type DateDisplay = [number, number, number] //[day, month, year]
