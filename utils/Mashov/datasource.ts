@@ -4,16 +4,26 @@ export interface IFetchInfo {
   studentId: string
   authCookie: string
   xCsrfToken: string
+  groupId?: number
 }
 
-type FetchFor = 'groups' | 'behave' | 'lessonsCount' | 'timetable' | 'grades'
+type FetchFor =
+  | 'groups'
+  | 'behave'
+  | 'lessonsCount'
+  | 'timetable'
+  | 'grades'
+  | 'lessonHistory'
 
-export const BASE_URL = 'web.mashov.info/api/students'
+export const BASE_URL = 'web.mashov.info/api'
 
 export function buildFetchUrl(fetchFor: FetchFor, info: IFetchInfo) {
   switch (fetchFor) {
+    case 'lessonHistory':
+      return `https://${BASE_URL}/groups/${info.groupId}/history`
+
     default:
-      return `https://${BASE_URL}/${info.studentId}/${fetchFor}`
+      return `https://${BASE_URL}/students/${info.studentId}/${fetchFor}`
   }
 }
 

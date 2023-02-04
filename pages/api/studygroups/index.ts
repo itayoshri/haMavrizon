@@ -30,15 +30,14 @@ export default async function handler(
 
   const studyGroups = await fetchDataSource('groups', auth)
   const behaveEvents = await fetchDataSource('behave', auth)
-  const lessonCounter = await fetchDataSource('lessonsCount', auth)
   const timetable = await fetchDataSource('timetable', auth)
 
-  const absencesStudyGroups = new StudyGroupsAbsencesBuilder(
-    studyGroups as IMashovStudyGroup[],
-    behaveEvents as IBehaveEvent[],
-    lessonCounter as IMashovLessonsCounter[],
-    timetable as IMashovTT[]
-  )
+  const absencesStudyGroups = new StudyGroupsAbsencesBuilder({
+    studyGroups: studyGroups as IMashovStudyGroup[],
+    behaveEvents: behaveEvents as IBehaveEvent[],
+    timetable: timetable as IMashovTT[],
+    auth,
+  })
   const grades = await fetchDataSource('grades', auth)
   const gradesStudyGroups = new StudyGroupGradesBuilder(
     studyGroups as IMashovStudyGroup[],

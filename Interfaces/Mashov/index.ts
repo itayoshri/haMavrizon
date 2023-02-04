@@ -34,6 +34,7 @@ export interface IBehaveEvent {
   eventCode: number
   justificationId: number
   achvaName: EventLabels
+  lessonDate: string
 }
 
 export interface IMashovLessonsCounter {
@@ -87,4 +88,12 @@ export interface IMashovGrade {
   gradeType: Grade //TODO: Type gradeType
   eventDate: string
   timestamp: string
+}
+
+export interface IMashovLessonHistory {
+  groupId: number
+  groupName: string
+  lesson: number
+  lessonDate: string
+  tookPlace: boolean
 }
