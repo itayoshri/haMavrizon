@@ -51,9 +51,9 @@ class StudyGroupAbsences extends StudyGroup {
     )
   }
 
-  public addLessonsCount() {
-    this.lessonsCount += 1
-    this.semesterHours += 1
+  public addLessonsCount(lessonsCount: number) {
+    this.lessonsCount = lessonsCount
+    this.semesterHours += lessonsCount
   }
 
   public updateHours(lesson: IMashovTTTimetable) {
@@ -105,29 +105,9 @@ const isAbsence = (event: IBehaveEvent) => {
 
 export class StudyGroupsAbsencesBuilder extends StudyGroupsBuilder {
   public studyGroups = new Map<number, StudyGroupAbsences>()
-  private auth: IFetchInfo
-  private beginningOfSemesterDate: Date
-  constructor({
-    studyGroups,
-    behaveEvents,
-    timetable,
-    beginningOfSemester = [30, 1, 2023],
-    auth,
-  }: {
-    studyGroups: IMashovStudyGroup[]
-    behaveEvents: IBehaveEvent[]
-    timetable: IMashovTT[]
-    beginningOfSemester?: DateDisplay
-    auth: IFetchInfo
-  }) {
+  constructor({ studyGroups }: { studyGroups: IMashovStudyGroup[] }) {
     super()
     this.initStudyGroups(studyGroups, StudyGroupAbsences)
-    this.auth = auth
-    this.beginningOfSemesterDate = new Date(
-      beginningOfSemester[2],
-      beginningOfSemester[1] - 1,
-      beginningOfSemester[0]
-    )
 
     const now = new Date()
     const nowDate = [
@@ -138,26 +118,10 @@ export class StudyGroupsAbsencesBuilder extends StudyGroupsBuilder {
     daysOfStudy = calander.GetDaysOfWeekCounter(nowDate, END_OF_SEMESTER)
   }
 
-  public async initLessonsCount() {
-    for (const studyGroup of this.studyGroups) {
-      const groupId = studyGroup[0]
-      const lessonHistory = await fetchDataSource<IMashovLessonHistory[]>(
-        'lessonHistory',
-        {
-          ...this.auth,
-          groupId,
-        }
-      )
-
-      for (const lesson of lessonHistory) {
-        if (
-          lesson.tookPlace &&
-          new Date(lesson.lessonDate) >= this.beginningOfSemesterDate
-        ) {
-          const sg = this.studyGroups.get(groupId)
-          if (sg != undefined) sg.addLessonsCount()
-        }
-      }
+  public initLessonsCount(lessonsCount: IMashovLessonsCounter[]) {
+    for (const studyGroup of lessonsCount) {
+      const sg = this.studyGroups.get(studyGroup.groupId)
+      if (sg != undefined) sg.addLessonsCount(studyGroup.lessonsCount)
     }
   }
 
@@ -165,8 +129,7 @@ export class StudyGroupsAbsencesBuilder extends StudyGroupsBuilder {
     for (const event of behaveEvents) {
       if (
         isAbsence(event) &&
-        event.justificationId == justificationCodes.NO_JUSTIFICATION &&
-        new Date(event.lessonDate) >= this.beginningOfSemesterDate
+        event.justificationId == justificationCodes.NO_JUSTIFICATION
       ) {
         const sg = this.studyGroups.get(event.groupId)
         if (sg != undefined) sg.addAbsence()

@@ -5,6 +5,8 @@ export interface IFetchInfo {
   authCookie: string
   xCsrfToken: string
   groupId?: number
+  start?: string
+  end?: string
 }
 
 type FetchFor =
@@ -23,7 +25,16 @@ export function buildFetchUrl(fetchFor: FetchFor, info: IFetchInfo) {
       return `https://${BASE_URL}/groups/${info.groupId}/history`
 
     default:
-      return `https://${BASE_URL}/students/${info.studentId}/${fetchFor}`
+      const query = `${info.start ? `start=${info.start}` : ''}${
+        info.start && info.end
+          ? `&end=${info.end}`
+          : info.end
+          ? `end=${info.end}`
+          : ''
+      }`
+      return `https://${BASE_URL}/students/${info.studentId}/${fetchFor}${
+        query ? `?${query}` : ''
+      }`
   }
 }
 

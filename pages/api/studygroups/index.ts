@@ -19,6 +19,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const beginningOfSemesterDate = new Date(2023, 0, 30)
+
   const { semel, username, password } = req.query
 
   const { authCookie, studentId, xCsrfToken } = await MashovLogin({
@@ -27,19 +29,21 @@ export default async function handler(
     password: password as string,
   })
   const auth = { authCookie, studentId, xCsrfToken }
+  const info = { ...auth, start: beginningOfSemesterDate.toISOString() }
 
-  const studyGroups = await fetchDataSource<IMashovStudyGroup[]>('groups', auth)
-  const behaveEvents = await fetchDataSource<IBehaveEvent[]>('behave', auth)
-  const timetable = await fetchDataSource<IMashovTT[]>('timetable', auth)
+  const studyGroups = await fetchDataSource<IMashovStudyGroup[]>('groups', info)
+  const lessonsCount = await fetchDataSource<IMashovLessonsCounter[]>(
+    'lessonsCount',
+    info
+  )
+  const behaveEvents = await fetchDataSource<IBehaveEvent[]>('behave', info)
+  const timetable = await fetchDataSource<IMashovTT[]>('timetable', info)
 
   const absencesStudyGroups = new StudyGroupsAbsencesBuilder({
     studyGroups,
-    behaveEvents,
-    timetable,
-    auth,
   })
 
-  await absencesStudyGroups.initLessonsCount()
+  absencesStudyGroups.initLessonsCount(lessonsCount)
   absencesStudyGroups.initBehaveEvents(behaveEvents)
   absencesStudyGroups.initSemesterHours(timetable)
 
