@@ -115,7 +115,9 @@ export class StudyGroupsAbsencesBuilder extends StudyGroupsBuilder {
       now.getMonth() + 1,
       now.getFullYear(),
     ] as DateDisplay
+
     daysOfStudy = calander.GetDaysOfWeekCounter(nowDate, END_OF_SEMESTER)
+    console.log(daysOfStudy)
   }
 
   public initLessonsCount(lessonsCount: IMashovLessonsCounter[]) {

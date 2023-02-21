@@ -121,7 +121,9 @@ export class RelevantWeekDaysCounter {
           end[1] - 1 > m
             ? RelevantWeekDaysCounter.getDaysInMonth(m + 1, end[2])
             : end[0]
-        for (let d = start[0] - 1; d < endMonth; d++) {
+        const startMOnth = start[1] - 1 < m ? 1 : start[0]
+
+        for (let d = startMOnth - 1; d < endMonth; d++) {
           const day = this.calendar.calendar[yearIndex].calendar[m][d]
           if (day.studying == true) weekDaysCounter[day.dayOfWeek]++
         }
