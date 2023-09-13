@@ -18,7 +18,7 @@ export default async function MashovLogin({
     password: password,
     semel: Number(semel),
     username: username,
-    year: 2023,
+    year: 2024,
   }
 
   console.log(MASHOV_LOGIN_URL)

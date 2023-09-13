@@ -1,7 +1,7 @@
 import { holidaysCalendar } from './data'
 
-const START_OF_SEMESTER: DateDisplay = [1, 9, 2022]
-export const END_OF_SEMESTER: DateDisplay = [20, 6, 2023]
+const START_OF_SEMESTER: DateDisplay = [1, 9, 2023]
+export const END_OF_SEMESTER: DateDisplay = [20, 1, 2024]
 
 type Month = IDay[]
 export type DateDisplay = [number, number, number] //[day, month, year]
@@ -94,6 +94,7 @@ export class RelevantWeekDaysCounter {
 
   private RemoveHolidays(holidaysCalendar: IHoliday[]) {
     for (const holiday of holidaysCalendar) {
+      console.log(holiday.label)
       const year = holiday.start[2]
       const month = holiday.start[1]
 
@@ -101,6 +102,7 @@ export class RelevantWeekDaysCounter {
       const dEnd = holiday.end[0]
 
       for (let d = dStart; d <= dEnd; d++) {
+        console.log(d)
         this.RemoveDay([d, month, year])
       }
     }

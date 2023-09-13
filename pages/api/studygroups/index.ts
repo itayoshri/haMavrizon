@@ -19,7 +19,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const beginningOfSemesterDate = new Date(2023, 0, 30)
+  const beginningOfSemesterDate = new Date(2023, 8, 1)
 
   const { semel, username, password } = req.query
 
