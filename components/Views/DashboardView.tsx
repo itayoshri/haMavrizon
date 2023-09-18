@@ -62,7 +62,6 @@ export default function DashboardView({
         />
       ) : null}*/}
       <Footer />
-      <Navbar />
     </div>
   )
 }
