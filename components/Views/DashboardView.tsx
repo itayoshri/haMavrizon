@@ -1,19 +1,19 @@
 import AbsencesDashboard, { GradesDashboard } from '../Dashboard'
 import Popup from '../Forms/Popup'
 import Logo from '../Logo'
-import elipsesfullinfo_sample from '../../public/elipsesfullinfo_sample.png'
+//import elipsesfullinfo_sample from '../../public/elipsesfullinfo_sample.png'
 import { useCallback, useState } from 'react'
 import Table from '../tables'
 import { useGradesProvider, useModesProvider } from '../../contexts'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
 
-const POPUP = {
+/*const POPUP = {
   title: 'חדש!',
   description: 'ניתן לקבל כעת מידע מורחב בלחיצה על העיגולים',
   buttonLabel: 'הבנתי',
   image: elipsesfullinfo_sample,
-}
+}*/
 interface DashboardViewProps {
   showed: boolean
   setShowed(val: any): unknown
@@ -41,14 +41,14 @@ export default function DashboardView({
   return (
     <div className="flex flex-col h-full w-screen sm:w-full m-0 p-0 justify-center items-center">
       <Logo />
-      {selectedMode === 'absences' ? (
-        <AbsencesDashboard studyGroups={absencesStudyGroups} />
-      ) : (
-        <GradesDashboard
+
+      <AbsencesDashboard studyGroups={absencesStudyGroups} />
+
+      {/*}  <GradesDashboard
           studyGroups={gradesStudyGroups}
           setSelected={setSelected}
         />
-      )}
+      
       {opened ? (
         <Popup
           title={POPUP.title}
@@ -60,7 +60,7 @@ export default function DashboardView({
           buttonLabel={POPUP.buttonLabel}
           image={POPUP.image}
         />
-      ) : null}
+      ) : null}*/}
       <Footer />
       <Navbar />
     </div>
