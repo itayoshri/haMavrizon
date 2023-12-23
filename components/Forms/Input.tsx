@@ -34,7 +34,7 @@ export default function Input({
         loading ? 'bg-[#0000001f]' : 'bg-transparent'
       } p-1 px-3 border-[1px] w-full rounded-lg border-slate-300 focus:border-blue-500 text-right focus:ring-0 outline-none duration-200
       dark:border-slate-400 dark:text-white dark:focus:border-blue-400
-      placeholder:transition-all dark:placeholder:text-slate-300 placeholder:text-[#0009] focus:placeholder:text-blue-500 dark:focus:placeholder:text-blue-400
+      placeholder:transition-all dark:placeholder:text-slate-300 placeholder:text-[#0009] docu focus:placeholder:text-blue-500 dark:focus:placeholder:text-blue-400
       `}
       onChange={(e) => {
         onChange(e.target.value)
