@@ -11,13 +11,13 @@ export default function MashovButton({
   onClick = () => {},
   children,
   className = '',
-  loading = false,
+  loading = false, //-[#106030]
 }: ButtonProps & Wrapper) {
   return (
     <button
       className={`${
-        loading ? 'bg-[#0000001f] text-black/0' : 'bg-[#106030] text-white'
-      } font-mashov text-sm  w-full h-9 px-6 rounded-full shadow-mashov ${className}`}
+        loading ? 'bg-[#0000001f] text-black/0' : 'bg-black text-white'
+      } text-sm  w-full px-6 h-9 rounded-xl ${className}`}
       onClick={() => onClick()}
     >
       {loading ? (
