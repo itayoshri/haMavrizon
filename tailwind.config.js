@@ -18,6 +18,9 @@ module.exports = {
       height: {
         mobile: '-webkit-fill-available',
       },
+      colors: {
+        mashov: '#106030',
+      },
     },
     fontFamily: {
       sans: ['"Rubik"', ...fontFamily.sans], // make assistant the default font
