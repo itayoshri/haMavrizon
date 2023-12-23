@@ -31,9 +31,7 @@ const Home: NextPage = () => {
   return (
     <div
       className={`flex flex-col ${
-        absencesStudyGroups.length
-          ? 'h-full'
-          : 'h-mobile max-h-screen absolute dark:bg-[#424242]'
+        absencesStudyGroups.length ? 'h-full' : 'h-mobile max-h-screen absolute'
       } w-screen sm:w-full m-0 p-0 justify-center items-center`}
     >
       <Head>
