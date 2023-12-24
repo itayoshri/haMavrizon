@@ -1,4 +1,4 @@
-import AbsencesDashboard, { GradesDashboard } from '../Dashboard'
+import AbsencesDashboard from '../Dashboard'
 import Popup from '../Forms/Popup'
 import Logo from '../Logo'
 //import elipsesfullinfo_sample from '../../public/elipsesfullinfo_sample.png'
@@ -7,6 +7,7 @@ import Table from '../tables'
 import { useGradesProvider, useModesProvider } from '../../contexts'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
+import SubjectAbsences from '../Subject/absences'
 
 /*const POPUP = {
   title: 'חדש!',
@@ -39,28 +40,13 @@ export default function DashboardView({
   )
 
   return (
-    <div className="flex flex-col h-full w-screen sm:w-full m-0 p-0 justify-center items-center">
-      <Logo />
-
-      <AbsencesDashboard studyGroups={absencesStudyGroups} />
-
-      {/*}  <GradesDashboard
-          studyGroups={gradesStudyGroups}
-          setSelected={setSelected}
-        />
-      
-      {opened ? (
-        <Popup
-          title={POPUP.title}
-          description={POPUP.description}
-          onClick={() => {
-            setOpened(false)
-            setShowed(true)
-          }}
-          buttonLabel={POPUP.buttonLabel}
-          image={POPUP.image}
-        />
-      ) : null}*/}
+    <div className="flex flex-col pt-20 px-4 h-full w-screen items-start sm:w-full m-0 p-0 justify-center">
+      <h1 className="text-black dark:text-white">כל המקצועות</h1>
+      <div className="flex flex-col w-full gap-4">
+        {absencesStudyGroups.map((subject, key) => (
+          <SubjectAbsences {...subject} key={key} />
+        ))}
+      </div>
       <Footer />
     </div>
   )

@@ -14,16 +14,15 @@ export default function SubjectAbsences({
 }: IFrontAbsencesStudyGroup) {
   const [opened, setOpened] = useState(false)
   return (
-    <div className="flex w-full flex-col py-3 px-5 border-b-[1px] gap-4 dark:text-white border-zinc-200 dark:border-zinc-800">
+    <div className="flex w-full rounded-xl flex-col py-4 px-4 justify-between border-2 gap-4 dark:text-white border-zinc-300 dark:border-zinc-800">
       <div className="flex w-full justify-between items-center">
         <div
-          className="flex gap-1 items-center cursor-pointer grow"
+          className="flex gap-1 items-center cursor-pointer pl-4 overflow-hidden grow"
           onClick={() => setOpened(!opened)}
         >
-          {opened ? <Expand width={24} /> : <ForwardRTL width={24} />}
-          <h1 className="font-medium">{name}</h1>
+          <h1 className="font-medium truncate">{name}</h1>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-3">
           {/* currently */}
           <AbsElipse
             label={freeAbsences}
@@ -38,6 +37,7 @@ export default function SubjectAbsences({
             absenceCounter={absenceCounter}
             clickable
           />
+          {opened ? <Expand width={24} /> : <ForwardRTL width={24} />}
         </div>
       </div>
       {opened ? (
