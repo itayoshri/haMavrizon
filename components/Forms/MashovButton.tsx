@@ -17,7 +17,9 @@ export default function MashovButton({
     <button
       className={`${
         loading ? 'bg-[#0000001f] text-black/0' : 'bg-black text-white'
-      } text-sm  w-full px-6 h-9 rounded-xl ${className}`}
+      } w-full px-6 h-11 rounded-xl 
+      dark:bg-zinc-900 dark:text-white
+      ${className}`}
       onClick={() => onClick()}
     >
       {loading ? (
