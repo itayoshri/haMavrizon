@@ -30,7 +30,10 @@ export default function Elipse({
   }, [percentage])
 
   return (
-    <div className="flex justify-center items-center w-10 h-10">
+    <div className="flex justify-center items-center w-11 h-11">
+      {/*<a className="absolute text-[10px] font-medium -right-2 top-0 bg-black text-white rounded-sm px-1 pt-[1px]">
+        NOW
+  </a>*/}
       <CircularProgressbar
         value={type === 'grade' ? amount : animate ? value : percentage}
         styles={buildStyles({
