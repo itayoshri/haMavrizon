@@ -15,7 +15,6 @@ import {
 import { fetchDataSource, IFetchInfo } from '../Mashov/datasource'
 import {
   DateDisplay,
-  END_OF_SEMESTER,
   RelevantWeekDaysCounter,
 } from '../RelevantWeekDaysCounter'
 
@@ -24,7 +23,6 @@ const ABS_MULTIPLIER = 1.17647 // Evaluation of f(n) = n + f(0.15n)
 const ALLOWED_ABS = 0.15
 //const daysOfStudy = [16, 17, 14, 17, 19, 20] // amount of study days by days of week
 
-const calander = new RelevantWeekDaysCounter()
 let daysOfStudy = []
 
 class StudyGroupAbsences extends StudyGroup {
@@ -105,7 +103,13 @@ const isAbsence = (event: IBehaveEvent) => {
 
 export class StudyGroupsAbsencesBuilder extends StudyGroupsBuilder {
   public studyGroups = new Map<number, StudyGroupAbsences>()
-  constructor({ studyGroups }: { studyGroups: IMashovStudyGroup[] }) {
+  constructor({
+    studyGroups,
+    endOfSemester,
+  }: {
+    studyGroups: IMashovStudyGroup[]
+    endOfSemester: DateDisplay
+  }) {
     super()
     this.initStudyGroups(studyGroups, StudyGroupAbsences)
 
@@ -115,9 +119,9 @@ export class StudyGroupsAbsencesBuilder extends StudyGroupsBuilder {
       now.getMonth() + 1,
       now.getFullYear(),
     ] as DateDisplay
+    const calander = new RelevantWeekDaysCounter()
 
-    daysOfStudy = calander.GetDaysOfWeekCounter(nowDate, END_OF_SEMESTER)
-    console.log(daysOfStudy)
+    daysOfStudy = calander.GetDaysOfWeekCounter(nowDate, endOfSemester)
   }
 
   public initLessonsCount(lessonsCount: IMashovLessonsCounter[]) {

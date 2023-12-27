@@ -21,7 +21,6 @@ export default async function MashovLogin({
     year: 2024,
   }
 
-  console.log(MASHOV_LOGIN_URL)
   const response = await axios.post<any, IMashovLoginRes>(
     MASHOV_LOGIN_URL,
     data

@@ -14,6 +14,7 @@ import {
   IFrontGradesStudyGroup,
 } from '../../../Interfaces'
 import { StudyGroupGradesBuilder } from '../../../utils/StudyGroups/grades'
+import { DateDisplay } from '../../../utils/RelevantWeekDaysCounter'
 
 export default async function handler(
   req: NextApiRequest,
@@ -21,7 +22,7 @@ export default async function handler(
 ) {
   const beginningOfSemesterDate = new Date(2023, 8, 1)
 
-  const { semel, username, password } = req.query
+  const { semel, username, password, endOfSemester } = req.query
 
   const { authCookie, studentId, xCsrfToken } = await MashovLogin({
     semel: semel as string,
@@ -41,8 +42,12 @@ export default async function handler(
 
   const absencesStudyGroups = new StudyGroupsAbsencesBuilder({
     studyGroups,
+    endOfSemester: (endOfSemester as string)
+      .split(',')
+      .map((obj) => Number(obj)) as DateDisplay,
   })
 
+  console.log((endOfSemester as string).split(',').map((obj) => Number(obj)))
   absencesStudyGroups.initLessonsCount(lessonsCount)
   absencesStudyGroups.initBehaveEvents(behaveEvents)
   absencesStudyGroups.initSemesterHours(timetable)

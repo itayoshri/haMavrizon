@@ -1,7 +1,7 @@
 import { holidaysCalendar } from './data'
 
 const START_OF_SEMESTER: DateDisplay = [1, 9, 2023]
-export const END_OF_SEMESTER: DateDisplay = [20, 1, 2024]
+export const END_OF_YEAR: DateDisplay = [20, 1, 2024]
 
 type Month = IDay[]
 export type DateDisplay = [number, number, number] //[day, month, year]
@@ -39,7 +39,6 @@ export class RelevantWeekDaysCounter {
     const daysInMonth = this.getDaysInMonth(month + 1, year)
     for (let d = 0; d <= daysInMonth - 1; d++) {
       const date = new Date(year, month, d + 1)
-      //console.log(month)
       const dayOfWeek = date.getDay()
       days[d] = {
         studying: /*dayOfWeek == 6 ? false : */ true,
@@ -93,8 +92,7 @@ export class RelevantWeekDaysCounter {
   }
 
   private RemoveHolidays(holidaysCalendar: IHoliday[]) {
-    for (const holiday of holidaysCalendar) {
-      console.log(holiday.label)
+    for (const holiday of holidaysCalendar.reverse()) {
       const year = holiday.start[2]
       const month = holiday.start[1]
 
@@ -102,7 +100,6 @@ export class RelevantWeekDaysCounter {
       const dEnd = holiday.end[0]
 
       for (let d = dStart; d <= dEnd; d++) {
-        console.log(d)
         this.RemoveDay([d, month, year])
       }
     }
@@ -136,17 +133,17 @@ export class RelevantWeekDaysCounter {
 
   constructor() {
     // Checks whether the semester starts and ends in different years
-    if (START_OF_SEMESTER[2] != END_OF_SEMESTER[2]) {
+    if (START_OF_SEMESTER[2] != END_OF_YEAR[2]) {
       this.calendar.years[START_OF_SEMESTER[2]] = 0
-      this.calendar.years[END_OF_SEMESTER[2]] = 1
+      this.calendar.years[END_OF_YEAR[2]] = 1
       const firstYear = {
         year: START_OF_SEMESTER[2],
         calendar: this.buildYearCalendar(START_OF_SEMESTER, 'from'),
       }
 
       const secondYear = {
-        year: END_OF_SEMESTER[2],
-        calendar: this.buildYearCalendar(END_OF_SEMESTER, 'to'),
+        year: END_OF_YEAR[2],
+        calendar: this.buildYearCalendar(END_OF_YEAR, 'to'),
       }
 
       this.calendar.calendar.push(firstYear, secondYear)

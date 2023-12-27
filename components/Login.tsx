@@ -49,7 +49,9 @@ export default function Login({ setAbsencesData, setGradesData }: LoginProps) {
   }, [])
 
   const link = useMemo(() => {
-    return `/api/studygroups?semel=${semel}&username=${username}&password=${password}`
+    return `/api/studygroups?semel=${semel}&username=${username}&password=${password}&endOfSemester=${[
+      20, 1, 2024,
+    ]}`
   }, [password, semel, username])
 
   const OTPLink = useMemo(() => {
