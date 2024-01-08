@@ -16,6 +16,7 @@ import Message from './Message'
 import Logo from './Logo'
 
 const SIGN_IN = 'כניסה'
+const SIGN_IN_WITH = 'התחברות באמצעות'
 const LOGIN_BY_SMS = 'כניסה באמצעות מסרון (SMS)'
 const LOGIN_BY_PASSWORD = 'כניסה באמצעות סיסמה'
 
@@ -84,14 +85,16 @@ export default function Login({ setAbsencesData, setGradesData }: LoginProps) {
   }, [username, password, cellphone])
 
   return options.length > 0 ? (
-    <div className="flex flex-col w-full px-8 gap-4">
+    <div className="flex flex-col w-full px-8 gap-8">
       {showError ? <Message message={MESSAGE} /> : null}
 
       <div className="flex flex-col">
         <Logo />
-        <div>
-          <h1 className="font-semibold text-2xl">התחברות באמצעות</h1>
-          <div className="h-9"></div>
+        <div className="flex gap-2 items-center">
+          <h1 className="font-semibold text-2xl">{SIGN_IN_WITH}</h1>
+          <div className="h-8">
+            <img src="/mashov_logo.png" className="h-full"></img>
+          </div>
         </div>
       </div>
       <div className="flex items-start flex-col w-full gap-4">
