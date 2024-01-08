@@ -21,7 +21,7 @@ export default function Options({
   setOpened,
 }: OptionsProps) {
   return opened ? (
-    <div className="flex absolute bg-white dark:text-white dark:bg-[#424242] flex-col max-h-64 w-full overflow-y-scroll shadow-mashov_box">
+    <div className="flex bg-white dark:bg-zinc-900 absolute dark:text-white flex-col max-h-64 w-full rounded-lg overflow-y-scroll">
       {options.map((option, key) => (
         <Option
           name={`${option.name} (${option.semel})`}
