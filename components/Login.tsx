@@ -88,10 +88,12 @@ export default function Login({ setAbsencesData, setGradesData }: LoginProps) {
     <div className="flex flex-col w-full px-8 gap-8">
       {showError ? <Message message={MESSAGE} /> : null}
 
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-1">
         <Logo />
         <div className="flex gap-2 items-center">
-          <h1 className="font-semibold text-2xl">{SIGN_IN_WITH}</h1>
+          <h1 className="font-semibold text-2xl text-black dark:text-white">
+            {SIGN_IN_WITH}
+          </h1>
           <div className="h-8">
             <img src="/mashov_logo.png" className="h-full"></img>
           </div>
