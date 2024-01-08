@@ -3,7 +3,7 @@ import logo from '../public/logo.png'
 
 export default function Logo() {
   return (
-    <div className="flex w-48">
+    <div className="flex w-56">
       <Image src={logo} alt={'לוגו'} />
     </div>
   )
