@@ -1,16 +1,9 @@
-import Login, { LoginProps } from '../Login'
-import Logo from '../Logo'
+import Login from '../Login'
 
-export default function LoginView({
-  setAbsencesData,
-  setGradesData,
-}: LoginProps) {
+export default function LoginView() {
   return (
     <div className="flex flex-col h-screen w-screen sm:w-full -mt-10 justify-center items-center">
-      <Login
-        setAbsencesData={(data) => setAbsencesData(data)}
-        setGradesData={(data) => setGradesData(data)}
-      />
+      <Login />
     </div>
   )
 }

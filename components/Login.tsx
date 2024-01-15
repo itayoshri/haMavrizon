@@ -14,6 +14,7 @@ import Semel from './Forms/Semel'
 import LoadingBar from './LoadingBar'
 import Message from './Message'
 import Logo from './Logo'
+import { useGradesProvider } from '../contexts'
 
 const SIGN_IN = 'כניסה'
 const SIGN_IN_WITH = 'התחברות באמצעות'
@@ -32,7 +33,9 @@ export interface LoginProps {
   setGradesData: Dispatch<SetStateAction<IFrontGradesStudyGroup[]>>
 }
 
-export default function Login({ setAbsencesData, setGradesData }: LoginProps) {
+export default function Login() {
+  const { setAbsencesStudyGroups, setGradesStudyGroups } = useGradesProvider()
+
   const [semel, setSemel] = useState()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -64,14 +67,14 @@ export default function Login({ setAbsencesData, setGradesData }: LoginProps) {
     axios
       .get(link)
       .then((res) => {
-        setAbsencesData(res.data.absences)
-        setGradesData(res.data.grades)
+        setAbsencesStudyGroups(res.data.absences)
+        setGradesStudyGroups(res.data.grades)
       })
       .catch(() => {
         setShowError(true)
         setLoading(false)
       })
-  }, [link, setAbsencesData])
+  }, [link, setAbsencesStudyGroups])
 
   const requestSMS = useCallback(() => {
     axios.post(OTPLink)

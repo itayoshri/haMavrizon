@@ -15,19 +15,6 @@ const Home: NextPage = () => {
   const { absencesStudyGroups, setAbsencesStudyGroups, setGradesStudyGroups } =
     useGradesProvider()
 
-  // Shitity method to show new updates
-  const [showed, _setShowed] = useState('true')
-  useEffect(() => {
-    const value = localStorage.getItem('showed')
-    if (!value) localStorage.setItem('showed', 'false')
-    _setShowed(localStorage.getItem('showed'))
-  }, [])
-
-  const setShowed = useCallback((value: string) => {
-    localStorage.setItem('showed', value)
-  }, [])
-  //
-
   return (
     <div
       className={`flex flex-col ${
@@ -41,13 +28,10 @@ const Home: NextPage = () => {
       </Head>
       {absencesStudyGroups.length ? (
         <>
-          <DashboardView showed={showed == 'true'} setShowed={setShowed} />
+          <DashboardView />
         </>
       ) : (
-        <LoginView
-          setAbsencesData={(data) => setAbsencesStudyGroups(data)}
-          setGradesData={(data) => setGradesStudyGroups(data)}
-        />
+        <LoginView />
       )}
     </div>
   )
