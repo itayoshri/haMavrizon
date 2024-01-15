@@ -5,7 +5,7 @@ export interface InfoLineProps {
   predicted?: boolean
 }
 
-export default function InfoLine({
+export default function DataRow({
   title,
   info,
   icon,

@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { IFrontAbsencesStudyGroup } from '../../Interfaces'
 import AbsElipse from '../Elipse/AbsElipse'
 import { Expand, ForwardRTL } from '../Icons'
-import FullInfo from './FullInfo/FullInfo'
+import CardData from './Data'
 
-export default function SubjectAbsences({
+export default function SubjectCard({
   name,
   freeAbsences,
   freeAnnualAbsences,
@@ -41,7 +41,7 @@ export default function SubjectAbsences({
         </div>
       </div>
       {opened ? (
-        <FullInfo
+        <CardData
           {...{
             name,
             freeAbsences,

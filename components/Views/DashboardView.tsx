@@ -1,6 +1,6 @@
 import { useGradesProvider } from '../../contexts'
 import Footer from '../Footer'
-import SubjectAbsences from '../Subject/absences'
+import SubjectCard from '../Subject/Card'
 
 const ALL_SUBJECTS = 'כל המקצועות'
 
@@ -13,7 +13,7 @@ export default function DashboardView() {
       </h1>
       <div className="flex flex-col w-full gap-4">
         {absencesStudyGroups.map((subject, key) => (
-          <SubjectAbsences {...subject} key={key} />
+          <SubjectCard {...subject} key={key} />
         ))}
       </div>
       <Footer />
