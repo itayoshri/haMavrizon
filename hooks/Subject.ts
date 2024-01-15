@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { For } from '../components/Elipse'
+import { For } from '../components/UI/Circle/ProgressCircle'
 
 export default function PrecentageCalc(amount: number, outOff: number) {
   return useMemo(() => {

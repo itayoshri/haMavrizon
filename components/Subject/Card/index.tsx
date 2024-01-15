@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { IFrontAbsencesStudyGroup } from '../../Interfaces'
-import AbsElipse from '../Elipse/AbsElipse'
-import { Expand, ForwardRTL } from '../Icons'
+import { IFrontAbsencesStudyGroup } from '../../../Interfaces'
+import Circle from '../../UI/Circle'
+import { Expand, ForwardRTL } from '../../Icons'
 import CardData from './Data'
 
 export default function SubjectCard({
@@ -24,14 +24,14 @@ export default function SubjectCard({
         </div>
         <div className="flex gap-3">
           {/* currently */}
-          <AbsElipse
+          <Circle
             label={freeAbsences}
             lessonsCount={lessonsCount}
             absenceCounter={absenceCounter}
             clickable
           />
           {/* semesterial */}
-          <AbsElipse
+          <Circle
             label={freeAnnualAbsences}
             lessonsCount={semesterHours}
             absenceCounter={absenceCounter}

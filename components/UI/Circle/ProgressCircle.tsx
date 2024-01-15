@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
-import { useThemeProvider } from '../../contexts'
-import PrecentageCalc, { GetColor, pathColors } from '../../hooks/Subject'
+import { useThemeProvider } from '../../../contexts'
+import PrecentageCalc, { GetColor, pathColors } from '../../../hooks/Subject'
 
 export type For = 'grade' | 'absences'
 
-export interface ElipseProps {
+export interface ProgressCircleProps {
   outOff: number
   amount: number
   animate?: boolean
@@ -14,13 +14,13 @@ export interface ElipseProps {
   blue?: boolean
 }
 
-export default function Elipse({
+export default function ProgressCircle({
   outOff,
   amount,
   animate = false,
   type = 'absences',
   blue = false,
-}: ElipseProps) {
+}: ProgressCircleProps) {
   const percentage =
     type === 'absences' ? PrecentageCalc(amount, outOff) : amount
   const { darkMode } = useThemeProvider()

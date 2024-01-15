@@ -1,5 +1,5 @@
-import { IFrontAbsencesStudyGroup } from '../../../Interfaces'
-import { FreeAbsence, Later, Now, Out } from '../../Icons'
+import { IFrontAbsencesStudyGroup } from '../../../../Interfaces'
+import { FreeAbsence, Later, Now, Out } from '../../../Icons'
 import DataRow from './Row'
 
 const LESSONS_COUNT = 'שיעורים שהתקיימו'

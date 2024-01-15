@@ -1,8 +1,8 @@
-import PrecentageCalc, { GetColor } from '../../hooks/Subject'
-import { Close } from '../Icons'
-import AbsElipse, { textColors } from './AbsElipse'
+import PrecentageCalc, { GetColor } from '../../../hooks/Subject'
+import { Close } from '../../Icons'
+import Circle, { textColors } from '.'
 
-interface ElipseFullInfoProps {
+interface CircleCardProps {
   free: number
   lessonsCount: number
   absenceCounter: number
@@ -15,12 +15,12 @@ const LABELS = {
   red: { color: 'אדום', label: '30% ויותר, ללא ציון' },
 }
 
-export default function ElipseFullInfo({
+export default function CircleCard({
   free,
   lessonsCount,
   absenceCounter,
   setOpened,
-}: ElipseFullInfoProps) {
+}: CircleCardProps) {
   const percentage = PrecentageCalc(absenceCounter, lessonsCount)
   const color = GetColor(percentage, 'absences')
   const label = LABELS[color]
@@ -30,7 +30,7 @@ export default function ElipseFullInfo({
       <div onClick={() => setOpened(false)} className="absolute top-2 left-2">
         <Close width={16} />
       </div>
-      <AbsElipse
+      <Circle
         label={free}
         lessonsCount={lessonsCount}
         absenceCounter={absenceCounter}

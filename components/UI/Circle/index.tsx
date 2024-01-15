@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
-import PrecentageCalc, { GetColor } from '../../hooks/Subject'
-import Elipse, { For } from '.'
-import ElipseFullInfo from './ElipseFullInfo'
+import PrecentageCalc, { GetColor } from '../../../hooks/Subject'
+import ProgressCircle, { For } from './ProgressCircle'
+import CircleCard from './Card'
 
-export interface AbsElipseProps {
+export interface CircleProps {
   label: number
   lessonsCount: number
   absenceCounter: number
@@ -18,14 +18,14 @@ export const textColors = {
   red: 'text-[#FF3B30]',
 }
 
-export default function AbsElipse({
+export default function Circle({
   label,
   lessonsCount,
   absenceCounter,
   clickable = false,
   type = 'absences',
   blue = false,
-}: AbsElipseProps) {
+}: CircleProps) {
   const percentage =
     type === 'absences' ? PrecentageCalc(absenceCounter, lessonsCount) : label
   const [opened, setOpened] = useState(false)
@@ -62,7 +62,7 @@ export default function AbsElipse({
         onClick={() => (!opened ? setOpened(true) : null)}
         ref={ref}
       >
-        <Elipse
+        <ProgressCircle
           amount={absenceCounter}
           outOff={lessonsCount}
           animate={!clickable}
@@ -91,7 +91,7 @@ export default function AbsElipse({
         }
       </div>
       {clickable && opened ? (
-        <ElipseFullInfo
+        <CircleCard
           free={label}
           lessonsCount={lessonsCount}
           absenceCounter={absenceCounter}
