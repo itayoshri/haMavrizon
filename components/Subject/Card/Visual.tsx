@@ -10,7 +10,7 @@ interface SubjectCardVisual {
   opened: boolean
 }
 
-export default function SubjectCardVisual({
+export default function CardVisual({
   freeAbsences,
   lessonsCount,
   absenceCounter,

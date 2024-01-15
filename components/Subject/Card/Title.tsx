@@ -3,10 +3,7 @@ interface SubjectCardTitleProps {
   setOpened
 }
 
-export default function SubjectCardTitle({
-  title,
-  setOpened,
-}: SubjectCardTitleProps) {
+export default function CardTitle({ title, setOpened }: SubjectCardTitleProps) {
   return (
     <div
       className="flex gap-1 items-center cursor-pointer pl-4 overflow-hidden grow"
