@@ -22,7 +22,7 @@ export default function CircleCard({
   setOpened,
 }: CircleCardProps) {
   const percentage = PrecentageCalc(absenceCounter, lessonsCount)
-  const color = GetColor(percentage, 'absences')
+  const color = GetColor(percentage)
   const label = LABELS[color]
 
   return (
