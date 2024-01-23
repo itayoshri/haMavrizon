@@ -27,8 +27,7 @@ export default function Circle({
   type = 'absences',
   blue = false,
 }: CircleProps) {
-  const percentage =
-    type === 'absences' ? PrecentageCalc(absenceCounter, lessonsCount) : label
+  const percentage = PrecentageCalc(absenceCounter, lessonsCount)
   const [opened, setOpened] = useState(false)
 
   const ref = useRef(null)
@@ -67,20 +66,16 @@ export default function Circle({
           amount={absenceCounter}
           outOff={lessonsCount}
           animate={!clickable}
-          type={type}
-          blue={blue}
         />
         {
           /* label */
           <span
             className={`absolute
-        } ${blue ? 'text-blue-500' : textColors[GetColor(percentage, type)]}`}
+        } ${blue ? 'text-blue-500' : textColors[GetColor(percentage)]}`}
           >
             {/* free absences, percentage or grade */}
             <a className=" font-medium">
-              {Math.floor(
-                clickable || type === 'grade' ? label : 100 - percentage
-              )}
+              {Math.floor(clickable ? label : 100 - percentage)}
             </a>
             {
               /* percentage symbol */

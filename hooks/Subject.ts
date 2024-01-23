@@ -15,20 +15,13 @@ export const pathColors = {
   blue: '#3b82f6',
 }
 
-export function GetColor(percentage: number, type: For): PathColor {
+export function GetColor(percentage: number): PathColor {
   /*
   if (percentage <= 15) return 'green' // no affect
   if (percentage > 15 && percentage <= 30) return 'yellow' // affection
   return 'red' // no grade
   */
-  if (type === 'absences') {
-    if (percentage >= 85) return 'green' // no affect
-    if (percentage < 85 && percentage >= 70) return 'yellow' // affection
-    return 'red' // no grade
-  }
-  if (type === 'grade') {
-    if (percentage > 85) return 'green'
-    if (percentage > 55) return 'yellow'
-    if (percentage <= 55) return 'red'
-  }
+  if (percentage >= 85) return 'green' // no affect
+  if (percentage < 85 && percentage >= 70) return 'yellow' // affection
+  return 'red' // no grade
 }

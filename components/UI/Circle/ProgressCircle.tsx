@@ -10,19 +10,14 @@ export interface ProgressCircleProps {
   outOff: number
   amount: number
   animate?: boolean
-  type?: For
-  blue?: boolean
 }
 
 export default function ProgressCircle({
   outOff,
   amount,
   animate = false,
-  type = 'absences',
-  blue = false,
 }: ProgressCircleProps) {
-  const percentage =
-    type === 'absences' ? PrecentageCalc(amount, outOff) : amount
+  const percentage = PrecentageCalc(amount, outOff)
   const { darkMode } = useThemeProvider()
   const [value, setValue] = useState(0)
   useEffect(() => {
@@ -35,11 +30,9 @@ export default function ProgressCircle({
         NOW
   </a>*/}
       <CircularProgressbar
-        value={type === 'grade' ? amount : animate ? value : percentage}
+        value={animate ? value : percentage}
         styles={buildStyles({
-          pathColor: blue
-            ? pathColors['blue']
-            : pathColors[GetColor(percentage, type)],
+          pathColor: pathColors[GetColor(percentage)],
           trailColor: darkMode ? '#525252' : '',
         })}
       />
