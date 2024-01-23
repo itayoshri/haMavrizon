@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import PrecentageCalc, { GetColor } from '../../../hooks/Subject'
 import ProgressCircle, { For } from './ProgressCircle'
 import CircleCard from './Card'
+import Label from '../label'
 
 export interface CircleProps {
   label: number
