@@ -26,6 +26,7 @@ export default function CardVisual({
         lessonsCount={lessonsCount}
         absenceCounter={absenceCounter}
         clickable
+        period="NOW"
       />
       {/* semesterial */}
       <Circle
@@ -33,6 +34,7 @@ export default function CardVisual({
         lessonsCount={semesterHours}
         absenceCounter={absenceCounter}
         clickable
+        period="SEM'"
       />
       {opened ? <Expand width={24} /> : <ForwardRTL width={24} />}
     </div>

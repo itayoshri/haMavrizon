@@ -11,6 +11,7 @@ export interface CircleProps {
   clickable?: boolean
   type?: For
   blue?: boolean
+  period?: string
 }
 
 export const textColors = {
@@ -26,6 +27,7 @@ export default function Circle({
   clickable = false,
   type = 'absences',
   blue = false,
+  period,
 }: CircleProps) {
   const percentage = PrecentageCalc(absenceCounter, lessonsCount)
   const [opened, setOpened] = useState(false)
@@ -55,6 +57,7 @@ export default function Circle({
 
   return (
     <div className="relative">
+      {period ? <Label label={period} /> : null}
       <div
         className={`w-fit h-fit flex justify-center items-center ${
           !opened ? 'cursor-pointer' : ''
