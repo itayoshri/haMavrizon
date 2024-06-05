@@ -21,7 +21,6 @@ export default async function MashovLogin({
     year: 2024,
   }
 
-  console.log(MASHOV_LOGIN_URL)
   const response = await axios.post<any, IMashovLoginRes>(
     MASHOV_LOGIN_URL,
     data
@@ -35,10 +34,13 @@ export default async function MashovLogin({
   // Student info requests
   const studentId = response.data.credential.userId
 
+  const studentDisplayName = response.data.credential.displayName
+
   return {
     authCookie,
     studentId,
     xCsrfToken,
+    studentDisplayName,
   }
 }
 

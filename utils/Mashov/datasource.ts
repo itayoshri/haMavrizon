@@ -16,6 +16,7 @@ type FetchFor =
   | 'timetable'
   | 'grades'
   | 'lessonHistory'
+  | ''
 
 export const BASE_URL = 'web.mashov.info/api'
 

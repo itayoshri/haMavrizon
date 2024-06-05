@@ -71,6 +71,7 @@ export interface IMashovLoginRes {
   data: {
     credential: {
       userId: string
+      displayName: string
     }
   }
 }

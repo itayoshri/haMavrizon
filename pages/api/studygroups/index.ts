@@ -23,11 +23,12 @@ export default async function handler(
 
   const { semel, username, password } = req.query
 
-  const { authCookie, studentId, xCsrfToken } = await MashovLogin({
-    semel: semel as string,
-    username: username as string,
-    password: password as string,
-  })
+  const { authCookie, studentId, xCsrfToken, studentDisplayName } =
+    await MashovLogin({
+      semel: semel as string,
+      username: username as string,
+      password: password as string,
+    })
   const auth = { authCookie, studentId, xCsrfToken }
   const info = { ...auth, start: beginningOfSemesterDate.toISOString() }
 
@@ -58,5 +59,6 @@ export default async function handler(
     grades: gradesStudyGroups
       .getStudyGroups<IFrontGradesStudyGroup[]>()
       .sort((sgA, sgB) => (sgA.selected < sgB.selected ? 1 : -1)),
+    studentDisplayName,
   })
 }
